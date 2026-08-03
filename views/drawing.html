@@ -311,6 +311,31 @@ function nearestSnap(mx,my,r=14) {
   return best;
 }
 
+// When drawing a line: if direction from 'from' to mouse aligns with a circle center,
+// snap endpoint to the exact perimeter point on that axis (making a chord through center).
+function throughCenterSnap(from, mx, my, perimR=20, axisThreshDeg=10) {
+  for (const e of elements) {
+    if (e.type!=='circle') continue;
+    const dToEdge = Math.abs(dist(mx,my,e.cx,e.cy) - e.r);
+    if (dToEdge > perimR) continue;                         // cursor must be near perimeter
+    const angToCenter = Math.atan2(e.cy-from.y, e.cx-from.x);
+    const angToMouse  = Math.atan2(my-from.y,   mx-from.x);
+    let diff = angToCenter - angToMouse;
+    while (diff >  Math.PI) diff -= Math.PI*2;
+    while (diff < -Math.PI) diff += Math.PI*2;
+    if (Math.abs(diff) > axisThreshDeg * Math.PI/180) continue; // not aligned
+    // Snap to the nearer of the two perimeter points on this axis
+    const farX  = e.cx + e.r*Math.cos(angToCenter);
+    const farY  = e.cy + e.r*Math.sin(angToCenter);
+    const nearX = e.cx - e.r*Math.cos(angToCenter);
+    const nearY = e.cy - e.r*Math.sin(angToCenter);
+    const [sx,sy] = dist(mx,my,nearX,nearY) < dist(mx,my,farX,farY)
+      ? [nearX,nearY] : [farX,farY];
+    return { x:sx, y:sy, src:'through-center', cx:e.cx, cy:e.cy };
+  }
+  return null;
+}
+
 // For angle tool: find vertex (intersection or shared endpoint) near click
 function findAngleVertex(mx,my,r=20) {
   const lines = elements.filter(e=>e.type==='line');
@@ -481,7 +506,6 @@ function onMouseMove(e) {
 
   if (!isDrawing) {
     if (activeTool==='eraser') hoveredId = hitTest(x,y);
-    // Highlight vertex for angle tool
     if (activeTool==='angle') hoveredId = findAngleVertex(x,y)?.src ? 1 : null;
     render(); return;
   }
@@ -491,7 +515,11 @@ function onMouseMove(e) {
     previewEl = {type:'circle',cx:drawStart.x,cy:drawStart.y,r,color:props.stroke,width:props.width};
   }
   if (activeTool==='line' && drawStart) {
-    previewEl = {type:'line',x1:drawStart.x,y1:drawStart.y,x2:snap.x,y2:snap.y,color:props.stroke,width:props.width};
+    // Through-center snap overrides regular snap when aligned with a circle axis
+    const tcs = throughCenterSnap(drawStart, x, y);
+    if (tcs) snapPt = tcs;
+    const endPt = snapPt || {x,y};
+    previewEl = {type:'line',x1:drawStart.x,y1:drawStart.y,x2:endPt.x,y2:endPt.y,color:props.stroke,width:props.width};
   }
   render();
 }
@@ -586,11 +614,21 @@ function render() {
   // Preview
   if (previewEl) { ctx.globalAlpha=0.6; drawElement(previewEl,false); ctx.globalAlpha=1; }
 
-  // Snap indicator
+  // Snap indicator — color encodes snap type
   if (snapPt) {
+    const color = snapPt.src==='through-center' ? '#10b981'   // teal  = axis through center
+                : snapPt.src==='perimeter'       ? '#f59e0b'   // amber = perimeter
+                : snapPt.src==='ep'              ? '#22c55e'   // green = continue line (endpoint)
+                : snapPt.src==='intersect'       ? '#f43f5e'   // rose  = intersection
+                : '#6366f1';                                    // purple = other
     ctx.beginPath(); ctx.arc(snapPt.x,snapPt.y,8,0,Math.PI*2);
-    ctx.strokeStyle = snapPt.src==='perimeter' ? '#f59e0b' : '#6366f1';
-    ctx.lineWidth=1.5; ctx.setLineDash([3,2]); ctx.stroke(); ctx.setLineDash([]);
+    ctx.strokeStyle=color; ctx.lineWidth=1.5; ctx.setLineDash([3,2]); ctx.stroke(); ctx.setLineDash([]);
+    // For through-center: draw a dashed guide line through the circle center
+    if (snapPt.src==='through-center') {
+      ctx.beginPath(); ctx.moveTo(drawStart?.x??snapPt.x, drawStart?.y??snapPt.y);
+      ctx.lineTo(snapPt.cx, snapPt.cy);
+      ctx.strokeStyle='#10b98155'; ctx.lineWidth=1; ctx.setLineDash([4,4]); ctx.stroke(); ctx.setLineDash([]);
+    }
   }
 
   // Angle tool: highlight vertex
