@@ -21,6 +21,7 @@ app.get('/', (req, res) => res.sendFile(path.join(VIEWS, 'home.html')));
 
 app.get('/training', (req, res) => res.sendFile(path.join(VIEWS, 'training.html')));
 app.get('/training/study-plan', (req, res) => res.sendFile(path.join(VIEWS, 'study-plan.html')));
+app.get('/training/circle-problem', (req, res) => res.sendFile(path.join(VIEWS, 'circle-problem.html')));
 
 app.get('/practice', (req, res) => res.sendFile(path.join(VIEWS, 'practice.html')));
 

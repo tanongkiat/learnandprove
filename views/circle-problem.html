@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Circle Problem — TU89 Q3</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0f1117;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #e2e8f0;
+      gap: 1.2rem;
+      padding: 2rem;
+    }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      display: flex; align-items: center; gap: 0.7rem;
+      padding: 0.8rem 1.5rem; background: #0f1117ee;
+      border-bottom: 1px solid #334155; backdrop-filter: blur(8px); z-index: 10;
+    }
+    nav a { color: #94a3b8; text-decoration: none; font-size: 0.85rem; }
+    nav a:hover { color: #e2e8f0; }
+    nav .sep { color: #334155; }
+    nav .cur { color: #a78bfa; font-weight: 700; font-size: 0.85rem; }
+
+    canvas {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 40px rgba(139,92,246,0.2);
+      display: block;
+    }
+    .hint {
+      font-size: 0.82rem;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/">Home</a><span class="sep">/</span>
+  <a href="/training">Training</a><span class="sep">/</span>
+  <span class="cur">Circle Problem</span>
+</nav>
+
+<canvas id="c" width="480" height="480"></canvas>
+<p class="hint">O is the center of the circle. Find the value of 2x − y.</p>
+
+<script>
+const canvas = document.getElementById('c');
+const ctx    = canvas.getContext('2d');
+
+const CX = 240, CY = 248, R = 200;
+
+// Convert degrees-from-top-clockwise to canvas (x, y)
+function pt(deg) {
+  const rad = (deg - 90) * Math.PI / 180;
+  return { x: CX + R * Math.cos(rad), y: CY + R * Math.sin(rad) };
+}
+
+// Line–line intersection (returns point or null)
+function intersect(a, b, c, d) {
+  const dx1 = b.x - a.x, dy1 = b.y - a.y;
+  const dx2 = d.x - c.x, dy2 = d.y - c.y;
+  const den  = dx1 * dy2 - dy1 * dx2;
+  if (Math.abs(den) < 1e-9) return null;
+  const t = ((c.x - a.x) * dy2 - (c.y - a.y) * dx2) / den;
+  return { x: a.x + t * dx1, y: a.y + t * dy1 };
+}
+
+// ── Points on circle ─────────────────────────────────────────────────
+// Positions matched to the diagram image (degrees from top, clockwise)
+const P1 = pt(328); // upper-left
+const P2 = pt(16);  // upper-right  → angle x
+const P3 = pt(82);  // right         → angle y
+const P4 = pt(152); // lower-right
+const P5 = pt(212); // lower-left    → 14°
+
+// Pentagram chords (skip-one connections): P1-P3, P3-P5, P5-P2, P2-P4, P4-P1
+const chords = [
+  [P1, P3],
+  [P3, P5],
+  [P5, P2],
+  [P2, P4],
+  [P4, P1],
+];
+
+// Interior intersection points where angle labels live
+const I34  = intersect(P1, P3, P5, P2); // upper-left interior  → 34°
+const I67  = intersect(P4, P1, P3, P5); // lower interior       → 67° (near O)
+
+// ── Drawing helpers ──────────────────────────────────────────────────
+function drawCircle() {
+  ctx.beginPath();
+  ctx.arc(CX, CY, R, 0, Math.PI * 2);
+  ctx.strokeStyle = '#1a1a2e';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+}
+
+function drawChords() {
+  ctx.strokeStyle = '#1a1a2e';
+  ctx.lineWidth = 1.6;
+  chords.forEach(([a, b]) => {
+    ctx.beginPath();
+    ctx.moveTo(a.x, a.y);
+    ctx.lineTo(b.x, b.y);
+    ctx.stroke();
+  });
+}
+
+function dot(p, r = 3.5) {
+  ctx.beginPath();
+  ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+  ctx.fillStyle = '#1a1a2e';
+  ctx.fill();
+}
+
+// Draw a small angle arc at vertex v, between directions to a and b
+function angleArc(v, a, b, arcR = 22) {
+  const ang1 = Math.atan2(a.y - v.y, a.x - v.x);
+  const ang2 = Math.atan2(b.y - v.y, b.x - v.x);
+  ctx.beginPath();
+  ctx.arc(v.x, v.y, arcR, ang1, ang2);
+  ctx.strokeStyle = '#444';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+}
+
+function label(text, x, y, { size = 15, italic = true, color = '#111' } = {}) {
+  ctx.font = `${italic ? 'italic ' : ''}${size}px 'Times New Roman', serif`;
+  ctx.fillStyle = color;
+  ctx.fillText(text, x, y);
+}
+
+// ── Render ────────────────────────────────────────────────────────────
+drawCircle();
+drawChords();
+
+// Center O
+dot({ x: CX, y: CY });
+label('O', CX + 8, CY + 6, { italic: true });
+
+// Angle arcs + labels at circumference vertices
+// x at P2
+angleArc(P2, P5, P4, 26);
+label('x', P2.x - 6, P2.y + 28, { size: 15 });
+
+// y at P3
+angleArc(P3, P1, P5, 26);
+label('y', P3.x - 34, P3.y + 4, { size: 15 });
+
+// 14° at P5
+angleArc(P5, P2, P4, 28);
+label('14°', P5.x + 10, P5.y - 8, { size: 13 });
+
+// 34° at interior intersection I34
+if (I34) {
+  dot(I34, 2);
+  angleArc(I34, P3, P5, 20);
+  label('34°', I34.x + 6, I34.y - 4, { size: 13 });
+}
+
+// 67° at interior intersection I67 (near O)
+if (I67) {
+  dot(I67, 2);
+  angleArc(I67, P4, P3, 22);
+  label('67°', I67.x + 4, I67.y + 18, { size: 13 });
+}
+
+// Dots on circumference points (no labels needed for unlabeled ones)
+[P1, P2, P3, P4, P5].forEach(p => dot(p, 3));
+</script>
+</body>
+</html>
