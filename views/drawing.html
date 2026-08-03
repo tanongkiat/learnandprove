@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drawing Tool — Training Mode</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #0f1117; color: #e2e8f0;
+      display: flex; flex-direction: column; height: 100vh; overflow: hidden;
+    }
+
+    /* ── Nav ── */
+    nav {
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0 1rem; height: 44px; flex-shrink: 0;
+      background: #0f1117; border-bottom: 1px solid #334155; z-index: 10;
+    }
+    nav a { color: #94a3b8; text-decoration: none; font-size: 0.82rem; }
+    nav a:hover { color: #e2e8f0; }
+    .sep { color: #334155; font-size: 0.82rem; }
+    .nav-cur { color: #a78bfa; font-size: 0.82rem; font-weight: 700; }
+    .nav-actions { margin-left: auto; display: flex; gap: 0.4rem; }
+    .nav-btn {
+      background: #1e293b; border: 1px solid #334155; color: #94a3b8;
+      font-size: 0.75rem; padding: 0.3rem 0.7rem; border-radius: 6px;
+      cursor: pointer; transition: all 0.12s;
+    }
+    .nav-btn:hover { background: #263345; color: #e2e8f0; }
+    .nav-btn.danger:hover { background: #3b0f0f; border-color: #f43f5e; color: #f43f5e; }
+
+    /* ── Workspace ── */
+    .workspace { flex: 1; display: flex; overflow: hidden; }
+
+    /* ── Toolbar ── */
+    .toolbar {
+      width: 56px; flex-shrink: 0; background: #1e293b;
+      border-right: 1px solid #334155;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 0.5rem 0; gap: 2px; overflow-y: auto;
+    }
+    .tool-btn {
+      width: 40px; height: 40px; border-radius: 8px;
+      border: 1px solid transparent; background: transparent;
+      color: #64748b; font-size: 1.15rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.12s; position: relative;
+    }
+    .tool-btn:hover { background: #263345; color: #e2e8f0; }
+    .tool-btn.active { background: #1a1b2e; border-color: #6366f1; color: #a78bfa; }
+    .tool-sep { width: 32px; height: 1px; background: #334155; margin: 4px 0; }
+    .tool-btn[title]:hover::after {
+      content: attr(title); position: absolute; left: 48px; top: 50%;
+      transform: translateY(-50%); background: #0f172a; border: 1px solid #334155;
+      color: #e2e8f0; font-size: 0.72rem; white-space: nowrap;
+      padding: 0.25rem 0.5rem; border-radius: 6px; pointer-events: none; z-index: 100;
+    }
+
+    /* ── Canvas area ── */
+    .canvas-wrap {
+      flex: 1; position: relative; overflow: hidden;
+      background: #f8fafc;
+    }
+    canvas { display: block; position: absolute; top: 0; left: 0; }
+    .cursor-select  { cursor: default; }
+    .cursor-circle  { cursor: crosshair; }
+    .cursor-line    { cursor: crosshair; }
+    .cursor-point   { cursor: crosshair; }
+    .cursor-angle   { cursor: crosshair; }
+    .cursor-label   { cursor: text; }
+    .cursor-eraser  { cursor: cell; }
+
+    /* ── Properties panel ── */
+    .panel {
+      width: 210px; flex-shrink: 0; background: #1e293b;
+      border-left: 1px solid #334155; overflow-y: auto;
+      padding: 0.8rem;
+    }
+    .panel-title {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #64748b; margin-bottom: 0.8rem;
+    }
+    .prop-group { margin-bottom: 1rem; }
+    .prop-label { font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.3rem; display: block; }
+    .prop-row { display: flex; align-items: center; gap: 0.5rem; }
+    input[type="color"] {
+      width: 36px; height: 28px; border: 1px solid #334155; border-radius: 6px;
+      background: #0f172a; cursor: pointer; padding: 2px;
+    }
+    input[type="range"] {
+      flex: 1; accent-color: #6366f1; cursor: pointer;
+    }
+    input[type="text"], input[type="number"] {
+      width: 100%; background: #0f172a; border: 1px solid #334155;
+      color: #e2e8f0; font-size: 0.82rem; padding: 0.35rem 0.6rem;
+      border-radius: 6px; outline: none;
+    }
+    input[type="text"]:focus, input[type="number"]:focus {
+      border-color: #6366f1;
+    }
+    .prop-val { font-size: 0.75rem; color: #64748b; min-width: 28px; text-align: right; }
+    .prop-hint {
+      font-size: 0.72rem; color: #475569; line-height: 1.5;
+      padding: 0.5rem; background: #0f172a; border-radius: 6px; border: 1px solid #1e293b;
+    }
+    .prop-hint b { color: #94a3b8; }
+
+    /* ── Snap indicator style (drawn on canvas) ── */
+    #snap-indicator { display: none; }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <a href="/">Home</a><span class="sep">/</span>
+  <a href="/training">Training</a><span class="sep">/</span>
+  <span class="nav-cur">✏️ Drawing Tool</span>
+  <div class="nav-actions">
+    <button class="nav-btn" onclick="undo()" title="Ctrl+Z">↩ Undo</button>
+    <button class="nav-btn" onclick="redo()" title="Ctrl+Y">↪ Redo</button>
+    <button class="nav-btn" onclick="exportPNG()">⬇ Export</button>
+    <button class="nav-btn danger" onclick="clearAll()">🗑 Clear</button>
+  </div>
+</nav>
+
+<div class="workspace">
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <button class="tool-btn active" id="btn-select"  onclick="setTool('select')"  title="Select  (V)">▶</button>
+    <div class="tool-sep"></div>
+    <button class="tool-btn"        id="btn-circle"  onclick="setTool('circle')"  title="Circle  (C)">⊙</button>
+    <button class="tool-btn"        id="btn-line"    onclick="setTool('line')"    title="Line    (L)">╱</button>
+    <button class="tool-btn"        id="btn-point"   onclick="setTool('point')"   title="Point   (P)">•</button>
+    <div class="tool-sep"></div>
+    <button class="tool-btn"        id="btn-angle"   onclick="setTool('angle')"   title="Angle   (A)">∠</button>
+    <button class="tool-btn"        id="btn-label"   onclick="setTool('label')"   title="Label   (T)">T</button>
+    <div class="tool-sep"></div>
+    <button class="tool-btn"        id="btn-eraser"  onclick="setTool('eraser')"  title="Erase   (E)">⌫</button>
+  </div>
+
+  <!-- Canvas -->
+  <div class="canvas-wrap" id="canvas-wrap">
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <!-- Properties panel -->
+  <div class="panel">
+    <div class="panel-title">Properties</div>
+
+    <div class="prop-group">
+      <span class="prop-label">Stroke color</span>
+      <input type="color" id="p-stroke" value="#1a1a2e" oninput="props.stroke=this.value; render()">
+    </div>
+
+    <div class="prop-group">
+      <span class="prop-label">Line width</span>
+      <div class="prop-row">
+        <input type="range" id="p-width" min="1" max="8" value="2"
+               oninput="props.width=+this.value; document.getElementById('p-width-val').textContent=this.value; render()">
+        <span class="prop-val" id="p-width-val">2</span>
+      </div>
+    </div>
+
+    <div class="prop-group" id="pg-label" style="display:none">
+      <span class="prop-label">Label / Angle text</span>
+      <input type="text" id="p-label" value="°" placeholder="e.g. 34°, x, y"
+             oninput="props.labelText=this.value">
+    </div>
+
+    <div class="prop-group" id="pg-arc" style="display:none">
+      <span class="prop-label">Arc radius</span>
+      <div class="prop-row">
+        <input type="range" id="p-arc" min="12" max="60" value="28"
+               oninput="props.arcR=+this.value; document.getElementById('p-arc-val').textContent=this.value; render()">
+        <span class="prop-val" id="p-arc-val">28</span>
+      </div>
+    </div>
+
+    <div class="prop-group" id="pg-font" style="display:none">
+      <span class="prop-label">Font size</span>
+      <div class="prop-row">
+        <input type="range" id="p-font" min="10" max="30" value="15"
+               oninput="props.fontSize=+this.value; document.getElementById('p-font-val').textContent=this.value; render()">
+        <span class="prop-val" id="p-font-val">15</span>
+      </div>
+    </div>
+
+    <div class="prop-group" id="pg-hint">
+      <div class="prop-hint" id="p-hint">Select a tool to start drawing.</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ────────────────────────────────────────────────────────────────────────────
+// State
+// ────────────────────────────────────────────────────────────────────────────
+let elements  = [];        // all placed elements
+let undoStack = ['[]'];    // JSON snapshots for undo
+let undoIndex = 0;
+let nextId    = 1;
+const uid = () => nextId++;
+
+let activeTool  = 'select';
+let isDrawing   = false;
+let drawStart   = null;    // {x,y} where current stroke started
+let previewEl   = null;    // element being previewed while dragging
+let snapPt      = null;    // nearest snap point under cursor
+let hoveredId   = null;
+let selectedId  = null;
+let dragOffset  = null;    // {dx,dy} for moving selected element
+
+const props = { stroke: '#1a1a2e', width: 2, fontSize: 15, labelText: '°', arcR: 28 };
+
+// ────────────────────────────────────────────────────────────────────────────
+// Canvas setup
+// ────────────────────────────────────────────────────────────────────────────
+const canvas = document.getElementById('canvas');
+const ctx    = canvas.getContext('2d');
+const wrap   = document.getElementById('canvas-wrap');
+
+function resizeCanvas() {
+  canvas.width  = wrap.clientWidth;
+  canvas.height = wrap.clientHeight;
+  render();
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+// ────────────────────────────────────────────────────────────────────────────
+// Math helpers
+// ────────────────────────────────────────────────────────────────────────────
+const dist = (x1,y1,x2,y2) => Math.hypot(x2-x1, y2-y1);
+
+function lineIntersect(ax,ay,bx,by,cx,cy,dx,dy) {
+  const d1x=bx-ax, d1y=by-ay, d2x=dx-cx, d2y=dy-cy;
+  const den = d1x*d2y - d1y*d2x;
+  if (Math.abs(den)<1e-9) return null;
+  const t = ((cx-ax)*d2y-(cy-ay)*d2x)/den;
+  const u = ((cx-ax)*d1y-(cy-ay)*d1x)/den;
+  return { x:ax+t*d1x, y:ay+t*d1y, t, u };
+}
+
+// Only returns if both t and u are within [0,1] (segment intersection)
+function segIntersect(a,b) {
+  const p = lineIntersect(a.x1,a.y1,a.x2,a.y2, b.x1,b.y1,b.x2,b.y2);
+  if (!p) return null;
+  if (p.t<-0.01||p.t>1.01||p.u<-0.01||p.u>1.01) return null;
+  return p;
+}
+
+function ptToSegDist(px,py, ax,ay, bx,by) {
+  const dx=bx-ax, dy=by-ay, len2=dx*dx+dy*dy;
+  if (len2===0) return dist(px,py,ax,ay);
+  const t = Math.max(0,Math.min(1, ((px-ax)*dx+(py-ay)*dy)/len2));
+  return dist(px,py, ax+t*dx, ay+t*dy);
+}
+
+function ptToCircleDist(px,py, cx,cy, r) {
+  return Math.abs(dist(px,py,cx,cy)-r);
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// Snap system
+// ────────────────────────────────────────────────────────────────────────────
+function getSnapCandidates() {
+  const pts = [];
+  const lines = elements.filter(e=>e.type==='line');
+
+  // Endpoints, circle centers, points
+  for (const e of elements) {
+    if (e.type==='line')   { pts.push({x:e.x1,y:e.y1,src:'ep'}); pts.push({x:e.x2,y:e.y2,src:'ep'}); }
+    if (e.type==='circle') pts.push({x:e.cx,y:e.cy,src:'center'});
+    if (e.type==='point')  pts.push({x:e.x, y:e.y, src:'pt'});
+  }
+  // Line-line intersections
+  for (let i=0;i<lines.length;i++)
+    for (let j=i+1;j<lines.length;j++) {
+      const p = segIntersect(lines[i],lines[j]);
+      if (p) pts.push({x:p.x,y:p.y,src:'intersect',lines:[lines[i],lines[j]]});
+    }
+  return pts;
+}
+
+function nearestSnap(mx,my,r=14) {
+  let best=null, bd=Infinity;
+  for (const p of getSnapCandidates()) {
+    const d=dist(mx,my,p.x,p.y);
+    if (d<r && d<bd) { best=p; bd=d; }
+  }
+  return best;
+}
+
+// For angle tool: find vertex (intersection or shared endpoint) near click
+function findAngleVertex(mx,my,r=20) {
+  const lines = elements.filter(e=>e.type==='line');
+  const cands = getSnapCandidates();
+
+  for (const p of cands) {
+    if (dist(mx,my,p.x,p.y)>r) continue;
+
+    // Intersection already has two lines
+    if (p.src==='intersect') return p;
+
+    // Endpoint: find 2+ lines that share this point
+    const connected = lines.filter(l=>
+      (dist(l.x1,l.y1,p.x,p.y)<1.5) || (dist(l.x2,l.y2,p.x,p.y)<1.5)
+    );
+    if (connected.length>=2) return {...p, src:'vertex', lines:connected};
+  }
+  return null;
+}
+
+// Direction from vertex toward a line's other end
+function dirFrom(vx,vy, line) {
+  const onP1 = dist(vx,vy,line.x1,line.y1)<1.5;
+  const ox = onP1 ? line.x2 : line.x1;
+  const oy = onP1 ? line.y2 : line.y1;
+  return Math.atan2(oy-vy, ox-vx);
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// Undo / Redo
+// ────────────────────────────────────────────────────────────────────────────
+function saveState() {
+  undoStack = undoStack.slice(0, undoIndex+1);
+  undoStack.push(JSON.stringify(elements));
+  undoIndex = undoStack.length-1;
+}
+function undo() {
+  if (undoIndex<=0) return;
+  undoIndex--;
+  elements = JSON.parse(undoStack[undoIndex]);
+  render();
+}
+function redo() {
+  if (undoIndex>=undoStack.length-1) return;
+  undoIndex++;
+  elements = JSON.parse(undoStack[undoIndex]);
+  render();
+}
+function clearAll() {
+  if (!confirm('Clear the canvas?')) return;
+  elements = [];
+  saveState();
+  render();
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// Tool switching
+// ────────────────────────────────────────────────────────────────────────────
+const hints = {
+  select: '<b>Select:</b> Click to select. Drag to move. Delete key to remove.',
+  circle: '<b>Circle:</b> Click center, drag to set radius.',
+  line:   '<b>Line:</b> Click start point, drag to end point.',
+  point:  '<b>Point:</b> Click to place a labeled dot.',
+  angle:  '<b>Angle:</b> Click near a vertex where two lines meet. Uses the label from the text field.',
+  label:  '<b>Label:</b> Click anywhere to place a text label.',
+  eraser: '<b>Eraser:</b> Click any element to delete it.',
+};
+
+function setTool(t) {
+  activeTool = t;
+  isDrawing  = false;
+  previewEl  = null;
+  selectedId = null;
+
+  document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.getElementById('btn-'+t);
+  if (btn) btn.classList.add('active');
+
+  // Update cursor
+  wrap.className = 'canvas-wrap cursor-'+t;
+
+  // Show/hide property groups
+  document.getElementById('pg-label').style.display = ['angle','label','point'].includes(t) ? '' : 'none';
+  document.getElementById('pg-arc').style.display   = t==='angle' ? '' : 'none';
+  document.getElementById('pg-font').style.display  = ['label','point','angle'].includes(t) ? '' : 'none';
+  document.getElementById('p-hint').innerHTML = hints[t] || '';
+  render();
+}
+setTool('line'); // default to line
+
+// ────────────────────────────────────────────────────────────────────────────
+// Mouse events
+// ────────────────────────────────────────────────────────────────────────────
+function getXY(e) {
+  const rect = canvas.getBoundingClientRect();
+  return { x: e.clientX-rect.left, y: e.clientY-rect.top };
+}
+
+canvas.addEventListener('mousedown', onMouseDown);
+canvas.addEventListener('mousemove', onMouseMove);
+canvas.addEventListener('mouseup',   onMouseUp);
+canvas.addEventListener('dblclick',  onDblClick);
+
+function onMouseDown(e) {
+  const {x,y} = getXY(e);
+  const snap  = nearestSnap(x,y) || {x,y};
+
+  if (activeTool==='select') {
+    // Hit test
+    selectedId = hitTest(x,y);
+    if (selectedId!==null) {
+      const el = elements.find(e=>e.id===selectedId);
+      dragOffset = computeDragOffset(el,x,y);
+      isDrawing = true;
+    }
+    render(); return;
+  }
+
+  if (activeTool==='eraser') {
+    const id = hitTest(x,y);
+    if (id!==null) { elements = elements.filter(e=>e.id!==id); saveState(); render(); }
+    return;
+  }
+
+  if (activeTool==='circle' || activeTool==='line') {
+    isDrawing = true;
+    drawStart = {x:snap.x, y:snap.y};
+    return;
+  }
+
+  if (activeTool==='point') {
+    elements.push({id:uid(), type:'point', x:snap.x, y:snap.y, label:props.labelText||'', color:props.stroke, size:props.fontSize});
+    saveState(); render(); return;
+  }
+
+  if (activeTool==='label') {
+    elements.push({id:uid(), type:'label', x:snap.x, y:snap.y, text:props.labelText||'text', color:props.stroke, size:props.fontSize});
+    saveState(); render(); return;
+  }
+
+  if (activeTool==='angle') {
+    const v = findAngleVertex(x,y);
+    if (!v || !v.lines || v.lines.length<2) return;
+    const ang1 = dirFrom(v.x,v.y,v.lines[0]);
+    const ang2 = dirFrom(v.x,v.y,v.lines[1]);
+    elements.push({
+      id:uid(), type:'angle',
+      vx:v.x, vy:v.y,
+      ang1, ang2,
+      arcR: props.arcR,
+      label: props.labelText||'°',
+      color: props.stroke,
+      size: props.fontSize,
+    });
+    saveState(); render(); return;
+  }
+}
+
+function onMouseMove(e) {
+  const {x,y} = getXY(e);
+  snapPt = nearestSnap(x,y);
+  const snap = snapPt || {x,y};
+
+  if (activeTool==='select' && isDrawing && selectedId!==null) {
+    moveElement(selectedId, x-dragOffset.dx, y-dragOffset.dy);
+    render(); return;
+  }
+
+  if (!isDrawing) {
+    if (activeTool==='eraser') hoveredId = hitTest(x,y);
+    // Highlight vertex for angle tool
+    if (activeTool==='angle') hoveredId = findAngleVertex(x,y)?.src ? 1 : null;
+    render(); return;
+  }
+
+  if (activeTool==='circle' && drawStart) {
+    const r = dist(drawStart.x,drawStart.y,snap.x,snap.y);
+    previewEl = {type:'circle',cx:drawStart.x,cy:drawStart.y,r,color:props.stroke,width:props.width};
+  }
+  if (activeTool==='line' && drawStart) {
+    previewEl = {type:'line',x1:drawStart.x,y1:drawStart.y,x2:snap.x,y2:snap.y,color:props.stroke,width:props.width};
+  }
+  render();
+}
+
+function onMouseUp(e) {
+  const {x,y} = getXY(e);
+  const snap = nearestSnap(x,y) || {x,y};
+
+  if (activeTool==='select') { isDrawing=false; dragOffset=null; saveState(); render(); return; }
+
+  if (isDrawing && drawStart) {
+    if (activeTool==='circle') {
+      const r = dist(drawStart.x,drawStart.y,snap.x,snap.y);
+      if (r>4) { elements.push({id:uid(),type:'circle',cx:drawStart.x,cy:drawStart.y,r,color:props.stroke,width:props.width}); saveState(); }
+    }
+    if (activeTool==='line') {
+      if (dist(drawStart.x,drawStart.y,snap.x,snap.y)>4) {
+        elements.push({id:uid(),type:'line',x1:drawStart.x,y1:drawStart.y,x2:snap.x,y2:snap.y,color:props.stroke,width:props.width}); saveState();
+      }
+    }
+  }
+  isDrawing=false; previewEl=null; drawStart=null;
+  render();
+}
+
+function onDblClick(e) {
+  if (activeTool!=='select') return;
+  const {x,y} = getXY(e);
+  const id = hitTest(x,y);
+  if (id===null) return;
+  const el = elements.find(e=>e.id===id);
+  if (!el) return;
+  // Inline edit label/text
+  if (el.type==='label'||el.type==='point') {
+    const t = prompt('Edit text:', el.text||el.label||'');
+    if (t!==null) { el.text=t; el.label=t; saveState(); render(); }
+  }
+  if (el.type==='angle') {
+    const t = prompt('Edit angle label:', el.label||'');
+    if (t!==null) { el.label=t; saveState(); render(); }
+  }
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// Hit test (returns id or null)
+// ────────────────────────────────────────────────────────────────────────────
+function hitTest(mx,my,tol=8) {
+  for (let i=elements.length-1;i>=0;i--) {
+    const e=elements[i];
+    if (e.type==='line'   && ptToSegDist(mx,my,e.x1,e.y1,e.x2,e.y2)<tol) return e.id;
+    if (e.type==='circle' && ptToCircleDist(mx,my,e.cx,e.cy,e.r)<tol) return e.id;
+    if (e.type==='point'  && dist(mx,my,e.x,e.y)<tol+4) return e.id;
+    if (e.type==='label'  && dist(mx,my,e.x,e.y)<tol+12) return e.id;
+    if (e.type==='angle'  && dist(mx,my,e.vx,e.vy)<e.arcR+tol) return e.id;
+  }
+  return null;
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// Move
+// ────────────────────────────────────────────────────────────────────────────
+function computeDragOffset(el,mx,my) {
+  if (el.type==='circle') return {dx:mx-el.cx,dy:my-el.cy};
+  if (el.type==='line')   return {dx:mx-el.x1,dy:my-el.y1};
+  if (el.type==='point'||el.type==='label') return {dx:mx-el.x,dy:my-el.y};
+  if (el.type==='angle')  return {dx:mx-el.vx,dy:my-el.vy};
+  return {dx:0,dy:0};
+}
+function moveElement(id,nx,ny) {
+  const el=elements.find(e=>e.id===id);
+  if (!el) return;
+  if (el.type==='circle')                { el.cx=nx+dragOffset.dx; el.cy=ny+dragOffset.dy; }
+  if (el.type==='line')   { const dx=nx-el.x1,dy=ny-el.y1; el.x1+=dx;el.y1+=dy;el.x2+=dx;el.y2+=dy; }
+  if (el.type==='point'||el.type==='label') { el.x=nx+dragOffset.dx; el.y=ny+dragOffset.dy; }
+  if (el.type==='angle')  { el.vx=nx+dragOffset.dx; el.vy=ny+dragOffset.dy; }
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// Rendering
+// ────────────────────────────────────────────────────────────────────────────
+function render() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  // Grid
+  ctx.strokeStyle='#e2e8f0'; ctx.lineWidth=0.5;
+  for (let x=0;x<canvas.width;x+=40) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,canvas.height); ctx.stroke(); }
+  for (let y=0;y<canvas.height;y+=40) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(canvas.width,y); ctx.stroke(); }
+
+  // Elements
+  for (const el of elements) drawElement(el, el.id===selectedId);
+
+  // Preview
+  if (previewEl) { ctx.globalAlpha=0.6; drawElement(previewEl,false); ctx.globalAlpha=1; }
+
+  // Snap indicator
+  if (snapPt) {
+    ctx.beginPath(); ctx.arc(snapPt.x,snapPt.y,8,0,Math.PI*2);
+    ctx.strokeStyle='#6366f1'; ctx.lineWidth=1.5; ctx.setLineDash([3,2]); ctx.stroke(); ctx.setLineDash([]);
+  }
+
+  // Angle tool: highlight vertex
+  if (activeTool==='angle' && !isDrawing) {
+    const rect=canvas.getBoundingClientRect();
+    // Highlight drawn via mousemove's snapPt fallthrough — done above
+  }
+}
+
+function drawElement(el, selected=false) {
+  ctx.strokeStyle = el.color||'#1a1a2e';
+  ctx.fillStyle   = el.color||'#1a1a2e';
+  ctx.lineWidth   = el.width||2;
+  ctx.setLineDash([]);
+
+  if (selected) {
+    ctx.shadowColor='#6366f1'; ctx.shadowBlur=8;
+  } else {
+    ctx.shadowBlur=0;
+  }
+
+  if (el.type==='circle') {
+    ctx.beginPath(); ctx.arc(el.cx,el.cy,el.r,0,Math.PI*2); ctx.stroke();
+    // center dot
+    ctx.beginPath(); ctx.arc(el.cx,el.cy,2.5,0,Math.PI*2); ctx.fill();
+  }
+
+  if (el.type==='line') {
+    ctx.beginPath(); ctx.moveTo(el.x1,el.y1); ctx.lineTo(el.x2,el.y2); ctx.stroke();
+    // endpoint dots
+    ctx.beginPath(); ctx.arc(el.x1,el.y1,2.5,0,Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(el.x2,el.y2,2.5,0,Math.PI*2); ctx.fill();
+  }
+
+  if (el.type==='point') {
+    ctx.beginPath(); ctx.arc(el.x,el.y,4,0,Math.PI*2); ctx.fill();
+    if (el.label) {
+      ctx.font=`italic ${el.size||15}px 'Times New Roman',serif`;
+      ctx.fillText(el.label, el.x+8, el.y-6);
+    }
+  }
+
+  if (el.type==='label') {
+    ctx.font=`italic ${el.size||15}px 'Times New Roman',serif`;
+    ctx.fillText(el.text||'', el.x, el.y);
+  }
+
+  if (el.type==='angle') {
+    const {vx,vy,ang1,ang2,arcR,label,size} = el;
+    // Draw arc from ang1 to ang2 (smaller arc)
+    let a1=ang1, a2=ang2;
+    // Normalize: draw the smaller of the two arcs
+    let diff = ((a2-a1) % (Math.PI*2) + Math.PI*2) % (Math.PI*2);
+    if (diff>Math.PI) { [a1,a2]=[a2,a1]; diff=Math.PI*2-diff; }
+    ctx.beginPath(); ctx.arc(vx,vy,arcR,a1,a2); ctx.lineWidth=1.2; ctx.stroke();
+    // Label at midpoint angle
+    const mid = a1 + diff/2;
+    const lx  = vx + (arcR+12)*Math.cos(mid);
+    const ly  = vy + (arcR+12)*Math.sin(mid);
+    ctx.font=`italic ${size||15}px 'Times New Roman',serif`;
+    ctx.fillText(label||'', lx-ctx.measureText(label||'').width/2, ly+5);
+  }
+
+  ctx.shadowBlur=0;
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// Keyboard shortcuts
+// ────────────────────────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.target.tagName==='INPUT') return;
+  if (e.key==='v'||e.key==='V') setTool('select');
+  if (e.key==='c'||e.key==='C') setTool('circle');
+  if (e.key==='l'||e.key==='L') setTool('line');
+  if (e.key==='p'||e.key==='P') setTool('point');
+  if (e.key==='a'||e.key==='A') setTool('angle');
+  if (e.key==='t'||e.key==='T') setTool('label');
+  if (e.key==='e'||e.key==='E') setTool('eraser');
+  if ((e.ctrlKey||e.metaKey)&&e.key==='z') { e.preventDefault(); undo(); }
+  if ((e.ctrlKey||e.metaKey)&&e.key==='y') { e.preventDefault(); redo(); }
+  if (e.key==='Delete'||e.key==='Backspace') {
+    if (selectedId!==null) { elements=elements.filter(el=>el.id!==selectedId); selectedId=null; saveState(); render(); }
+  }
+  if (e.key==='Escape') { isDrawing=false; previewEl=null; selectedId=null; render(); }
+});
+
+// ────────────────────────────────────────────────────────────────────────────
+// Export
+// ────────────────────────────────────────────────────────────────────────────
+function exportPNG() {
+  // Render to a white-bg canvas
+  const tmp = document.createElement('canvas');
+  tmp.width=canvas.width; tmp.height=canvas.height;
+  const tc=tmp.getContext('2d');
+  tc.fillStyle='#fff'; tc.fillRect(0,0,tmp.width,tmp.height);
+  tc.drawImage(canvas,0,0);
+  const a=document.createElement('a');
+  a.href=tmp.toDataURL('image/png');
+  a.download='circle-drawing.png'; a.click();
+}
+</script>
+</body>
+</html>
