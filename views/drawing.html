@@ -290,10 +290,24 @@ function getSnapCandidates() {
 
 function nearestSnap(mx,my,r=14) {
   let best=null, bd=Infinity;
+
+  // Priority 1: discrete points (endpoints, centers, intersections)
   for (const p of getSnapCandidates()) {
     const d=dist(mx,my,p.x,p.y);
     if (d<r && d<bd) { best=p; bd=d; }
   }
+
+  // Priority 2: circle perimeter — snap to exact point on edge
+  for (const e of elements) {
+    if (e.type!=='circle') continue;
+    const dToEdge = Math.abs(dist(mx,my,e.cx,e.cy) - e.r);
+    if (dToEdge < r && dToEdge < bd) {
+      const angle = Math.atan2(my-e.cy, mx-e.cx);
+      best = { x: e.cx+e.r*Math.cos(angle), y: e.cy+e.r*Math.sin(angle), src:'perimeter' };
+      bd = dToEdge;
+    }
+  }
+
   return best;
 }
 
@@ -575,7 +589,8 @@ function render() {
   // Snap indicator
   if (snapPt) {
     ctx.beginPath(); ctx.arc(snapPt.x,snapPt.y,8,0,Math.PI*2);
-    ctx.strokeStyle='#6366f1'; ctx.lineWidth=1.5; ctx.setLineDash([3,2]); ctx.stroke(); ctx.setLineDash([]);
+    ctx.strokeStyle = snapPt.src==='perimeter' ? '#f59e0b' : '#6366f1';
+    ctx.lineWidth=1.5; ctx.setLineDash([3,2]); ctx.stroke(); ctx.setLineDash([]);
   }
 
   // Angle tool: highlight vertex
