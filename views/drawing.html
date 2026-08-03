@@ -526,7 +526,13 @@ function onMouseMove(e) {
 
 function onMouseUp(e) {
   const {x,y} = getXY(e);
-  const snap = nearestSnap(x,y) || {x,y};
+  let snap = nearestSnap(x,y) || {x,y};
+
+  // Honour through-center snap on release — same logic as mousemove preview
+  if (activeTool==='line' && isDrawing && drawStart) {
+    const tcs = throughCenterSnap(drawStart, x, y);
+    if (tcs) snap = tcs;
+  }
 
   if (activeTool==='select') { isDrawing=false; dragOffset=null; saveState(); render(); return; }
 
