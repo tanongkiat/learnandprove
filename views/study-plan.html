@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Triam Udom Math — Study Plan</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      background: #0f1117;
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 2rem 1rem 4rem;
+    }
+
+    /* ── Language switcher ───────────────────── */
+    .lang-switcher {
+      display: flex;
+      justify-content: flex-end;
+      max-width: 900px;
+      margin: 0 auto 1.5rem;
+      gap: 0.4rem;
+    }
+    .lang-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #94a3b8;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.35rem 0.9rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .lang-btn.active {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border-color: transparent;
+      color: #fff;
+    }
+    .lang-btn:hover:not(.active) { background: #263345; color: #e2e8f0; }
+
+    /* ── Header ─────────────────────────────── */
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    header .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #a78bfa, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+    header p {
+      margin-top: 0.6rem;
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+    header .sources {
+      margin-top: 0.8rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    header .source-tag {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #94a3b8;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 6px;
+    }
+
+    /* ── Priority banner ─────────────────────── */
+    .priority-section {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+    }
+    .priority-section h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #cbd5e1;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .priority-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 0.75rem;
+    }
+    .priority-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 0.9rem 1.1rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .priority-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
+    .priority-card .card-top {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.6rem;
+    }
+    .priority-card .stars { font-size: 0.9rem; flex-shrink: 0; }
+    .priority-card .label { font-size: 0.875rem; font-weight: 700; color: #e2e8f0; }
+    .priority-card.p3 { border-color: #6366f1; background: #1a1b2e; }
+    .priority-card.p2 { border-color: #3b82f6; background: #0f1e2e; }
+    .priority-card.p1 { border-color: #475569; }
+
+    /* progress bar */
+    .bar-wrap {
+      background: #0f172a;
+      border-radius: 999px;
+      height: 6px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 1s ease;
+    }
+    .p3 .bar-fill { background: linear-gradient(90deg, #6366f1, #a78bfa); }
+    .p2 .bar-fill { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+    .p1 .bar-fill { background: #475569; }
+    .pct-label {
+      font-size: 0.7rem;
+      color: #64748b;
+      margin-top: 0.35rem;
+      text-align: right;
+    }
+
+    /* ── Topic sections ──────────────────────── */
+    .sections-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .topic-section {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .topic-section-header {
+      padding: 1rem 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s;
+    }
+    .topic-section-header:hover { background: #263345; }
+    .topic-section-header .icon {
+      font-size: 1.4rem;
+      width: 2.2rem;
+      text-align: center;
+    }
+    .topic-section-header .title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      flex: 1;
+    }
+    .topic-section-header .pct-badge {
+      background: #334155;
+      color: #94a3b8;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      min-width: 3.5rem;
+      text-align: center;
+    }
+    .topic-section-header .chevron {
+      color: #64748b;
+      font-size: 0.9rem;
+      transition: transform 0.2s;
+    }
+    .topic-section.open .chevron { transform: rotate(180deg); }
+
+    .topic-body {
+      display: none;
+      border-top: 1px solid #334155;
+    }
+    .topic-section.open .topic-body { display: block; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    thead tr { background: #0f172a; }
+    thead th {
+      text-align: left;
+      padding: 0.65rem 1.4rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #64748b;
+    }
+    thead th.th-pct { text-align: right; }
+    tbody tr {
+      border-top: 1px solid #1e293b;
+      transition: background 0.1s;
+    }
+    tbody tr:hover { background: #263345; }
+    tbody td {
+      padding: 0.8rem 1.4rem;
+      font-size: 0.875rem;
+      vertical-align: middle;
+    }
+    .topic-name { font-weight: 600; color: #e2e8f0; }
+    .topic-desc { color: #94a3b8; font-size: 0.8rem; margin-top: 0.2rem; }
+
+    /* inline mini-bar */
+    .mini-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      justify-content: flex-end;
+    }
+    .mini-bar-bg {
+      flex: 1;
+      max-width: 120px;
+      background: #0f172a;
+      border-radius: 999px;
+      height: 5px;
+      overflow: hidden;
+    }
+    .mini-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #6366f1, #a78bfa);
+    }
+    .mini-pct {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #a78bfa;
+      min-width: 2.8rem;
+      text-align: right;
+    }
+
+    /* ── Footer ─────────────────────────────── */
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      color: #475569;
+      font-size: 0.78rem;
+    }
+
+    /* i18n hidden */
+    [data-th], [data-en] { }
+  </style>
+</head>
+<body>
+
+<!-- Back nav -->
+<div style="display:flex;align-items:center;gap:0.8rem;padding:0.8rem 1.5rem;border-bottom:1px solid #334155;background:#0f1117ee;position:sticky;top:0;z-index:10;backdrop-filter:blur(8px)">
+  <a href="/training" style="color:#94a3b8;text-decoration:none;font-size:0.85rem;font-family:'Segoe UI',Arial,sans-serif">← Training</a>
+  <span style="color:#334155">/</span>
+  <span style="color:#a78bfa;font-size:0.85rem;font-weight:700;font-family:'Segoe UI',Arial,sans-serif">🗺️ Study Plan</span>
+</div>
+
+<!-- Language Switcher -->
+<div class="lang-switcher">
+  <button class="lang-btn active" onclick="setLang('th')">🇹🇭 ภาษาไทย</button>
+  <button class="lang-btn" onclick="setLang('en')">🇬🇧 English</button>
+</div>
+
+<header>
+  <div class="badge" data-th="📊 วิเคราะห์ข้อสอบ" data-en="📊 Exam Analysis">📊 วิเคราะห์ข้อสอบ</div>
+  <h1 data-th="แผนการเรียน<br>คณิตศาสตร์เตรียมอุดม" data-en="Triam Udom Math<br>Study Plan">แผนการเรียน<br>คณิตศาสตร์เตรียมอุดม</h1>
+  <p data-th="วิเคราะห์หัวข้อจากข้อสอบจริง — เน้นสิ่งที่สำคัญที่สุด" data-en="Topic breakdown from past exam papers — focus on what matters most">วิเคราะห์หัวข้อจากข้อสอบจริง — เน้นสิ่งที่สำคัญที่สุด</p>
+  <div class="sources">
+    <span class="source-tag">📄 questions.pdf — 46 <span data-th="ข้อ" data-en="questions">ข้อ</span></span>
+    <span class="source-tag">📄 TU89 temporary ver. 6 — 46 <span data-th="ข้อ" data-en="questions">ข้อ</span></span>
+  </div>
+</header>
+
+<!-- Priority Overview -->
+<section class="priority-section">
+  <h2>🎯 <span data-th="ภาพรวมความสำคัญ" data-en="Priority Overview">ภาพรวมความสำคัญ</span></h2>
+  <div class="priority-grid">
+    <div class="priority-card p3">
+      <div class="card-top"><span class="stars">⭐⭐⭐</span><span class="label" data-th="วงกลมและสามเหลี่ยม" data-en="Circles &amp; Triangles">วงกลมและสามเหลี่ยม</span></div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:20%"></div></div>
+      <div class="pct-label">~20%</div>
+    </div>
+    <div class="priority-card p3">
+      <div class="card-top"><span class="stars">⭐⭐⭐</span><span class="label" data-th="พหุนามและพาราโบลา" data-en="Polynomials &amp; Quadratics">พหุนามและพาราโบลา</span></div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:18%"></div></div>
+      <div class="pct-label">~18%</div>
+    </div>
+    <div class="priority-card p3">
+      <div class="card-top"><span class="stars">⭐⭐⭐</span><span class="label" data-th="การนับและการจัดหมู่" data-en="Combinatorics &amp; Counting">การนับและการจัดหมู่</span></div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:10%"></div></div>
+      <div class="pct-label">~10%</div>
+    </div>
+    <div class="priority-card p2">
+      <div class="card-top"><span class="stars">⭐⭐</span><span class="label" data-th="สถิติ" data-en="Statistics">สถิติ</span></div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:8%"></div></div>
+      <div class="pct-label">~8%</div>
+    </div>
+    <div class="priority-card p2">
+      <div class="card-top"><span class="stars">⭐⭐</span><span class="label" data-th="เรขาคณิตวิเคราะห์" data-en="Coordinate Geometry">เรขาคณิตวิเคราะห์</span></div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:8%"></div></div>
+      <div class="pct-label">~8%</div>
+    </div>
+    <div class="priority-card p2">
+      <div class="card-top"><span class="stars">⭐⭐</span><span class="label" data-th="โจทย์ประยุกต์" data-en="Word Problems">โจทย์ประยุกต์</span></div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:10%"></div></div>
+      <div class="pct-label">~10%</div>
+    </div>
+    <div class="priority-card p2">
+      <div class="card-top"><span class="stars">⭐⭐</span><span class="label" data-th="เรขาคณิต 3 มิติ" data-en="3D Geometry">เรขาคณิต 3 มิติ</span></div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:7%"></div></div>
+      <div class="pct-label">~7%</div>
+    </div>
+    <div class="priority-card p1">
+      <div class="card-top"><span class="stars">⭐</span><span class="label" data-th="ตรีโกณมิติ" data-en="Trigonometry">ตรีโกณมิติ</span></div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:5%"></div></div>
+      <div class="pct-label">~5%</div>
+    </div>
+    <div class="priority-card p1">
+      <div class="card-top"><span class="stars">⭐</span><span class="label" data-th="เลขยกกำลังและลอการิทึม" data-en="Exponential / Logarithm">เลขยกกำลังและลอการิทึม</span></div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:5%"></div></div>
+      <div class="pct-label">~5%</div>
+    </div>
+    <div class="priority-card p1">
+      <div class="card-top"><span class="stars">⭐</span><span class="label" data-th="ลำดับและอนุกรม" data-en="Sequences &amp; Series">ลำดับและอนุกรม</span></div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:5%"></div></div>
+      <div class="pct-label">~5%</div>
+    </div>
+  </div>
+</section>
+
+<!-- Detailed Sections -->
+<div class="sections-wrapper">
+
+  <!-- 1. Algebra -->
+  <div class="topic-section open">
+    <div class="topic-section-header" onclick="toggle(this)">
+      <span class="icon">🔢</span>
+      <span class="title" data-th="1 · พีชคณิต" data-en="1 · Algebra">1 · พีชคณิต</span>
+      <span class="pct-badge">~22%</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="topic-body">
+      <table>
+        <thead><tr>
+          <th data-th="หัวข้อ" data-en="Topic">หัวข้อ</th>
+          <th class="th-pct" data-th="สัดส่วน" data-en="Share">สัดส่วน</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="พหุนาม" data-en="Polynomials">พหุนาม</div>
+              <div class="topic-desc" data-th="ดีกรี 3–4, ทฤษฎีเศษเหลือ, การแยกตัวประกอบ" data-en="Degree 3–4, remainder theorem, factor theorem">ดีกรี 3–4, ทฤษฎีเศษเหลือ, การแยกตัวประกอบ</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:60%"></div></div><span class="mini-pct">~6%</span></div></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="ระบบสมการ" data-en="Systems of Equations">ระบบสมการ</div>
+              <div class="topic-desc" data-th="ระบบสมการไม่เชิงเส้น หลายตัวแปร" data-en="Nonlinear systems, multiple variables">ระบบสมการไม่เชิงเส้น หลายตัวแปร</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:35%"></div></div><span class="mini-pct">~4%</span></div></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="สมการกำลังสองและพาราโบลา" data-en="Quadratic &amp; Parabola">สมการกำลังสองและพาราโบลา</div>
+              <div class="topic-desc" data-th="จุดยอด, แกนสมมาตร, จุดตัดกับเส้นตรง" data-en="Vertex form, axis of symmetry, intersection with lines">จุดยอด, แกนสมมาตร, จุดตัดกับเส้นตรง</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:50%"></div></div><span class="mini-pct">~5%</span></div></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="เลขยกกำลังและลอการิทึม" data-en="Exponential &amp; Logarithm">เลขยกกำลังและลอการิทึม</div>
+              <div class="topic-desc" data-th="สมการที่มีฐานยกกำลัง" data-en="Equations involving exponential bases">สมการที่มีฐานยกกำลัง</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:25%"></div></div><span class="mini-pct">~3%</span></div></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="เศษส่วนพีชคณิตและเศษส่วนย่อย" data-en="Rational Expressions &amp; Partial Fractions">เศษส่วนพีชคณิตและเศษส่วนย่อย</div>
+              <div class="topic-desc" data-th="การแยกเศษส่วนย่อย การทำให้เรียบง่าย" data-en="Decomposition, simplification">การแยกเศษส่วนย่อย การทำให้เรียบง่าย</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:20%"></div></div><span class="mini-pct">~2%</span></div></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="การแปรผันตรงและแปรผกผัน" data-en="Direct &amp; Inverse Proportion">การแปรผันตรงและแปรผกผัน</div>
+              <div class="topic-desc" data-th="ความสัมพันธ์เชิงสัดส่วน" data-en="Proportional relationships">ความสัมพันธ์เชิงสัดส่วน</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:10%"></div></div><span class="mini-pct">~1%</span></div></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="ค่าสัมบูรณ์และอสมการ" data-en="Absolute Value &amp; Inequalities">ค่าสัมบูรณ์และอสมการ</div>
+              <div class="topic-desc" data-th="สมบัติของ |x|, การแก้อสมการ" data-en="Properties of |x|, solving inequalities">สมบัติของ |x|, การแก้อสมการ</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:20%"></div></div><span class="mini-pct">~2%</span></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 2. Geometry -->
+  <div class="topic-section open">
+    <div class="topic-section-header" onclick="toggle(this)">
+      <span class="icon">📐</span>
+      <span class="title" data-th="2 · เรขาคณิต" data-en="2 · Geometry">2 · เรขาคณิต</span>
+      <span class="pct-badge">~20%</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="topic-body">
+      <table>
+        <thead><tr>
+          <th data-th="หัวข้อ" data-en="Topic">หัวข้อ</th>
+          <th class="th-pct" data-th="สัดส่วน" data-en="Share">สัดส่วน</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="วงกลม" data-en="Circles">วงกลม</div>
+              <div class="topic-desc" data-th="วงกลมแนบใน/แนบนอก, วงกลมตัดกัน, ทฤษฎีมุม, คอร์ด" data-en="Inscribed/circumscribed, intersecting circles, angle theorems, chords">วงกลมแนบใน/แนบนอก, วงกลมตัดกัน, ทฤษฎีมุม, คอร์ด</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:80%"></div></div><span class="mini-pct">~8%</span></div></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="สามเหลี่ยม" data-en="Triangles">สามเหลี่ยม</div>
+              <div class="topic-desc" data-th="พื้นที่, กฎโคไซน์, สามเหลี่ยมมุมฉาก, วงกลมแนบใน" data-en="Area, Law of Cosines, right triangle, inscribed circle radius">พื้นที่, กฎโคไซน์, สามเหลี่ยมมุมฉาก, วงกลมแนบใน</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:60%"></div></div><span class="mini-pct">~6%</span></div></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="เรขาคณิต 3 มิติ" data-en="3D Geometry">เรขาคณิต 3 มิติ</div>
+              <div class="topic-desc" data-th="ทรงกลมในพีระมิด, ทรงกระบอก, ปริซึม — ปริมาตรและพื้นที่ผิว" data-en="Sphere in pyramid, cylinder, prism — volume &amp; surface area">ทรงกลมในพีระมิด, ทรงกระบอก, ปริซึม — ปริมาตรและพื้นที่ผิว</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:40%"></div></div><span class="mini-pct">~4%</span></div></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="เรขาคณิตวิเคราะห์" data-en="Coordinate Geometry">เรขาคณิตวิเคราะห์</div>
+              <div class="topic-desc" data-th="เส้นตั้งฉาก, สูตรระยะทาง, การสะท้อน" data-en="Perpendicular lines, distance formula, reflections">เส้นตั้งฉาก, สูตรระยะทาง, การสะท้อน</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:30%"></div></div><span class="mini-pct">~3%</span></div></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="รูปสี่เหลี่ยม" data-en="Quadrilaterals">รูปสี่เหลี่ยม</div>
+              <div class="topic-desc" data-th="สี่เหลี่ยมคางหมูแนบในวงกลม, ความสัมพันธ์ของพื้นที่" data-en="Trapezoid in circle, rectangle area relations">สี่เหลี่ยมคางหมูแนบในวงกลม, ความสัมพันธ์ของพื้นที่</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:10%"></div></div><span class="mini-pct">~1%</span></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 3. Trigonometry -->
+  <div class="topic-section">
+    <div class="topic-section-header" onclick="toggle(this)">
+      <span class="icon">📏</span>
+      <span class="title" data-th="3 · ตรีโกณมิติ" data-en="3 · Trigonometry">3 · ตรีโกณมิติ</span>
+      <span class="pct-badge">~5%</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="topic-body">
+      <table>
+        <thead><tr>
+          <th data-th="หัวข้อ" data-en="Topic">หัวข้อ</th>
+          <th class="th-pct" data-th="สัดส่วน" data-en="Share">สัดส่วน</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="เอกลักษณ์ตรีโกณมิติ" data-en="Trig Identities">เอกลักษณ์ตรีโกณมิติ</div>
+              <div class="topic-desc" data-th="sec, csc, cot, tan — การทำให้เรียบง่ายและการคำนวณ" data-en="sec, csc, cot, tan — simplification and evaluation">sec, csc, cot, tan — การทำให้เรียบง่ายและการคำนวณ</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:30%"></div></div><span class="mini-pct">~3%</span></div></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="มุมก้มและมุมเงย" data-en="Angle of Depression / Elevation">มุมก้มและมุมเงย</div>
+              <div class="topic-desc" data-th="การประยุกต์ตรีโกณมิติกับมุม 30/45/60°" data-en="Real-world trig with 30/45/60° angles">การประยุกต์ตรีโกณมิติกับมุม 30/45/60°</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:20%"></div></div><span class="mini-pct">~2%</span></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 4. Statistics -->
+  <div class="topic-section">
+    <div class="topic-section-header" onclick="toggle(this)">
+      <span class="icon">📊</span>
+      <span class="title" data-th="4 · สถิติ" data-en="4 · Statistics">4 · สถิติ</span>
+      <span class="pct-badge">~8%</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="topic-body">
+      <table>
+        <thead><tr>
+          <th data-th="หัวข้อ" data-en="Topic">หัวข้อ</th>
+          <th class="th-pct" data-th="สัดส่วน" data-en="Share">สัดส่วน</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="ค่าเฉลี่ย มัธยฐาน และพิสัย" data-en="Mean, Median &amp; Range">ค่าเฉลี่ย มัธยฐาน และพิสัย</div>
+              <div class="topic-desc" data-th="ผลกระทบของการเพิ่ม/ลบข้อมูล" data-en="Effect of adding/removing data points">ผลกระทบของการเพิ่ม/ลบข้อมูล</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:50%"></div></div><span class="mini-pct">~4%</span></div></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="ส่วนเบี่ยงเบนมาตรฐานและความแปรปรวน" data-en="Standard Deviation &amp; Variance">ส่วนเบี่ยงเบนมาตรฐานและความแปรปรวน</div>
+              <div class="topic-desc" data-th="SD ของประชากร, ความแปรปรวนจากชุดข้อมูล" data-en="Population SD, variance from given datasets">SD ของประชากร, ความแปรปรวนจากชุดข้อมูล</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:50%"></div></div><span class="mini-pct">~4%</span></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 5. Combinatorics & Probability -->
+  <div class="topic-section open">
+    <div class="topic-section-header" onclick="toggle(this)">
+      <span class="icon">🎲</span>
+      <span class="title" data-th="5 · การนับและความน่าจะเป็น" data-en="5 · Combinatorics &amp; Probability">5 · การนับและความน่าจะเป็น</span>
+      <span class="pct-badge">~10%</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="topic-body">
+      <table>
+        <thead><tr>
+          <th data-th="หัวข้อ" data-en="Topic">หัวข้อ</th>
+          <th class="th-pct" data-th="สัดส่วน" data-en="Share">สัดส่วน</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="การนับแบบมีเงื่อนไข" data-en="Counting with Restrictions">การนับแบบมีเงื่อนไข</div>
+              <div class="topic-desc" data-th="การจัดเรียงตัวเลข, ตาราง, การสร้างรหัสผ่าน" data-en="Digit arrangements, grid placements, password generation">การจัดเรียงตัวเลข, ตาราง, การสร้างรหัสผ่าน</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:40%"></div></div><span class="mini-pct">~4%</span></div></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="การจัดหมู่และการเลือก" data-en="Combinations &amp; Selection">การจัดหมู่และการเลือก</div>
+              <div class="topic-desc" data-th="การจัดตั้งรัฐบาล, การเลือกกลุ่ม" data-en="Coalition formation, choosing subgroups">การจัดตั้งรัฐบาล, การเลือกกลุ่ม</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:20%"></div></div><span class="mini-pct">~2%</span></div></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="ความน่าจะเป็น" data-en="Probability">ความน่าจะเป็น</div>
+              <div class="topic-desc" data-th="ความน่าจะเป็นแบบคลาสสิก, การหยิบลูกบอล" data-en="Classical probability, drawing colored balls">ความน่าจะเป็นแบบคลาสสิก, การหยิบลูกบอล</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:20%"></div></div><span class="mini-pct">~2%</span></div></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="การนับจำนวนเต็มที่สอดคล้องงบประมาณ" data-en="Integer Budget Allocation">การนับจำนวนเต็มที่สอดคล้องงบประมาณ</div>
+              <div class="topic-desc" data-th="นับคำตอบจำนวนเต็มของอสมการงบประมาณ" data-en="Counting integer solutions to budget constraints">นับคำตอบจำนวนเต็มของอสมการงบประมาณ</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:20%"></div></div><span class="mini-pct">~2%</span></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 6. Number Theory & Sequences -->
+  <div class="topic-section">
+    <div class="topic-section-header" onclick="toggle(this)">
+      <span class="icon">🔣</span>
+      <span class="title" data-th="6 · ทฤษฎีจำนวนและลำดับ" data-en="6 · Number Theory &amp; Sequences">6 · ทฤษฎีจำนวนและลำดับ</span>
+      <span class="pct-badge">~8%</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="topic-body">
+      <table>
+        <thead><tr>
+          <th data-th="หัวข้อ" data-en="Topic">หัวข้อ</th>
+          <th class="th-pct" data-th="สัดส่วน" data-en="Share">สัดส่วน</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="หลักหน่วยของจำนวนยกกำลังขนาดใหญ่" data-en="Last Digits of Large Powers">หลักหน่วยของจำนวนยกกำลังขนาดใหญ่</div>
+              <div class="topic-desc" data-th="หาหลักหน่วยของ n^k โดยใช้วัฏจักร" data-en="Finding units digit of n^k using cyclicity">หาหลักหน่วยของ n^k โดยใช้วัฏจักร</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:25%"></div></div><span class="mini-pct">~2%</span></div></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="ลำดับและรูปแบบตัวเลข" data-en="Integer Sequences &amp; Patterns">ลำดับและรูปแบบตัวเลข</div>
+              <div class="topic-desc" data-th="การหารูปแบบในลำดับตัวเลข" data-en="Identifying patterns in digit sequences">การหารูปแบบในลำดับตัวเลข</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:25%"></div></div><span class="mini-pct">~2%</span></div></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="ผลรวมอนุกรม" data-en="Sum of Series">ผลรวมอนุกรม</div>
+              <div class="topic-desc" data-th="อนุกรมกล้องโทรทรรศน์, สูตรการรวม" data-en="Telescoping sums, summation formulas">อนุกรมกล้องโทรทรรศน์, สูตรการรวม</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:25%"></div></div><span class="mini-pct">~2%</span></div></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="การเปรียบเทียบและเรียงลำดับนิพจน์" data-en="Ordering &amp; Comparing Expressions">การเปรียบเทียบและเรียงลำดับนิพจน์</div>
+              <div class="topic-desc" data-th="เปรียบเทียบนิพจน์ประเภท n^(1/n)" data-en="Comparing n^(1/n) type expressions">เปรียบเทียบนิพจน์ประเภท n^(1/n)</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:25%"></div></div><span class="mini-pct">~2%</span></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 7. Word Problems -->
+  <div class="topic-section">
+    <div class="topic-section-header" onclick="toggle(this)">
+      <span class="icon">📝</span>
+      <span class="title" data-th="7 · โจทย์ประยุกต์" data-en="7 · Word Problems (Applied Math)">7 · โจทย์ประยุกต์</span>
+      <span class="pct-badge">~10%</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="topic-body">
+      <table>
+        <thead><tr>
+          <th data-th="หัวข้อ" data-en="Topic">หัวข้อ</th>
+          <th class="th-pct" data-th="สัดส่วน" data-en="Share">สัดส่วน</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="ระยะทาง ความเร็ว และเวลา" data-en="Distance – Speed – Time">ระยะทาง ความเร็ว และเวลา</div>
+              <div class="topic-desc" data-th="จุดสวนกัน ความเร็วสัมพัทธ์" data-en="Meeting point, relative speed problems">จุดสวนกัน ความเร็วสัมพัทธ์</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:25%"></div></div><span class="mini-pct">~2%</span></div></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="คณิตศาสตร์การเงิน" data-en="Financial Math">คณิตศาสตร์การเงิน</div>
+              <div class="topic-desc" data-th="การผ่อนชำระ ส่วนลดร้อยละ การแบ่งเงินเดือน" data-en="Installments, percentage discounts, salary splits">การผ่อนชำระ ส่วนลดร้อยละ การแบ่งเงินเดือน</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:35%"></div></div><span class="mini-pct">~3%</span></div></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="โจทย์อายุและปีปฏิทิน" data-en="Age &amp; Year Problems">โจทย์อายุและปีปฏิทิน</div>
+              <div class="topic-desc" data-th="ตั้งสมการจากเงื่อนไขอายุและปี" data-en="Setting up equations from age/year conditions">ตั้งสมการจากเงื่อนไขอายุและปี</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:25%"></div></div><span class="mini-pct">~2%</span></div></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="topic-name" data-th="พื้นที่และการจัดสรรทรัพยากร" data-en="Area &amp; Resource Allocation">พื้นที่และการจัดสรรทรัพยากร</div>
+              <div class="topic-desc" data-th="การแบ่งพื้นที่เป็นร้อยละ การใช้วัสดุ" data-en="Area percentage splits, material usage">การแบ่งพื้นที่เป็นร้อยละ การใช้วัสดุ</div>
+            </td>
+            <td><div class="mini-bar-wrap"><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:25%"></div></div><span class="mini-pct">~2%</span></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p data-th="สร้างจาก questions.pdf และ TU89 temporary ver. 6.pdf · MATH-M1-3 Training Mode" data-en="Generated from questions.pdf &amp; TU89 temporary ver. 6.pdf · MATH-M1-3 Training Mode">สร้างจาก questions.pdf และ TU89 temporary ver. 6.pdf · MATH-M1-3 Training Mode</p>
+</footer>
+
+<script>
+  let currentLang = 'th';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+
+    document.querySelectorAll('[data-th][data-en]').forEach(el => {
+      const val = el.getAttribute('data-' + lang);
+      if (el.tagName === 'H1' || el.closest('h1')) {
+        el.innerHTML = val;
+      } else {
+        el.innerHTML = val;
+      }
+    });
+  }
+
+  function toggle(header) {
+    const section = header.closest('.topic-section');
+    section.classList.toggle('open');
+  }
+
+  // Animate bars on load
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.bar-fill, .mini-bar-fill').forEach(el => {
+      const w = el.style.width;
+      el.style.width = '0%';
+      setTimeout(() => { el.style.width = w; }, 100);
+    });
+  });
+</script>
+
+<script>/* routed via /training/study-plan */</script>
+</body>
+</html>
