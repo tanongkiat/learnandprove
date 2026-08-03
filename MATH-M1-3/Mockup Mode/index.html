@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mockup Mode — Math M1–3</title>
+  <style>
+    :root { --bg:#0f1117; --surface:#1e293b; --border:#334155; --muted:#64748b; --text:#e2e8f0; --sub:#94a3b8; --accent:#f59e0b; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    nav {
+      display: flex; align-items: center; gap: 0.8rem; padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border); position: sticky; top: 0;
+      background: #0f1117ee; backdrop-filter: blur(8px); z-index: 10;
+    }
+    .nav-back { color: var(--sub); text-decoration: none; font-size: 0.85rem; display: flex; align-items: center; gap: 0.3rem; transition: color 0.15s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--border); }
+    .nav-title { font-size: 0.9rem; font-weight: 700; color: #fbbf24; }
+    .nav-lang { margin-left: auto; display: flex; gap: 0.4rem; }
+    .lang-btn { background: var(--surface); border: 1px solid var(--border); color: var(--sub); font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.7rem; border-radius: 8px; cursor: pointer; transition: all 0.15s; }
+    .lang-btn.active { background: linear-gradient(135deg, #b45309, #f59e0b); border-color: transparent; color: #fff; }
+
+    .hero { max-width: 800px; margin: 0 auto; padding: 3.5rem 1.5rem 2.5rem; text-align: center; }
+    .mode-label { display: inline-flex; align-items: center; gap: 0.5rem; background: #2d1f00; border: 1px solid #f59e0b55; color: #fbbf24; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.9rem; border-radius: 999px; margin-bottom: 1.2rem; }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 900; line-height: 1.2; background: linear-gradient(135deg, #e2e8f0 40%, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { margin-top: 0.7rem; color: var(--sub); font-size: 0.95rem; max-width: 500px; margin-inline: auto; line-height: 1.6; }
+
+    .coming-soon-box {
+      max-width: 480px; margin: 3rem auto; text-align: center;
+      background: var(--surface); border: 1px dashed #f59e0b44; border-radius: 20px; padding: 3rem 2rem;
+    }
+    .cs-icon { font-size: 4rem; margin-bottom: 1rem; }
+    .cs-title { font-size: 1.2rem; font-weight: 800; color: #fbbf24; margin-bottom: 0.6rem; }
+    .cs-desc { font-size: 0.875rem; color: var(--sub); line-height: 1.6; }
+    .cs-features { margin-top: 1.5rem; text-align: left; display: flex; flex-direction: column; gap: 0.6rem; }
+    .cs-feature { display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; color: var(--sub); }
+    .cs-feature::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #f59e0b; flex-shrink: 0; }
+
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      margin: 1rem auto 4rem; text-decoration: none; color: #fbbf24;
+      font-size: 0.85rem; font-weight: 700; background: #2d1f00;
+      border: 1px solid #f59e0b44; padding: 0.6rem 1.2rem; border-radius: 10px;
+      transition: all 0.15s;
+    }
+    .back-btn:hover { background: #f59e0b22; }
+
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.78rem; border-top: 1px solid var(--border); }
+    footer a { color: #f59e0b; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-back" href="../../index.html">← <span data-en="Home" data-th="หน้าหลัก">Home</span></a>
+  <span class="nav-sep">/</span>
+  <span class="nav-title" data-en="🏆 Mockup Mode" data-th="🏆 โหมดสอบจำลอง">🏆 Mockup Mode</span>
+  <div class="nav-lang">
+    <button class="lang-btn active" onclick="setLang('en')">🇬🇧 EN</button>
+    <button class="lang-btn" onclick="setLang('th')">🇹🇭 TH</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="mode-label">🏆 <span data-en="Mockup Mode · Math M1–3" data-th="โหมดสอบจำลอง · คณิต ม.1–3">Mockup Mode · Math M1–3</span></div>
+  <h1 data-en="Feel the Real Exam<br>Before the Real Day." data-th="สัมผัสข้อสอบจริง<br>ก่อนวันสอบจริง">Feel the Real Exam<br>Before the Real Day.</h1>
+  <p data-en="Full timed mock exams that mirror the real Triam Udom format — with scoring, ranking, and performance analytics." data-th="สอบจำลองเต็มรูปแบบตามมาตรฐานเตรียมอุดม — พร้อมคะแนน อันดับ และวิเคราะห์ผลการสอบ">Full timed mock exams that mirror the real Triam Udom format — with scoring, ranking, and performance analytics.</p>
+</div>
+
+<div style="text-align:center">
+  <div class="coming-soon-box">
+    <div class="cs-icon">🏗️</div>
+    <div class="cs-title" data-en="Coming Soon" data-th="เร็วๆ นี้">Coming Soon</div>
+    <div class="cs-desc" data-en="Mockup Mode is currently under development. Here's what you'll get:" data-th="โหมดสอบจำลองอยู่ระหว่างการพัฒนา นี่คือสิ่งที่คุณจะได้รับ:">Mockup Mode is currently under development. Here's what you'll get:</div>
+    <div class="cs-features">
+      <div class="cs-feature" data-en="Full 46-question timed exam (2h 15min)" data-th="สอบ 46 ข้อจับเวลา (2 ชม. 15 นาที)">Full 46-question timed exam (2h 15min)</div>
+      <div class="cs-feature" data-en="Automatic scoring with detailed answer review" data-th="ให้คะแนนอัตโนมัติพร้อมเฉลยละเอียด">Automatic scoring with detailed answer review</div>
+      <div class="cs-feature" data-en="Percentile ranking against other students" data-th="จัดอันดับ percentile เทียบกับผู้เรียนคนอื่น">Percentile ranking against other students</div>
+      <div class="cs-feature" data-en="Strength &amp; weakness radar chart per topic" data-th="กราฟแมงมุมจุดแข็ง-จุดอ่อนแยกตามหัวข้อ">Strength &amp; weakness radar chart per topic</div>
+      <div class="cs-feature" data-en="Score trend across multiple mock attempts" data-th="แนวโน้มคะแนนในการสอบหลายครั้ง">Score trend across multiple mock attempts</div>
+    </div>
+  </div>
+  <a class="back-btn" href="../Training Mode/index.html">📚 <span data-en="Go to Training Mode instead" data-th="ไปที่โหมดฝึกซ้อมแทน">Go to Training Mode instead</span></a>
+</div>
+
+<footer>
+  <a href="../../index.html" data-en="← Back to Home" data-th="← กลับหน้าหลัก">← Back to Home</a>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+    document.querySelectorAll('[data-en][data-th]').forEach(el => {
+      el.innerHTML = el.getAttribute('data-' + lang);
+    });
+  }
+</script>
+</body>
+</html>

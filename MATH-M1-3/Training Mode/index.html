@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Training Mode — Math M1–3</title>
+  <style>
+    :root { --bg:#0f1117; --surface:#1e293b; --border:#334155; --muted:#64748b; --text:#e2e8f0; --sub:#94a3b8; --accent:#8b5cf6; --accent2:#6366f1; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    nav {
+      display: flex; align-items: center; gap: 0.8rem; padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border); position: sticky; top: 0;
+      background: #0f1117ee; backdrop-filter: blur(8px); z-index: 10;
+    }
+    .nav-back { color: var(--sub); text-decoration: none; font-size: 0.85rem; display: flex; align-items: center; gap: 0.3rem; transition: color 0.15s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--border); }
+    .nav-title { font-size: 0.9rem; font-weight: 700; color: #a78bfa; }
+    .nav-lang { margin-left: auto; display: flex; gap: 0.4rem; }
+    .lang-btn { background: var(--surface); border: 1px solid var(--border); color: var(--sub); font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.7rem; border-radius: 8px; cursor: pointer; transition: all 0.15s; }
+    .lang-btn.active { background: linear-gradient(135deg, #6366f1, #8b5cf6); border-color: transparent; color: #fff; }
+
+    .hero { max-width: 800px; margin: 0 auto; padding: 3.5rem 1.5rem 2.5rem; }
+    .mode-label { display: inline-flex; align-items: center; gap: 0.5rem; background: #1a1b2e; border: 1px solid #6366f155; color: #a78bfa; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.9rem; border-radius: 999px; margin-bottom: 1.2rem; }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 900; line-height: 1.2; background: linear-gradient(135deg, #e2e8f0 40%, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { margin-top: 0.7rem; color: var(--sub); font-size: 0.95rem; max-width: 500px; line-height: 1.6; }
+
+    .section { max-width: 800px; margin: 0 auto; padding: 0 1.5rem 3rem; }
+    .section-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1rem; padding-top: 1.2rem; border-top: 1px solid var(--border); }
+
+    .resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+    .resource-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+      padding: 1.3rem; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 0.6rem;
+      transition: all 0.15s;
+    }
+    .resource-card:hover { background: #1a1b2e; border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(139,92,246,0.15); }
+    .rc-icon { font-size: 1.6rem; }
+    .rc-name { font-size: 0.95rem; font-weight: 700; color: var(--text); }
+    .rc-desc { font-size: 0.8rem; color: var(--sub); line-height: 1.5; }
+    .rc-type { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-top: auto; }
+
+    .topic-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .pill {
+      background: #1a1b2e; border: 1px solid #6366f133; color: #a78bfa;
+      font-size: 0.75rem; font-weight: 600; padding: 0.3rem 0.75rem; border-radius: 8px;
+    }
+
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.78rem; border-top: 1px solid var(--border); }
+    footer a { color: #6366f1; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-back" href="../../index.html">← <span data-en="Home" data-th="หน้าหลัก">Home</span></a>
+  <span class="nav-sep">/</span>
+  <span class="nav-title" data-en="📚 Training Mode" data-th="📚 โหมดฝึกซ้อม">📚 Training Mode</span>
+  <div class="nav-lang">
+    <button class="lang-btn active" onclick="setLang('en')">🇬🇧 EN</button>
+    <button class="lang-btn" onclick="setLang('th')">🇹🇭 TH</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="mode-label">📚 <span data-en="Training Mode · Math M1–3" data-th="โหมดฝึกซ้อม · คณิต ม.1–3">Training Mode · Math M1–3</span></div>
+  <h1 data-en="Know What to Study.<br>Know Why It Matters." data-th="รู้ว่าต้องเรียนอะไร<br>และทำไมมันสำคัญ">Know What to Study.<br>Know Why It Matters.</h1>
+  <p data-en="Analyze real past exam papers, understand topic weights, and build a targeted study plan before you practice." data-th="วิเคราะห์ข้อสอบจริงในอดีต เข้าใจน้ำหนักของแต่ละหัวข้อ และสร้างแผนการเรียนที่มีเป้าหมายก่อนฝึกหัด">Analyze real past exam papers, understand topic weights, and build a targeted study plan before you practice.</p>
+</div>
+
+<!-- Resources -->
+<section class="section">
+  <div class="section-label" data-en="RESOURCES" data-th="แหล่งข้อมูล">RESOURCES</div>
+  <div class="resource-grid">
+
+    <a class="resource-card" href="study_plan.html">
+      <div class="rc-icon">🗺️</div>
+      <div class="rc-name" data-en="Study Plan" data-th="แผนการเรียน">Study Plan</div>
+      <div class="rc-desc" data-en="Topic-by-topic breakdown with percentage coverage and priority ratings from 2 real exam papers." data-th="วิเคราะห์หัวข้อพร้อมสัดส่วนและระดับความสำคัญจากข้อสอบจริง 2 ชุด">Topic-by-topic breakdown with percentage coverage and priority ratings from 2 real exam papers.</div>
+      <div class="rc-type" data-en="Interactive HTML" data-th="HTML โต้ตอบ">Interactive HTML</div>
+    </a>
+
+    <a class="resource-card" href="questions.pdf" target="_blank">
+      <div class="rc-icon">📄</div>
+      <div class="rc-name" data-en="Exam Paper (questions.pdf)" data-th="ข้อสอบ (questions.pdf)">Exam Paper (questions.pdf)</div>
+      <div class="rc-desc" data-en="Original 46-question exam PDF used for topic analysis." data-th="ข้อสอบต้นฉบับ 46 ข้อที่ใช้ในการวิเคราะห์หัวข้อ">Original 46-question exam PDF used for topic analysis.</div>
+      <div class="rc-type" data-en="PDF · 46 questions" data-th="PDF · 46 ข้อ">PDF · 46 questions</div>
+    </a>
+
+    <a class="resource-card" href="TU89 temporary ver. 6.pdf" target="_blank">
+      <div class="rc-icon">📄</div>
+      <div class="rc-name" data-en="TU89 Exam Paper" data-th="ข้อสอบ TU89">TU89 Exam Paper</div>
+      <div class="rc-desc" data-en="TU89 real exam paper (2569). 46 questions covering all major math topics." data-th="ข้อสอบจริง TU89 (ปี 2569) 46 ข้อครอบคลุมทุกหัวข้อคณิตศาสตร์">TU89 real exam paper (2569). 46 questions covering all major math topics.</div>
+      <div class="rc-type" data-en="PDF · 46 questions" data-th="PDF · 46 ข้อ">PDF · 46 questions</div>
+    </a>
+
+    <a class="resource-card" href="questions.md" target="_blank">
+      <div class="rc-icon">📝</div>
+      <div class="rc-name" data-en="questions.md" data-th="questions.md">questions.md</div>
+      <div class="rc-desc" data-en="OCR-extracted text version of the exam — searchable and readable." data-th="ข้อสอบที่แปลงเป็นข้อความด้วย OCR — ค้นหาและอ่านได้">OCR-extracted text version of the exam — searchable and readable.</div>
+      <div class="rc-type" data-en="Markdown text" data-th="ข้อความ Markdown">Markdown text</div>
+    </a>
+
+    <a class="resource-card" href="TU89.md" target="_blank">
+      <div class="rc-icon">📝</div>
+      <div class="rc-name" data-en="TU89.md" data-th="TU89.md">TU89.md</div>
+      <div class="rc-desc" data-en="OCR-extracted text of the TU89 exam — searchable and readable." data-th="ข้อสอบ TU89 ที่แปลงเป็นข้อความด้วย OCR — ค้นหาและอ่านได้">OCR-extracted text of the TU89 exam — searchable and readable.</div>
+      <div class="rc-type" data-en="Markdown text" data-th="ข้อความ Markdown">Markdown text</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- Topics covered -->
+<section class="section">
+  <div class="section-label" data-en="TOPICS COVERED" data-th="หัวข้อที่ครอบคลุม">TOPICS COVERED</div>
+  <div class="topic-pills">
+    <span class="pill" data-en="Polynomials" data-th="พหุนาม">Polynomials</span>
+    <span class="pill" data-en="Quadratic &amp; Parabola" data-th="สมการกำลังสองและพาราโบลา">Quadratic &amp; Parabola</span>
+    <span class="pill" data-en="Circles" data-th="วงกลม">Circles</span>
+    <span class="pill" data-en="Triangles" data-th="สามเหลี่ยม">Triangles</span>
+    <span class="pill" data-en="3D Geometry" data-th="เรขาคณิต 3 มิติ">3D Geometry</span>
+    <span class="pill" data-en="Coordinate Geometry" data-th="เรขาคณิตวิเคราะห์">Coordinate Geometry</span>
+    <span class="pill" data-en="Statistics" data-th="สถิติ">Statistics</span>
+    <span class="pill" data-en="Combinatorics" data-th="การนับ">Combinatorics</span>
+    <span class="pill" data-en="Probability" data-th="ความน่าจะเป็น">Probability</span>
+    <span class="pill" data-en="Trigonometry" data-th="ตรีโกณมิติ">Trigonometry</span>
+    <span class="pill" data-en="Sequences &amp; Series" data-th="ลำดับและอนุกรม">Sequences &amp; Series</span>
+    <span class="pill" data-en="Word Problems" data-th="โจทย์ประยุกต์">Word Problems</span>
+  </div>
+</section>
+
+<footer>
+  <a href="../../index.html" data-en="← Back to Home" data-th="← กลับหน้าหลัก">← Back to Home</a>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+    document.querySelectorAll('[data-en][data-th]').forEach(el => {
+      el.innerHTML = el.getAttribute('data-' + lang);
+    });
+  }
+</script>
+</body>
+</html>
