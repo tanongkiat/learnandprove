@@ -1,0 +1,18 @@
+<%
+const q = r.question;
+%>
+<div class="question-card result-card <%= r.isCorrect ? 'is-correct' : 'is-incorrect' %>">
+  <div class="question-index">
+    Question <%= index %>
+    <span class="badge <%= r.isCorrect ? 'badge-correct' : 'badge-incorrect' %>">
+      <%= r.isCorrect ? 'Correct' : 'Incorrect' %>
+    </span>
+  </div>
+  <div class="question-prompt"><%= q.prompt %></div>
+  <% if (!r.isCorrect && r.correctLabel) { %>
+    <div class="correct-answer">Correct answer: <strong><%= r.correctLabel %></strong></div>
+  <% } %>
+  <% if (q.explanation) { %>
+    <div class="explanation"><%= q.explanation %></div>
+  <% } %>
+</div>

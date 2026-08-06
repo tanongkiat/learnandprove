@@ -1,0 +1,8 @@
+<%- include('../partials/header', { title }) %>
+
+<h1><%= skill.name %></h1>
+<div class="card">
+  <p>No questions available yet for this skill. Add some in <a href="/admin/questions/new?skill=<%= skill.code %>">Admin</a>.</p>
+</div>
+
+<%- include('../partials/footer') %>

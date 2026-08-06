@@ -1,0 +1,18 @@
+<%- include('../partials/header', { title }) %>
+
+<h1>Practice — Today's Mission</h1>
+<p class="hint">Mix of due review, weak skills, new content, and confidence builders.</p>
+
+<% if (questionSet.length === 0) { %>
+  <div class="card"><p>No questions available yet. Add vocabulary and questions in <a href="/admin">Admin</a>.</p></div>
+<% } else { %>
+  <form method="post" action="/practice">
+    <% questionSet.forEach(function(qo, i) { %>
+      <input type="hidden" name="questionIds[]" value="<%= qo.question.id %>">
+      <%- include('../partials/question', { qo, index: i + 1 }) %>
+    <% }) %>
+    <button class="btn btn-primary btn-large" type="submit">Submit Mission</button>
+  </form>
+<% } %>
+
+<%- include('../partials/footer') %>

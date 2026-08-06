@@ -1,0 +1,28 @@
+Geometry Markup Rules
+=====================
+
+Supported commands:
+- circle id=10 visible=1 100 100 60 color=#1a1a2e
+- line id=11 visible=1 20 20 180 180 color=#1a1a2e
+- point id=12 visible=1 100 100 color=#1a1a2e
+- label id=13 visible=1 140 85 "Hello" color=#1a1a2e
+- angle id=14 visible=1 100 100 0.5 1.2 "θ" color=#1a1a2e
+
+Rules:
+- Only label elements print text on the canvas.
+- Each element may include:
+  - id=<number>
+  - visible=1 or visible=0
+  - color=<hex-color>
+- Point uses x and y coordinates only.
+- Label uses x, y, and text.
+- Angle uses vx, vy, ang1, ang2, and optional label.
+- Text values with spaces must be wrapped in double quotes.
+- Comments start with # and are ignored.
+
+Example:
+# Geometry markup example
+circle id=10 visible=1 100 100 60
+line id=11 visible=1 20 20 180 180
+point id=12 visible=1 100 100
+label id=13 visible=1 140 85 "Angle A"

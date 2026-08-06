@@ -1,0 +1,16 @@
+<%- include('../partials/header', { title }) %>
+
+<h1>Training</h1>
+<p class="hint">Pick a focused, 3-8 minute training mode.</p>
+
+<div class="grid">
+  <% skills.forEach(function(s) { %>
+    <a class="card card-link" href="/training/<%= s.code %>">
+      <h3><%= s.name %></h3>
+      <p><%= s.question_count %> question<%= s.question_count === 1 ? '' : 's' %> · <%= Math.round(s.mastery * 100) %>% mastery</p>
+      <div class="progress-bar"><div class="progress-fill" style="width: <%= Math.round(s.mastery * 100) %>%"></div></div>
+    </a>
+  <% }) %>
+</div>
+
+<%- include('../partials/footer') %>

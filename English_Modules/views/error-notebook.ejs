@@ -1,0 +1,28 @@
+<%- include('partials/header', { title }) %>
+
+<h1>Error Notebook</h1>
+<p class="hint">Every missed question lands here for later review.</p>
+
+<% if (errors.length === 0) { %>
+  <div class="card"><p>No mistakes logged yet — nice work.</p></div>
+<% } %>
+
+<% errors.forEach(function(e) { %>
+  <div class="question-card <%= e.resolved ? 'is-correct' : '' %>">
+    <div class="question-index">
+      <%= e.skill_name %>
+      <span class="badge"><%= e.created_at %></span>
+    </div>
+    <div class="question-prompt"><%= e.prompt %></div>
+    <% if (e.explanation) { %><div class="explanation"><%= e.explanation %></div><% } %>
+    <% if (!e.resolved) { %>
+      <form method="post" action="/error-notebook/<%= e.id %>/resolve">
+        <button class="btn btn-secondary" type="submit">Mark reviewed</button>
+      </form>
+    <% } else { %>
+      <span class="badge badge-correct">Reviewed</span>
+    <% } %>
+  </div>
+<% }) %>
+
+<%- include('partials/footer') %>

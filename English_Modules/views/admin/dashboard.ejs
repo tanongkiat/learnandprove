@@ -1,0 +1,22 @@
+<%- include('../partials/header', { title }) %>
+
+<h1>Admin</h1>
+<p class="hint">Lite content management — no auth/RBAC in this MVP.</p>
+
+<div class="grid">
+  <div class="card"><h3><%= stats.vocabCount %></h3><p>Vocabulary entries</p></div>
+  <div class="card"><h3><%= stats.questionCount %></h3><p>Questions</p></div>
+  <div class="card"><h3><%= stats.skillCount %></h3><p>Skills</p></div>
+  <div class="card"><h3><%= stats.attemptCount %></h3><p>Attempts logged</p></div>
+  <div class="card"><h3><%= stats.unresolvedErrors %></h3><p>Unresolved errors</p></div>
+</div>
+
+<div class="grid">
+  <a class="card card-link" href="/admin/vocabulary"><h3>Vocabulary</h3><p>Search, create, edit, and manage examples.</p></a>
+  <a class="card card-link" href="/admin/questions"><h3>Question Bank</h3><p>Create and edit questions across all skills.</p></a>
+  <a class="card card-link" href="/admin/skills"><h3>Skills</h3><p>View and add skills / training categories.</p></a>
+  <a class="card card-link" href="/admin/import"><h3>Import from PDF</h3><p>Upload a word list PDF and review candidates before adding them as drafts.</p></a>
+  <a class="card card-link" href="/admin/users"><h3>Users</h3><p><%= stats.userCount %> of 10 accounts used. Add people, or reset someone's score and progress.</p></a>
+</div>
+
+<%- include('../partials/footer') %>

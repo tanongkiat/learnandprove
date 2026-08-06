@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Log in · TriamQuest 90</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="container" style="max-width: 420px;">
+    <h1>TriamQuest 90</h1>
+    <p class="hint">Pick your name to continue.</p>
+
+    <% if (error) { %>
+      <div class="card" style="border-color: var(--incorrect);"><p><%= error %></p></div>
+    <% } %>
+
+    <% if (users.length === 0) { %>
+      <div class="card"><p>No accounts yet. Ask an admin to set one up.</p></div>
+    <% } %>
+
+    <% users.forEach(function(u) { %>
+      <form class="card" method="post" action="/login/<%= u.id %>" style="margin-bottom: 12px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+          <div>
+            <strong><%= u.name %></strong>
+            <% if (u.role === 'admin') { %> <span class="badge">admin</span><% } %>
+          </div>
+          <% if (u.pin) { %>
+            <input class="text-input" style="width:100px;" type="password" inputmode="numeric" maxlength="8" name="pin" placeholder="PIN" required>
+          <% } %>
+          <button class="btn btn-primary" type="submit">Continue</button>
+        </div>
+      </form>
+    <% }) %>
+  </main>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<%- include('../partials/header', { title }) %>
+
+<h1><%= skill.name %></h1>
+<div class="progress-bar"><div class="progress-fill" style="width: <%= Math.round((index / total) * 100) %>%"></div></div>
+<p class="hint">Question <%= index %> of <%= total %></p>
+
+<%- include('../partials/result', { r, index }) %>
+
+<form method="post" action="/training/<%= skill.code %>/continue">
+  <input type="hidden" name="sid" value="<%= sid %>">
+  <button class="btn btn-primary btn-large" type="submit"><%= index >= total ? 'See Results' : 'Continue' %></button>
+</form>
+
+<%- include('../partials/footer') %>

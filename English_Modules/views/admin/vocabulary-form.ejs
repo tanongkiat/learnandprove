@@ -1,0 +1,61 @@
+<%- include('../partials/header', { title }) %>
+
+<h1><%= entry ? `Edit "${entry.lemma}"` : 'New Vocabulary Entry' %></h1>
+
+<form class="admin-form" method="post" action="<%= entry ? `/admin/vocabulary/${entry.id}` : '/admin/vocabulary' %>">
+  <label>Lemma
+    <input class="text-input" type="text" name="lemma" value="<%= entry ? entry.lemma : '' %>" required>
+  </label>
+  <label>Part of speech
+    <input class="text-input" type="text" name="pos" value="<%= entry ? (entry.pos || '') : '' %>" placeholder="noun, verb, adjective...">
+  </label>
+  <label>CEFR level
+    <input class="text-input" type="text" name="cefr" value="<%= entry ? (entry.cefr || '') : '' %>" placeholder="A1–C2">
+  </label>
+  <label>Thai meaning
+    <input class="text-input" type="text" name="thai_meaning" value="<%= entry ? entry.thai_meaning : '' %>" required>
+  </label>
+  <label>Status
+    <select name="status">
+      <% ['DRAFT','READY_FOR_REVIEW','APPROVED','PUBLISHED','ARCHIVED'].forEach(function(s) { %>
+        <option value="<%= s %>" <%= entry && entry.status === s ? 'selected' : '' %>><%= s %></option>
+      <% }) %>
+    </select>
+  </label>
+
+  <% if (!entry) { %>
+    <label>Example sentence (EN)
+      <input class="text-input" type="text" name="example_en">
+    </label>
+    <label>Example sentence (TH)
+      <input class="text-input" type="text" name="example_th">
+    </label>
+  <% } %>
+
+  <button class="btn btn-primary" type="submit"><%= entry ? 'Save Changes' : 'Create Entry' %></button>
+</form>
+
+<% if (entry) { %>
+  <h2>Examples</h2>
+  <% examples.forEach(function(ex) { %>
+    <div class="card">
+      <p><%= ex.sentence_en %></p>
+      <% if (ex.sentence_th) { %><p class="hint"><%= ex.sentence_th %></p><% } %>
+      <form method="post" action="/admin/vocabulary/<%= entry.id %>/examples/<%= ex.id %>/delete">
+        <button class="btn btn-danger" type="submit">Remove</button>
+      </form>
+    </div>
+  <% }) %>
+
+  <form class="admin-form" method="post" action="/admin/vocabulary/<%= entry.id %>/examples">
+    <label>New example (EN)<input class="text-input" type="text" name="sentence_en" required></label>
+    <label>New example (TH)<input class="text-input" type="text" name="sentence_th"></label>
+    <button class="btn btn-secondary" type="submit">Add Example</button>
+  </form>
+
+  <form method="post" action="/admin/vocabulary/<%= entry.id %>/delete" onsubmit="return confirm('Delete this vocabulary entry?');">
+    <button class="btn btn-danger" type="submit">Delete Entry</button>
+  </form>
+<% } %>
+
+<%- include('../partials/footer') %>

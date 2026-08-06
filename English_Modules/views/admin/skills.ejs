@@ -1,0 +1,27 @@
+<%- include('../partials/header', { title }) %>
+
+<h1>Skills</h1>
+
+<table class="table">
+  <thead><tr><th>Code</th><th>Name</th><th>Category</th><th>Questions</th></tr></thead>
+  <tbody>
+    <% skills.forEach(function(s) { %>
+      <tr>
+        <td><%= s.code %></td>
+        <td><%= s.name %></td>
+        <td><%= s.category %></td>
+        <td><a href="/admin/questions?skill=<%= s.code %>"><%= s.question_count %></a></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<h2>Add Skill</h2>
+<form class="admin-form" method="post" action="/admin/skills">
+  <label>Code<input class="text-input" type="text" name="code" placeholder="e.g. PHRASAL_VERBS" required></label>
+  <label>Name<input class="text-input" type="text" name="name" placeholder="e.g. Phrasal Verbs" required></label>
+  <label>Category<input class="text-input" type="text" name="category" placeholder="e.g. vocabulary" required></label>
+  <button class="btn btn-primary" type="submit">Add Skill</button>
+</form>
+
+<%- include('../partials/footer') %>

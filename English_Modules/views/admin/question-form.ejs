@@ -1,0 +1,85 @@
+<%- include('../partials/header', { title }) %>
+
+<h1><%= question ? `Edit Question #${question.id}` : 'New Question' %></h1>
+
+<form class="admin-form" method="post" action="<%= question ? `/admin/questions/${question.id}` : '/admin/questions' %>">
+  <label>Skill
+    <select name="skill_id" required>
+      <% skills.forEach(function(s) { %>
+        <option value="<%= s.id %>"
+          <%= (question && question.skill_id === s.id) || (!question && presetSkill === s.code) ? 'selected' : '' %>>
+          <%= s.name %>
+        </option>
+      <% }) %>
+    </select>
+  </label>
+
+  <label>Vocabulary (optional)
+    <select name="vocabulary_id">
+      <option value="">— none —</option>
+      <% vocabulary.forEach(function(v) { %>
+        <option value="<%= v.id %>" <%= question && question.vocabulary_id === v.id ? 'selected' : '' %>><%= v.lemma %></option>
+      <% }) %>
+    </select>
+  </label>
+
+  <label>Type
+    <select name="type" required>
+      <% QUESTION_TYPES.forEach(function(t) { %>
+        <option value="<%= t %>" <%= question && question.type === t ? 'selected' : '' %>><%= t %></option>
+      <% }) %>
+    </select>
+  </label>
+
+  <label>Prompt
+    <textarea class="text-input" name="prompt" rows="3" required><%= question ? question.prompt : '' %></textarea>
+  </label>
+
+  <label>Correct answer <span class="hint">(fill_blank / cloze only — separate accepted answers with "|")</span>
+    <input class="text-input" type="text" name="correct_answer" value="<%= question ? (question.correct_answer || '') : '' %>">
+  </label>
+
+  <label>Hint <span class="hint">(shown to the learner before they answer, if provided)</span>
+    <input class="text-input" type="text" name="hint" value="<%= question ? (question.hint || '') : '' %>">
+  </label>
+
+  <label>Explanation
+    <textarea class="text-input" name="explanation" rows="2"><%= question ? (question.explanation || '') : '' %></textarea>
+  </label>
+
+  <label>Difficulty (1-5)
+    <input class="text-input" type="number" min="1" max="5" name="difficulty" value="<%= question ? question.difficulty : 2 %>">
+  </label>
+
+  <label>Status
+    <select name="status">
+      <% ['DRAFT','READY_FOR_REVIEW','APPROVED','PUBLISHED','ARCHIVED'].forEach(function(s) { %>
+        <option value="<%= s %>" <%= question && question.status === s ? 'selected' : '' %>><%= s %></option>
+      <% }) %>
+    </select>
+  </label>
+
+  <fieldset>
+    <legend>Options <span class="hint">(single_choice / multiple_choice / error_detection: check the correct one(s). ordering: enter items in correct order, no checkbox needed.)</span></legend>
+    <% for (let i = 1; i <= MAX_OPTION_ROWS; i++) { %>
+      <% const existing = options[i - 1]; %>
+      <div class="option-row">
+        <input class="text-input" type="text" name="opt_label_<%= i %>" value="<%= existing ? existing.label : '' %>" placeholder="Option <%= i %>">
+        <label class="checkbox-label">
+          <input type="checkbox" name="opt_correct_<%= i %>" <%= existing && existing.is_correct ? 'checked' : '' %>>
+          correct
+        </label>
+      </div>
+    <% } %>
+  </fieldset>
+
+  <button class="btn btn-primary" type="submit"><%= question ? 'Save Changes' : 'Create Question' %></button>
+</form>
+
+<% if (question) { %>
+  <form method="post" action="/admin/questions/<%= question.id %>/delete" onsubmit="return confirm('Delete this question?');">
+    <button class="btn btn-danger" type="submit">Delete Question</button>
+  </form>
+<% } %>
+
+<%- include('../partials/footer') %>

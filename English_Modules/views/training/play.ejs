@@ -1,0 +1,15 @@
+<%- include('../partials/header', { title }) %>
+
+<h1><%= skill.name %></h1>
+<div class="progress-bar"><div class="progress-fill" style="width: <%= Math.round(((index - 1) / total) * 100) %>%"></div></div>
+<p class="hint">Question <%= index %> of <%= total %></p>
+
+<form method="post" action="/training/<%= skill.code %>/answer">
+  <input type="hidden" name="sid" value="<%= sid %>">
+  <%- include('../partials/question', { qo, index, autoSubmit: true }) %>
+  <% if (qo.question.type !== 'single_choice' && qo.question.type !== 'error_detection') { %>
+    <button class="btn btn-primary btn-large" type="submit">Check</button>
+  <% } %>
+</form>
+
+<%- include('../partials/footer') %>

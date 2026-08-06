@@ -1,0 +1,58 @@
+<%- include('../partials/header', { title }) %>
+
+<h1>Users</h1>
+<p class="hint">Internal login for up to <%= maxUsers %> people. No password hashing/MFA — this is meant for a small trusted team, not public access.</p>
+
+<% if (error) { %>
+  <div class="card" style="border-color: var(--incorrect);"><p><%= error %></p></div>
+<% } %>
+
+<table class="table">
+  <thead><tr><th>Name</th><th>Role</th><th>PIN</th><th>XP</th><th>Streak</th><th>Attempts</th><th>Last active</th><th></th></tr></thead>
+  <tbody>
+    <% users.forEach(function(u) { %>
+      <tr>
+        <td><%= u.name %></td>
+        <td><%= u.role %></td>
+        <td><%= u.pin ? '••••' : '— (open)' %></td>
+        <td><%= u.xp || 0 %></td>
+        <td><%= u.streak || 0 %></td>
+        <td><%= u.attempt_count %></td>
+        <td><%= u.last_active_date || '—' %></td>
+        <td style="white-space:nowrap;">
+          <form method="post" action="/admin/users/<%= u.id %>/reset" style="display:inline;" onsubmit="return confirm('Reset ' + <%- JSON.stringify(u.name) %> + '\\'s score and progress? This cannot be undone.');">
+            <button class="btn btn-secondary" type="submit">Reset progress</button>
+          </form>
+          <% if (users.length > 1) { %>
+            <form method="post" action="/admin/users/<%= u.id %>/delete" style="display:inline;" onsubmit="return confirm('Delete the account ' + <%- JSON.stringify(u.name) %> + '? This removes their login and all progress.');">
+              <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<h2>Add Person</h2>
+<% if (users.length >= maxUsers) { %>
+  <div class="card"><p>You're at the <%= maxUsers %>-account limit for this internal tool. Delete someone first to add another.</p></div>
+<% } else { %>
+  <form class="admin-form" method="post" action="/admin/users">
+    <label>Name
+      <input class="text-input" type="text" name="name" required>
+    </label>
+    <label>PIN <span class="hint">(optional — leave blank for one-click login)</span>
+      <input class="text-input" type="text" name="pin" inputmode="numeric" maxlength="8" placeholder="e.g. 1234">
+    </label>
+    <label>Role
+      <select name="role">
+        <option value="student">student</option>
+        <option value="admin">admin</option>
+      </select>
+    </label>
+    <button class="btn btn-primary" type="submit">Add Person</button>
+  </form>
+<% } %>
+
+<%- include('../partials/footer') %>

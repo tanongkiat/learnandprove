@@ -1,0 +1,39 @@
+<%- include('../partials/header', { title }) %>
+
+<h1>Import from PDF</h1>
+<p class="hint">
+  Upload a PDF you have the rights to use (your own word list, notes, or a licensed glossary).
+  We extract the text and look for lines shaped like <code>word - Thai meaning</code>. Nothing is
+  published automatically — you review and edit every entry before it's added as a draft.
+</p>
+
+<% if (error) { %>
+  <div class="card" style="border-color: var(--incorrect);"><p><%= error %></p></div>
+<% } %>
+
+<form class="admin-form" method="post" action="/admin/import/upload" enctype="multipart/form-data">
+  <label>PDF file
+    <input type="file" name="pdf" accept="application/pdf" required>
+  </label>
+  <button class="btn btn-primary" type="submit">Upload &amp; Extract</button>
+</form>
+
+<h2>Previous Imports</h2>
+<% if (batches.length === 0) { %>
+  <div class="card"><p>No imports yet.</p></div>
+<% } else { %>
+  <table class="table">
+    <thead><tr><th>File</th><th>Uploaded</th><th></th></tr></thead>
+    <tbody>
+      <% batches.forEach(function(b) { %>
+        <tr>
+          <td><%= b.filename %></td>
+          <td><%= b.created_at %></td>
+          <td><a href="/admin/import/<%= b.id %>/review">Review</a></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+<% } %>
+
+<%- include('../partials/footer') %>

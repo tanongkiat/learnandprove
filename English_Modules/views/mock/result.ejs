@@ -1,0 +1,30 @@
+<%- include('../partials/header', { title }) %>
+
+<h1>Mock Result</h1>
+
+<div class="hero-card">
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-value"><%= summary.correctCount %>/<%= summary.totalCount %></span><span class="stat-label">score</span></div>
+    <div class="stat"><span class="stat-value"><%= Math.round((summary.correctCount / summary.totalCount) * 100) %>%</span><span class="stat-label">accuracy</span></div>
+    <div class="stat"><span class="stat-value">+<%= summary.xpGain %></span><span class="stat-label">XP earned</span></div>
+  </div>
+  <a class="btn btn-primary" href="/mock/start">Take Another Mock</a>
+  <a class="btn btn-secondary" href="/">Back Home</a>
+</div>
+
+<h2>By Skill</h2>
+<table class="table">
+  <thead><tr><th>Skill</th><th>Score</th></tr></thead>
+  <tbody>
+    <% skillBreakdown.forEach(function(s) { %>
+      <tr><td><%= s.name %></td><td><%= s.correct %>/<%= s.total %></td></tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<h2>Detail</h2>
+<% summary.results.forEach(function(r, i) { %>
+  <%- include('../partials/result', { r, index: i + 1 }) %>
+<% }) %>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,38 @@
+<%- include('../partials/header', { title }) %>
+
+<h1>Question Bank</h1>
+
+<form class="inline-form" method="get" action="/admin/questions">
+  <select name="skill">
+    <option value="">All skills</option>
+    <% skills.forEach(function(s) { %>
+      <option value="<%= s.code %>" <%= filterSkill === s.code ? 'selected' : '' %>><%= s.name %></option>
+    <% }) %>
+  </select>
+  <select name="type">
+    <option value="">All types</option>
+    <% QUESTION_TYPES.forEach(function(t) { %>
+      <option value="<%= t %>" <%= filterType === t ? 'selected' : '' %>><%= t %></option>
+    <% }) %>
+  </select>
+  <button class="btn btn-secondary" type="submit">Filter</button>
+  <a class="btn btn-primary" href="/admin/questions/new">+ New Question</a>
+</form>
+
+<table class="table">
+  <thead><tr><th>#</th><th>Skill</th><th>Type</th><th>Prompt</th><th>Status</th><th></th></tr></thead>
+  <tbody>
+    <% rows.forEach(function(r) { %>
+      <tr>
+        <td><%= r.id %></td>
+        <td><%= r.skill_name %></td>
+        <td><%= r.type %></td>
+        <td><%= r.prompt.slice(0, 70) %><%= r.prompt.length > 70 ? '…' : '' %></td>
+        <td><span class="badge"><%= r.status %></span></td>
+        <td><a href="/admin/questions/<%= r.id %>/edit">Edit</a></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('../partials/footer') %>

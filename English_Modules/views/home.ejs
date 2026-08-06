@@ -1,0 +1,41 @@
+<%- include('partials/header', { title }) %>
+
+<div class="hero-card">
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-value">Day <%= dayNumber %></span><span class="stat-label">of 90</span></div>
+    <div class="stat"><span class="stat-value">🔥 <%= profile.streak %></span><span class="stat-label">day streak</span></div>
+    <div class="stat"><span class="stat-value">⭐ <%= profile.xp %></span><span class="stat-label">XP</span></div>
+    <div class="stat"><span class="stat-value"><%= expectedScore %></span><span class="stat-label">expected score</span></div>
+  </div>
+  <a class="btn btn-primary btn-large" href="/practice">Start Next Mission</a>
+  <p class="hint"><%= dueCount %> word<%= dueCount === 1 ? '' : 's' %> due for review today.</p>
+</div>
+
+<div class="grid">
+  <a class="card card-link" href="/training">
+    <h3>Training</h3>
+    <p>Word Pattern, Prefix/Suffix, Root Words, Grammar Formula, and more.</p>
+  </a>
+  <a class="card card-link" href="/practice">
+    <h3>Practice</h3>
+    <p>Adaptive mix: due review, weak skills, new content, confidence builders.</p>
+  </a>
+  <a class="card card-link" href="/mock">
+    <h3>Mock Exam</h3>
+    <p>Mini Mock — 10 mixed questions across all skills.</p>
+  </a>
+  <a class="card card-link" href="/skill-map">
+    <h3>Skill Map</h3>
+    <p>Mastery by skill across all training areas.</p>
+  </a>
+  <a class="card card-link" href="/error-notebook">
+    <h3>Error Notebook</h3>
+    <p><%= errorCount %> unresolved mistake<%= errorCount === 1 ? '' : 's' %> to review.</p>
+  </a>
+  <a class="card card-link" href="/admin">
+    <h3>Admin</h3>
+    <p><%= vocabCount %> vocabulary entries, <%= questionCount %> questions.</p>
+  </a>
+</div>
+
+<%- include('partials/footer') %>

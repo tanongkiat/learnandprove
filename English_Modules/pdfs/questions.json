@@ -1,0 +1,3238 @@
+{
+  "metadata": {
+    "title": "Triam Udom English Practice Question Bank",
+    "descriptionThai": "ชุดข้อสอบภาษาอังกฤษต้นฉบับใหม่ สำหรับฝึกสอบเข้า ม.4 โรงเรียนเตรียมอุดมศึกษา",
+    "version": "1.0.0",
+    "language": "English questions with Thai explanations",
+    "totalQuestions": 150,
+    "totalPassages": 5,
+    "cefrRange": [
+      "A2",
+      "B1",
+      "B2"
+    ],
+    "copyrightNote": "All questions are original generated practice items and are not copied verbatim from copyrighted entrance examinations.",
+    "schema": {
+      "answerIndex": "zero-based index (0-3)",
+      "source": "original_generated"
+    },
+    "distributionByType": {
+      "vocabulary_in_context": 35,
+      "synonym_antonym": 20,
+      "grammar": 35,
+      "error_identification": 20,
+      "conversation": 15,
+      "cloze_test": 10,
+      "reading_comprehension": 15
+    },
+    "distributionByDifficulty": {
+      "medium": 111,
+      "hard": 24,
+      "easy": 15
+    }
+  },
+  "passages": [
+    {
+      "id": "CLZ-001",
+      "title": "A School Garden",
+      "text": "Last year, our school turned an empty area behind the library into a small garden. Students worked together to plant vegetables and flowers. At first, some plants died because we did not water them regularly. We then created a schedule so that each class would take responsibility for the garden on a different day. As a result, the garden became greener and more productive. It also taught us that successful projects require patience, planning, and cooperation."
+    },
+    {
+      "id": "CLZ-002",
+      "title": "Learning from Mistakes",
+      "text": "Many students are afraid of making mistakes, especially when speaking a foreign language. However, mistakes can be useful because they show us what we still need to learn. A learner who never takes risks may avoid errors, but may also improve more slowly. Teachers can help by creating a friendly classroom where students feel comfortable experimenting with new words and structures. In this way, mistakes become part of the learning process rather than a reason to feel embarrassed."
+    },
+    {
+      "id": "READ-001",
+      "title": "The Value of Sleep",
+      "text": "Teenagers often reduce their sleeping time when they have a lot of homework or examinations. However, research shows that sleep is not simply a period of rest. During sleep, the brain organizes information and strengthens memory. A student who studies late into the night but sleeps only a few hours may remember less than a student who studies for a shorter time and gets enough sleep. Good sleep also improves concentration and mood. For these reasons, planning study time wisely may be more effective than staying awake all night."
+    },
+    {
+      "id": "READ-002",
+      "title": "A Community Library",
+      "text": "A small town had no public library, so residents converted an unused train station into one. Local businesses donated shelves, tables, and computers, while volunteers collected books and painted the building. The library now offers free reading classes for children and computer lessons for older people. It has become more than a place to borrow books; it is also a community centre where people of different ages meet and learn from one another."
+    },
+    {
+      "id": "READ-003",
+      "title": "Reducing Food Waste",
+      "text": "A school cafeteria noticed that large amounts of food were being thrown away every day. To understand the problem, students weighed the waste for two weeks and interviewed their classmates. They discovered that portions were often too large and that some dishes were unpopular. The cafeteria responded by offering smaller portions and allowing students to choose side dishes. Within a month, food waste fell by nearly forty percent. The project showed that collecting data before taking action can lead to more effective solutions."
+    }
+  ],
+  "questions": [
+    {
+      "id": "TUENG-001",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The scientist repeated the experiment to make sure the result was ____.",
+      "choices": [
+        "ancient",
+        "accurate",
+        "ordinary",
+        "nervous"
+      ],
+      "answerIndex": 1,
+      "answer": "accurate",
+      "explanationThai": "accurate หมายถึง ถูกต้องแม่นยำ เหมาะกับผลการทดลอง",
+      "vocabularyTags": [
+        "accurate"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-002",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "Mina felt ____ before giving her speech to hundreds of people.",
+      "choices": [
+        "nervous",
+        "generous",
+        "formal",
+        "empty"
+      ],
+      "answerIndex": 0,
+      "answer": "nervous",
+      "explanationThai": "nervous หมายถึง ประหม่า ซึ่งสอดคล้องกับการพูดต่อหน้าคนจำนวนมาก",
+      "vocabularyTags": [
+        "nervous"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-003",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The hotel is in a very ____ location, only two minutes from the train station.",
+      "choices": [
+        "convenient",
+        "cruel",
+        "narrow",
+        "private"
+      ],
+      "answerIndex": 0,
+      "answer": "convenient",
+      "explanationThai": "convenient หมายถึง สะดวก เหมาะกับทำเลใกล้สถานี",
+      "vocabularyTags": [
+        "convenient"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-004",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The teacher asked us to ____ the two poems and discuss their differences.",
+      "choices": [
+        "compare",
+        "destroy",
+        "borrow",
+        "invite"
+      ],
+      "answerIndex": 0,
+      "answer": "compare",
+      "explanationThai": "compare หมายถึง เปรียบเทียบ",
+      "vocabularyTags": [
+        "compare"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-005",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "We should ____ plastic bottles instead of throwing them away.",
+      "choices": [
+        "recycle",
+        "predict",
+        "refuse",
+        "divide"
+      ],
+      "answerIndex": 0,
+      "answer": "recycle",
+      "explanationThai": "recycle หมายถึง นำกลับมาใช้ใหม่",
+      "vocabularyTags": [
+        "recycle"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-006",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The company plans to ____ a new mobile application next month.",
+      "choices": [
+        "launch",
+        "bury",
+        "freeze",
+        "fold"
+      ],
+      "answerIndex": 0,
+      "answer": "launch",
+      "explanationThai": "launch หมายถึง เปิดตัวผลิตภัณฑ์หรือบริการ",
+      "vocabularyTags": [
+        "launch"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-007",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The road was closed because of a serious traffic ____.",
+      "choices": [
+        "accident",
+        "adventure",
+        "argument",
+        "achievement"
+      ],
+      "answerIndex": 0,
+      "answer": "accident",
+      "explanationThai": "traffic accident คือ อุบัติเหตุทางถนน",
+      "vocabularyTags": [
+        "accident"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-008",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "Her explanation was so ____ that everyone understood the idea immediately.",
+      "choices": [
+        "clear",
+        "pale",
+        "wild",
+        "rare"
+      ],
+      "answerIndex": 0,
+      "answer": "clear",
+      "explanationThai": "clear หมายถึง ชัดเจน เข้าใจง่าย",
+      "vocabularyTags": [
+        "clear"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-009",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The museum has a large ____ of ancient coins.",
+      "choices": [
+        "collection",
+        "condition",
+        "connection",
+        "conclusion"
+      ],
+      "answerIndex": 0,
+      "answer": "collection",
+      "explanationThai": "collection หมายถึง ของสะสมหรือชุดสะสม",
+      "vocabularyTags": [
+        "collection"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-010",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "It is ____ to wear a helmet while riding a motorcycle.",
+      "choices": [
+        "essential",
+        "embarrassed",
+        "familiar",
+        "curious"
+      ],
+      "answerIndex": 0,
+      "answer": "essential",
+      "explanationThai": "essential หมายถึง จำเป็นอย่างยิ่ง",
+      "vocabularyTags": [
+        "essential"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-011",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The doctor advised him to reduce the ____ of sugar in his diet.",
+      "choices": [
+        "amount",
+        "audience",
+        "atmosphere",
+        "attitude"
+      ],
+      "answerIndex": 0,
+      "answer": "amount",
+      "explanationThai": "amount ใช้กับปริมาณของสิ่งที่นับเป็นหน่วยรวม เช่น sugar",
+      "vocabularyTags": [
+        "amount"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-012",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "Our school encourages students to ____ in community projects.",
+      "choices": [
+        "participate",
+        "explode",
+        "escape",
+        "locate"
+      ],
+      "answerIndex": 0,
+      "answer": "participate",
+      "explanationThai": "participate in หมายถึง เข้าร่วม",
+      "vocabularyTags": [
+        "participate"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-013",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The storm caused serious ____ to several houses near the coast.",
+      "choices": [
+        "damage",
+        "discount",
+        "duty",
+        "distance"
+      ],
+      "answerIndex": 0,
+      "answer": "damage",
+      "explanationThai": "damage หมายถึง ความเสียหาย",
+      "vocabularyTags": [
+        "damage"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-014",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The police are trying to ____ the cause of the fire.",
+      "choices": [
+        "determine",
+        "decorate",
+        "deliver",
+        "donate"
+      ],
+      "answerIndex": 0,
+      "answer": "determine",
+      "explanationThai": "determine หมายถึง ระบุหรือตัดสินให้แน่ชัด",
+      "vocabularyTags": [
+        "determine"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-015",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The new library provides students with easy ____ to online journals.",
+      "choices": [
+        "access",
+        "account",
+        "advice",
+        "award"
+      ],
+      "answerIndex": 0,
+      "answer": "access",
+      "explanationThai": "access to หมายถึง การเข้าถึง",
+      "vocabularyTags": [
+        "access"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-016",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "Nina is very ____; she always shares her lunch with others.",
+      "choices": [
+        "generous",
+        "guilty",
+        "global",
+        "gentle"
+      ],
+      "answerIndex": 0,
+      "answer": "generous",
+      "explanationThai": "generous หมายถึง ใจกว้าง",
+      "vocabularyTags": [
+        "generous"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-017",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The manager asked for a brief ____ of the project’s progress.",
+      "choices": [
+        "summary",
+        "ceremony",
+        "currency",
+        "costume"
+      ],
+      "answerIndex": 0,
+      "answer": "summary",
+      "explanationThai": "summary หมายถึง สรุปย่อ",
+      "vocabularyTags": [
+        "summary"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-018",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The medicine had an immediate ____ on the patient’s pain.",
+      "choices": [
+        "effect",
+        "effort",
+        "element",
+        "entry"
+      ],
+      "answerIndex": 0,
+      "answer": "effect",
+      "explanationThai": "effect หมายถึง ผลที่เกิดขึ้น",
+      "vocabularyTags": [
+        "effect"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-019",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The village depends on tourism as its main source of ____.",
+      "choices": [
+        "income",
+        "identity",
+        "industry",
+        "instruction"
+      ],
+      "answerIndex": 0,
+      "answer": "income",
+      "explanationThai": "income หมายถึง รายได้",
+      "vocabularyTags": [
+        "income"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-020",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The article discusses the environmental ____ of plastic waste.",
+      "choices": [
+        "impact",
+        "impression",
+        "intention",
+        "ingredient"
+      ],
+      "answerIndex": 0,
+      "answer": "impact",
+      "explanationThai": "impact หมายถึง ผลกระทบ",
+      "vocabularyTags": [
+        "impact"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-021",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "Please ____ the form carefully before signing it.",
+      "choices": [
+        "examine",
+        "entertain",
+        "exchange",
+        "expand"
+      ],
+      "answerIndex": 0,
+      "answer": "examine",
+      "explanationThai": "examine หมายถึง ตรวจสอบอย่างละเอียด",
+      "vocabularyTags": [
+        "examine"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-022",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The athlete trained hard and finally ____ her goal.",
+      "choices": [
+        "achieved",
+        "announced",
+        "attached",
+        "avoided"
+      ],
+      "answerIndex": 0,
+      "answer": "achieved",
+      "explanationThai": "achieve a goal หมายถึง บรรลุเป้าหมาย",
+      "vocabularyTags": [
+        "achieve"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-023",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The company received many customer ____ about slow delivery.",
+      "choices": [
+        "complaints",
+        "comparisons",
+        "competitions",
+        "conclusions"
+      ],
+      "answerIndex": 0,
+      "answer": "complaints",
+      "explanationThai": "complaint หมายถึง คำร้องเรียน",
+      "vocabularyTags": [
+        "complaint"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-024",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The weather forecast ____ heavy rain this evening.",
+      "choices": [
+        "predicts",
+        "protects",
+        "publishes",
+        "performs"
+      ],
+      "answerIndex": 0,
+      "answer": "predicts",
+      "explanationThai": "predict หมายถึง พยากรณ์หรือคาดการณ์",
+      "vocabularyTags": [
+        "predict"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-025",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The students were asked to ____ evidence from reliable sources.",
+      "choices": [
+        "gather",
+        "guard",
+        "greet",
+        "graduate"
+      ],
+      "answerIndex": 0,
+      "answer": "gather",
+      "explanationThai": "gather evidence หมายถึง รวบรวมหลักฐาน",
+      "vocabularyTags": [
+        "gather"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-026",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "This machine is designed to ____ energy.",
+      "choices": [
+        "save",
+        "shake",
+        "serve",
+        "score"
+      ],
+      "answerIndex": 0,
+      "answer": "save",
+      "explanationThai": "save energy หมายถึง ประหยัดพลังงาน",
+      "vocabularyTags": [
+        "save"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-027",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The instructions were too ____ for young children to follow.",
+      "choices": [
+        "complex",
+        "cheerful",
+        "central",
+        "calm"
+      ],
+      "answerIndex": 0,
+      "answer": "complex",
+      "explanationThai": "complex หมายถึง ซับซ้อน",
+      "vocabularyTags": [
+        "complex"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-028",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The government introduced a new ____ to reduce air pollution.",
+      "choices": [
+        "policy",
+        "portrait",
+        "passion",
+        "payment"
+      ],
+      "answerIndex": 0,
+      "answer": "policy",
+      "explanationThai": "policy หมายถึง นโยบาย",
+      "vocabularyTags": [
+        "policy"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-029",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "Her parents tried to ____ her to study abroad.",
+      "choices": [
+        "persuade",
+        "prevent",
+        "publish",
+        "pronounce"
+      ],
+      "answerIndex": 0,
+      "answer": "persuade",
+      "explanationThai": "persuade someone to do something หมายถึง โน้มน้าว",
+      "vocabularyTags": [
+        "persuade"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-030",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The scientist found no ____ that the treatment was harmful.",
+      "choices": [
+        "evidence",
+        "emotion",
+        "employment",
+        "entrance"
+      ],
+      "answerIndex": 0,
+      "answer": "evidence",
+      "explanationThai": "evidence หมายถึง หลักฐาน",
+      "vocabularyTags": [
+        "evidence"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-031",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "We need a practical ____ to this problem.",
+      "choices": [
+        "solution",
+        "season",
+        "symbol",
+        "survey"
+      ],
+      "answerIndex": 0,
+      "answer": "solution",
+      "explanationThai": "solution to a problem หมายถึง วิธีแก้ปัญหา",
+      "vocabularyTags": [
+        "solution"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-032",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "His rude comment made everyone feel ____.",
+      "choices": [
+        "uncomfortable",
+        "available",
+        "independent",
+        "traditional"
+      ],
+      "answerIndex": 0,
+      "answer": "uncomfortable",
+      "explanationThai": "uncomfortable หมายถึง ไม่สบายใจ",
+      "vocabularyTags": [
+        "uncomfortable"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-033",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The school will ____ the winners at tomorrow’s assembly.",
+      "choices": [
+        "announce",
+        "admire",
+        "afford",
+        "analyse"
+      ],
+      "answerIndex": 0,
+      "answer": "announce",
+      "explanationThai": "announce หมายถึง ประกาศ",
+      "vocabularyTags": [
+        "announce"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-034",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The restaurant is popular because it offers good food at a ____ price.",
+      "choices": [
+        "reasonable",
+        "nuclear",
+        "mental",
+        "native"
+      ],
+      "answerIndex": 0,
+      "answer": "reasonable",
+      "explanationThai": "reasonable price หมายถึง ราคาสมเหตุสมผล",
+      "vocabularyTags": [
+        "reasonable"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-035",
+      "type": "vocabulary_in_context",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "word_choice",
+      "question": "The two reports contain ____ information, so we need to check which is correct.",
+      "choices": [
+        "conflicting",
+        "frozen",
+        "hidden",
+        "peaceful"
+      ],
+      "answerIndex": 0,
+      "answer": "conflicting",
+      "explanationThai": "conflicting information หมายถึง ข้อมูลที่ขัดแย้งกัน",
+      "vocabularyTags": [
+        "conflicting"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-036",
+      "type": "synonym_antonym",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "synonym_antonym",
+      "question": "Which word is closest in meaning to “rapid”?",
+      "choices": [
+        "slow",
+        "quick",
+        "weak",
+        "late"
+      ],
+      "answerIndex": 1,
+      "answer": "quick",
+      "explanationThai": "rapid มีความหมายใกล้กับ quick คือ รวดเร็ว",
+      "vocabularyTags": [
+        "rapid"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-037",
+      "type": "synonym_antonym",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "synonym_antonym",
+      "question": "Which word is closest in meaning to “assist”?",
+      "choices": [
+        "help",
+        "hide",
+        "harm",
+        "hold"
+      ],
+      "answerIndex": 0,
+      "answer": "help",
+      "explanationThai": "assist แปลว่า ช่วยเหลือ",
+      "vocabularyTags": [
+        "assist"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-038",
+      "type": "synonym_antonym",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "synonym_antonym",
+      "question": "Which word is closest in meaning to “purchase”?",
+      "choices": [
+        "sell",
+        "buy",
+        "borrow",
+        "repair"
+      ],
+      "answerIndex": 1,
+      "answer": "buy",
+      "explanationThai": "purchase เป็นคำทางการของ buy",
+      "vocabularyTags": [
+        "purchase"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-039",
+      "type": "synonym_antonym",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "synonym_antonym",
+      "question": "Which word is closest in meaning to “fortunate”?",
+      "choices": [
+        "lucky",
+        "lonely",
+        "likely",
+        "lovely"
+      ],
+      "answerIndex": 0,
+      "answer": "lucky",
+      "explanationThai": "fortunate หมายถึง โชคดี เช่นเดียวกับ lucky",
+      "vocabularyTags": [
+        "fortunate"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-040",
+      "type": "synonym_antonym",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "synonym_antonym",
+      "question": "Which word is closest in meaning to “reject”?",
+      "choices": [
+        "accept",
+        "refuse",
+        "receive",
+        "recommend"
+      ],
+      "answerIndex": 1,
+      "answer": "refuse",
+      "explanationThai": "reject หมายถึง ปฏิเสธ ใกล้กับ refuse",
+      "vocabularyTags": [
+        "reject"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-041",
+      "type": "synonym_antonym",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "synonym_antonym",
+      "question": "Which word is closest in meaning to “require”?",
+      "choices": [
+        "need",
+        "notice",
+        "offer",
+        "reach"
+      ],
+      "answerIndex": 0,
+      "answer": "need",
+      "explanationThai": "require หมายถึง ต้องการหรือจำเป็นต้องมี",
+      "vocabularyTags": [
+        "require"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-042",
+      "type": "synonym_antonym",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "synonym_antonym",
+      "question": "Which word is closest in meaning to “enormous”?",
+      "choices": [
+        "tiny",
+        "huge",
+        "narrow",
+        "ordinary"
+      ],
+      "answerIndex": 1,
+      "answer": "huge",
+      "explanationThai": "enormous และ huge หมายถึง ใหญ่มาก",
+      "vocabularyTags": [
+        "enormous"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-043",
+      "type": "synonym_antonym",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "synonym_antonym",
+      "question": "Which word is closest in meaning to “annual”?",
+      "choices": [
+        "daily",
+        "weekly",
+        "monthly",
+        "yearly"
+      ],
+      "answerIndex": 3,
+      "answer": "yearly",
+      "explanationThai": "annual หมายถึง รายปี",
+      "vocabularyTags": [
+        "annual"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-044",
+      "type": "synonym_antonym",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "synonym_antonym",
+      "question": "Which word is closest in meaning to “accurate”?",
+      "choices": [
+        "correct",
+        "creative",
+        "curious",
+        "careless"
+      ],
+      "answerIndex": 0,
+      "answer": "correct",
+      "explanationThai": "accurate หมายถึง ถูกต้องแม่นยำ",
+      "vocabularyTags": [
+        "accurate"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-045",
+      "type": "synonym_antonym",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "synonym_antonym",
+      "question": "Which word is closest in meaning to “observe”?",
+      "choices": [
+        "watch",
+        "avoid",
+        "invent",
+        "manage"
+      ],
+      "answerIndex": 0,
+      "answer": "watch",
+      "explanationThai": "observe หมายถึง สังเกตหรือเฝ้าดู",
+      "vocabularyTags": [
+        "observe"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-046",
+      "type": "synonym_antonym",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "synonym_antonym",
+      "question": "Which word is opposite in meaning to “ancient”?",
+      "choices": [
+        "modern",
+        "local",
+        "natural",
+        "formal"
+      ],
+      "answerIndex": 0,
+      "answer": "modern",
+      "explanationThai": "ancient = โบราณ ตรงข้ามกับ modern = ทันสมัย",
+      "vocabularyTags": [
+        "ancient"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-047",
+      "type": "synonym_antonym",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "synonym_antonym",
+      "question": "Which word is opposite in meaning to “increase”?",
+      "choices": [
+        "improve",
+        "reduce",
+        "include",
+        "produce"
+      ],
+      "answerIndex": 1,
+      "answer": "reduce",
+      "explanationThai": "increase = เพิ่ม ตรงข้ามกับ reduce = ลด",
+      "vocabularyTags": [
+        "increase"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-048",
+      "type": "synonym_antonym",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "synonym_antonym",
+      "question": "Which word is opposite in meaning to “generous”?",
+      "choices": [
+        "selfish",
+        "gentle",
+        "grateful",
+        "honest"
+      ],
+      "answerIndex": 0,
+      "answer": "selfish",
+      "explanationThai": "generous = ใจกว้าง ตรงข้ามกับ selfish = เห็นแก่ตัว",
+      "vocabularyTags": [
+        "generous"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-049",
+      "type": "synonym_antonym",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "synonym_antonym",
+      "question": "Which word is opposite in meaning to “temporary”?",
+      "choices": [
+        "traditional",
+        "permanent",
+        "particular",
+        "personal"
+      ],
+      "answerIndex": 1,
+      "answer": "permanent",
+      "explanationThai": "temporary = ชั่วคราว ตรงข้ามกับ permanent = ถาวร",
+      "vocabularyTags": [
+        "temporary"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-050",
+      "type": "synonym_antonym",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "synonym_antonym",
+      "question": "Which word is opposite in meaning to “visible”?",
+      "choices": [
+        "valuable",
+        "available",
+        "hidden",
+        "simple"
+      ],
+      "answerIndex": 2,
+      "answer": "hidden",
+      "explanationThai": "visible = มองเห็นได้ ตรงข้ามกับ hidden = ถูกซ่อน",
+      "vocabularyTags": [
+        "visible"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-051",
+      "type": "synonym_antonym",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "synonym_antonym",
+      "question": "Which word is opposite in meaning to “legal”?",
+      "choices": [
+        "illegal",
+        "formal",
+        "official",
+        "public"
+      ],
+      "answerIndex": 0,
+      "answer": "illegal",
+      "explanationThai": "เติม il- เป็น illegal หมายถึง ผิดกฎหมาย",
+      "vocabularyTags": [
+        "legal"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-052",
+      "type": "synonym_antonym",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "synonym_antonym",
+      "question": "Which word is opposite in meaning to “expand”?",
+      "choices": [
+        "connect",
+        "contract",
+        "contain",
+        "continue"
+      ],
+      "answerIndex": 1,
+      "answer": "contract",
+      "explanationThai": "expand = ขยาย ตรงข้ามกับ contract = หดตัว",
+      "vocabularyTags": [
+        "expand"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-053",
+      "type": "synonym_antonym",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "synonym_antonym",
+      "question": "Which word is opposite in meaning to “optimistic”?",
+      "choices": [
+        "positive",
+        "pessimistic",
+        "realistic",
+        "enthusiastic"
+      ],
+      "answerIndex": 1,
+      "answer": "pessimistic",
+      "explanationThai": "optimistic = มองโลกในแง่ดี ตรงข้ามกับ pessimistic",
+      "vocabularyTags": [
+        "optimistic"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-054",
+      "type": "synonym_antonym",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "synonym_antonym",
+      "question": "Which word is opposite in meaning to “scarce”?",
+      "choices": [
+        "rare",
+        "plentiful",
+        "limited",
+        "weak"
+      ],
+      "answerIndex": 1,
+      "answer": "plentiful",
+      "explanationThai": "scarce = ขาดแคลน ตรงข้ามกับ plentiful = มีมาก",
+      "vocabularyTags": [
+        "scarce"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-055",
+      "type": "synonym_antonym",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "synonym_antonym",
+      "question": "Which word is opposite in meaning to “complex”?",
+      "choices": [
+        "simple",
+        "serious",
+        "specific",
+        "strange"
+      ],
+      "answerIndex": 0,
+      "answer": "simple",
+      "explanationThai": "complex = ซับซ้อน ตรงข้ามกับ simple = ง่าย",
+      "vocabularyTags": [
+        "complex"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-056",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "past_perfect",
+      "question": "By the time we arrived, the movie ____.",
+      "choices": [
+        "starts",
+        "had started",
+        "has started",
+        "was starting"
+      ],
+      "answerIndex": 1,
+      "answer": "had started",
+      "explanationThai": "เหตุการณ์เริ่มก่อนเราไปถึง จึงใช้ past perfect",
+      "vocabularyTags": [
+        "past_perfect"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-057",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "conditional_type_2",
+      "question": "If I ____ enough money, I would buy a new laptop.",
+      "choices": [
+        "have",
+        "had",
+        "will have",
+        "would have"
+      ],
+      "answerIndex": 1,
+      "answer": "had",
+      "explanationThai": "Conditional type 2 ใช้ if + past simple, would + infinitive",
+      "vocabularyTags": [
+        "conditional_type_2"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-058",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "subject_verb_agreement",
+      "question": "Neither the teacher nor the students ____ aware of the change.",
+      "choices": [
+        "was",
+        "is",
+        "were",
+        "has been"
+      ],
+      "answerIndex": 2,
+      "answer": "were",
+      "explanationThai": "กริยาสอดคล้องกับประธานที่อยู่ใกล้ที่สุดคือ students",
+      "vocabularyTags": [
+        "subject_verb_agreement"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-059",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "gerund",
+      "question": "She suggested ____ the meeting until Friday.",
+      "choices": [
+        "postpone",
+        "to postpone",
+        "postponing",
+        "postponed"
+      ],
+      "answerIndex": 2,
+      "answer": "postponing",
+      "explanationThai": "suggest ตามด้วย gerund",
+      "vocabularyTags": [
+        "gerund"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-060",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "passive_voice",
+      "question": "The book ____ by millions of readers since it was published.",
+      "choices": [
+        "has read",
+        "has been read",
+        "was reading",
+        "is read"
+      ],
+      "answerIndex": 1,
+      "answer": "has been read",
+      "explanationThai": "ใช้ present perfect passive",
+      "vocabularyTags": [
+        "passive_voice"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-061",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "wish_clause",
+      "question": "I wish I ____ more time to prepare for the exam.",
+      "choices": [
+        "have",
+        "had",
+        "will have",
+        "am having"
+      ],
+      "answerIndex": 1,
+      "answer": "had",
+      "explanationThai": "wish เกี่ยวกับปัจจุบันใช้ past simple",
+      "vocabularyTags": [
+        "wish_clause"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-062",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "relative_clause",
+      "question": "This is the student ____ won the science competition.",
+      "choices": [
+        "which",
+        "whose",
+        "whom",
+        "who"
+      ],
+      "answerIndex": 3,
+      "answer": "who",
+      "explanationThai": "who ใช้แทนบุคคลและเป็นประธานของอนุประโยค",
+      "vocabularyTags": [
+        "relative_clause"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-063",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "modal_verbs",
+      "question": "You ____ submit the form by Friday; otherwise, your application will be rejected.",
+      "choices": [
+        "must",
+        "might",
+        "could",
+        "would"
+      ],
+      "answerIndex": 0,
+      "answer": "must",
+      "explanationThai": "must แสดงความจำเป็น",
+      "vocabularyTags": [
+        "modal_verbs"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-064",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "comparatives",
+      "question": "The harder you work, the ____ your results will be.",
+      "choices": [
+        "good",
+        "best",
+        "better",
+        "well"
+      ],
+      "answerIndex": 2,
+      "answer": "better",
+      "explanationThai": "โครงสร้าง the + comparative, the + comparative",
+      "vocabularyTags": [
+        "comparatives"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-065",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "present_perfect",
+      "question": "I have lived in Bangkok ____ 2018.",
+      "choices": [
+        "for",
+        "since",
+        "during",
+        "from"
+      ],
+      "answerIndex": 1,
+      "answer": "since",
+      "explanationThai": "since ใช้กับจุดเริ่มต้นของเวลา",
+      "vocabularyTags": [
+        "present_perfect"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-066",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "reported_speech",
+      "question": "He asked me where I ____ the previous night.",
+      "choices": [
+        "go",
+        "went",
+        "had gone",
+        "have gone"
+      ],
+      "answerIndex": 2,
+      "answer": "had gone",
+      "explanationThai": "Reported speech ย้อน tense เป็น past perfect",
+      "vocabularyTags": [
+        "reported_speech"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-067",
+      "type": "grammar",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "inversion",
+      "question": "Not only ____ talented, but she is also extremely hardworking.",
+      "choices": [
+        "she is",
+        "is she",
+        "she was",
+        "was she"
+      ],
+      "answerIndex": 1,
+      "answer": "is she",
+      "explanationThai": "เมื่อ Not only ขึ้นต้นประโยค ต้องใช้ inversion",
+      "vocabularyTags": [
+        "inversion"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-068",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "causative",
+      "question": "The teacher made the students ____ the essay again.",
+      "choices": [
+        "write",
+        "to write",
+        "writing",
+        "wrote"
+      ],
+      "answerIndex": 0,
+      "answer": "write",
+      "explanationThai": "make + object + bare infinitive",
+      "vocabularyTags": [
+        "causative"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-069",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "conditional_type_1",
+      "question": "If it ____ tomorrow, the match will be cancelled.",
+      "choices": [
+        "rains",
+        "rained",
+        "will rain",
+        "would rain"
+      ],
+      "answerIndex": 0,
+      "answer": "rains",
+      "explanationThai": "Conditional type 1 ใช้ if + present simple",
+      "vocabularyTags": [
+        "conditional_type_1"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-070",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "preposition",
+      "question": "I prefer tea ____ coffee in the morning.",
+      "choices": [
+        "than",
+        "to",
+        "from",
+        "with"
+      ],
+      "answerIndex": 1,
+      "answer": "to",
+      "explanationThai": "โครงสร้าง prefer A to B",
+      "vocabularyTags": [
+        "preposition"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-071",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "relative_clause",
+      "question": "The woman ____ car was stolen reported it to the police.",
+      "choices": [
+        "who",
+        "whom",
+        "whose",
+        "which"
+      ],
+      "answerIndex": 2,
+      "answer": "whose",
+      "explanationThai": "whose แสดงความเป็นเจ้าของ",
+      "vocabularyTags": [
+        "relative_clause"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-072",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "gerund",
+      "question": "He is interested in ____ environmental engineering.",
+      "choices": [
+        "study",
+        "studied",
+        "studying",
+        "to studying"
+      ],
+      "answerIndex": 2,
+      "answer": "studying",
+      "explanationThai": "หลัง preposition in ใช้ gerund",
+      "vocabularyTags": [
+        "gerund"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-073",
+      "type": "grammar",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "inversion",
+      "question": "No sooner had we sat down ____ the lights went out.",
+      "choices": [
+        "when",
+        "than",
+        "that",
+        "while"
+      ],
+      "answerIndex": 1,
+      "answer": "than",
+      "explanationThai": "โครงสร้าง no sooner ... than",
+      "vocabularyTags": [
+        "inversion"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-074",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "quantifiers",
+      "question": "There is very ____ information available about the event.",
+      "choices": [
+        "few",
+        "many",
+        "little",
+        "several"
+      ],
+      "answerIndex": 2,
+      "answer": "little",
+      "explanationThai": "information เป็นนามนับไม่ได้ ใช้ little",
+      "vocabularyTags": [
+        "quantifiers"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-075",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "passive_voice",
+      "question": "The project must ____ before the end of this month.",
+      "choices": [
+        "complete",
+        "be completed",
+        "completed",
+        "have completing"
+      ],
+      "answerIndex": 1,
+      "answer": "be completed",
+      "explanationThai": "must + be + past participle เป็น passive",
+      "vocabularyTags": [
+        "passive_voice"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-076",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "adverbs",
+      "question": "She speaks English as ____ as her older sister.",
+      "choices": [
+        "fluent",
+        "fluently",
+        "more fluent",
+        "most fluently"
+      ],
+      "answerIndex": 1,
+      "answer": "fluently",
+      "explanationThai": "ขยายกริยา speaks ต้องใช้ adverb",
+      "vocabularyTags": [
+        "adverbs"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-077",
+      "type": "grammar",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "conditional_type_3",
+      "question": "Had I known about the traffic, I ____ earlier.",
+      "choices": [
+        "leave",
+        "would leave",
+        "would have left",
+        "left"
+      ],
+      "answerIndex": 2,
+      "answer": "would have left",
+      "explanationThai": "Inverted third conditional ใช้ would have + V3",
+      "vocabularyTags": [
+        "conditional_type_3"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-078",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "subject_verb_agreement",
+      "question": "The news ____ surprising to everyone in the room.",
+      "choices": [
+        "were",
+        "are",
+        "was",
+        "have been"
+      ],
+      "answerIndex": 2,
+      "answer": "was",
+      "explanationThai": "news เป็นคำนามเอกพจน์",
+      "vocabularyTags": [
+        "subject_verb_agreement"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-079",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "quantifiers",
+      "question": "It was such a difficult question that ____ students could answer it.",
+      "choices": [
+        "few",
+        "a few",
+        "little",
+        "a little"
+      ],
+      "answerIndex": 0,
+      "answer": "few",
+      "explanationThai": "few หมายถึงแทบไม่มี ใช้กับนามนับได้พหูพจน์",
+      "vocabularyTags": [
+        "quantifiers"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-080",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "gerund",
+      "question": "He denied ____ the confidential document.",
+      "choices": [
+        "to copy",
+        "copy",
+        "copying",
+        "copied"
+      ],
+      "answerIndex": 2,
+      "answer": "copying",
+      "explanationThai": "deny ตามด้วย gerund",
+      "vocabularyTags": [
+        "gerund"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-081",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "relative_clause",
+      "question": "The bridge, ____ was built in 1920, is still in use.",
+      "choices": [
+        "that",
+        "which",
+        "who",
+        "where"
+      ],
+      "answerIndex": 1,
+      "answer": "which",
+      "explanationThai": "Non-defining relative clause ใช้ which และมี comma",
+      "vocabularyTags": [
+        "relative_clause"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-082",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "would_rather",
+      "question": "I would rather you ____ me before using my computer.",
+      "choices": [
+        "ask",
+        "asked",
+        "will ask",
+        "have asked"
+      ],
+      "answerIndex": 1,
+      "answer": "asked",
+      "explanationThai": "would rather + subject + past simple",
+      "vocabularyTags": [
+        "would_rather"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-083",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "too_enough",
+      "question": "The exam was ____ difficult for most students to finish on time.",
+      "choices": [
+        "too",
+        "so",
+        "such",
+        "enough"
+      ],
+      "answerIndex": 0,
+      "answer": "too",
+      "explanationThai": "too + adjective + to-infinitive",
+      "vocabularyTags": [
+        "too_enough"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-084",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "causative",
+      "question": "She has her car ____ every six months.",
+      "choices": [
+        "service",
+        "serviced",
+        "servicing",
+        "to service"
+      ],
+      "answerIndex": 1,
+      "answer": "serviced",
+      "explanationThai": "have + object + past participle หมายถึงให้ผู้อื่นทำให้",
+      "vocabularyTags": [
+        "causative"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-085",
+      "type": "grammar",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "inversion",
+      "question": "Only after the meeting ____ the seriousness of the problem.",
+      "choices": [
+        "we realized",
+        "did we realize",
+        "we had realized",
+        "had we realize"
+      ],
+      "answerIndex": 1,
+      "answer": "did we realize",
+      "explanationThai": "Only after ขึ้นต้นประโยค ต้อง inversion",
+      "vocabularyTags": [
+        "inversion"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-086",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "modal_expression",
+      "question": "You had better ____ an umbrella.",
+      "choices": [
+        "take",
+        "to take",
+        "taking",
+        "took"
+      ],
+      "answerIndex": 0,
+      "answer": "take",
+      "explanationThai": "had better ตามด้วย bare infinitive",
+      "vocabularyTags": [
+        "modal_expression"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-087",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "gerund",
+      "question": "Despite ____ tired, he continued working.",
+      "choices": [
+        "be",
+        "being",
+        "was",
+        "to be"
+      ],
+      "answerIndex": 1,
+      "answer": "being",
+      "explanationThai": "despite ตามด้วยคำนามหรือ gerund",
+      "vocabularyTags": [
+        "gerund"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-088",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "infinitive",
+      "question": "The teacher asked us ____ our phones during the test.",
+      "choices": [
+        "not use",
+        "not to use",
+        "to not using",
+        "do not use"
+      ],
+      "answerIndex": 1,
+      "answer": "not to use",
+      "explanationThai": "ask + object + not to infinitive",
+      "vocabularyTags": [
+        "infinitive"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-089",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "comparison",
+      "question": "This problem is not as difficult ____ it looks.",
+      "choices": [
+        "than",
+        "as",
+        "that",
+        "like"
+      ],
+      "answerIndex": 1,
+      "answer": "as",
+      "explanationThai": "โครงสร้าง not as ... as",
+      "vocabularyTags": [
+        "comparison"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-090",
+      "type": "grammar",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "subject_verb_agreement",
+      "question": "She is one of the best students who ____ ever studied here.",
+      "choices": [
+        "has",
+        "have",
+        "is",
+        "was"
+      ],
+      "answerIndex": 1,
+      "answer": "have",
+      "explanationThai": "who อ้างถึง students ซึ่งเป็นพหูพจน์",
+      "vocabularyTags": [
+        "subject_verb_agreement"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-091",
+      "type": "error_identification",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "present_perfect",
+      "question": "Choose the underlined part that contains an error: She [A has lived] here [B since] [C five years] [D ago].",
+      "choices": [
+        "A has lived",
+        "B since",
+        "C five years",
+        "D ago"
+      ],
+      "answerIndex": 1,
+      "answer": "B since",
+      "explanationThai": "ต้องใช้ for five years หรือ since five years ago ไม่ใช้ since five years",
+      "vocabularyTags": [
+        "present_perfect"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-092",
+      "type": "error_identification",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "subject_verb_agreement",
+      "question": "Choose the underlined part that contains an error: Neither Tom nor his friends [A was] [B interested in] [C joining] [D the club].",
+      "choices": [
+        "A was",
+        "B interested in",
+        "C joining",
+        "D the club"
+      ],
+      "answerIndex": 0,
+      "answer": "A was",
+      "explanationThai": "ประธานใกล้กริยาคือ friends จึงใช้ were",
+      "vocabularyTags": [
+        "subject_verb_agreement"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-093",
+      "type": "error_identification",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "infinitive",
+      "question": "Choose the underlined part that contains an error: My teacher advised me [A to not spend] [B too much time] [C playing] [D video games].",
+      "choices": [
+        "A to not spend",
+        "B too much time",
+        "C playing",
+        "D video games"
+      ],
+      "answerIndex": 0,
+      "answer": "A to not spend",
+      "explanationThai": "รูปมาตรฐานคือ advised me not to spend",
+      "vocabularyTags": [
+        "infinitive"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-094",
+      "type": "error_identification",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "subject_verb_agreement",
+      "question": "Choose the underlined part that contains an error: The equipment [A in this laboratory] [B are] [C very expensive] [D and delicate].",
+      "choices": [
+        "A in this laboratory",
+        "B are",
+        "C very expensive",
+        "D and delicate"
+      ],
+      "answerIndex": 1,
+      "answer": "B are",
+      "explanationThai": "equipment เป็นนามนับไม่ได้ ใช้กริยาเอกพจน์ is",
+      "vocabularyTags": [
+        "subject_verb_agreement"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-095",
+      "type": "error_identification",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "conditional_type_3",
+      "question": "Choose the underlined part that contains an error: If she [A had studied] harder, she [B would pass] [C the exam] [D last week].",
+      "choices": [
+        "A had studied",
+        "B would pass",
+        "C the exam",
+        "D last week"
+      ],
+      "answerIndex": 1,
+      "answer": "B would pass",
+      "explanationThai": "Third conditional ต้องใช้ would have passed",
+      "vocabularyTags": [
+        "conditional_type_3"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-096",
+      "type": "error_identification",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "reported_speech",
+      "question": "Choose the underlined part that contains an error: He asked me [A where was I going] [B after school] [C that day] [D with my friends].",
+      "choices": [
+        "A where was I going",
+        "B after school",
+        "C that day",
+        "D with my friends"
+      ],
+      "answerIndex": 0,
+      "answer": "A where was I going",
+      "explanationThai": "Indirect question ใช้ลำดับประธานก่อนกริยา: where I was going",
+      "vocabularyTags": [
+        "reported_speech"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-097",
+      "type": "error_identification",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "relative_clause",
+      "question": "Choose the underlined part that contains an error: This is [A the most interesting] book [B which] I have [C ever read] [D in my life].",
+      "choices": [
+        "A the most interesting",
+        "B which",
+        "C ever read",
+        "D in my life"
+      ],
+      "answerIndex": 1,
+      "answer": "B which",
+      "explanationThai": "หลังคำขั้นสูงสุดนิยมใช้ that: the most interesting book that...",
+      "vocabularyTags": [
+        "relative_clause"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-098",
+      "type": "error_identification",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "used_to",
+      "question": "Choose the underlined part that contains an error: She is [A used to wake up] [B early] [C because her class] [D starts at seven].",
+      "choices": [
+        "A used to wake up",
+        "B early",
+        "C because her class",
+        "D starts at seven"
+      ],
+      "answerIndex": 0,
+      "answer": "A used to wake up",
+      "explanationThai": "be used to ต้องตามด้วย gerund: is used to waking up",
+      "vocabularyTags": [
+        "used_to"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-099",
+      "type": "error_identification",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "quantifiers",
+      "question": "Choose the underlined part that contains an error: There [A were] [B too much people] [C waiting outside] [D the hall].",
+      "choices": [
+        "A were",
+        "B too much people",
+        "C waiting outside",
+        "D the hall"
+      ],
+      "answerIndex": 1,
+      "answer": "B too much people",
+      "explanationThai": "people เป็นนามนับได้พหูพจน์ ใช้ too many people",
+      "vocabularyTags": [
+        "quantifiers"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-100",
+      "type": "error_identification",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "causative",
+      "question": "Choose the underlined part that contains an error: The teacher [A made us] [B to rewrite] [C the report] [D more carefully].",
+      "choices": [
+        "A made us",
+        "B to rewrite",
+        "C the report",
+        "D more carefully"
+      ],
+      "answerIndex": 1,
+      "answer": "B to rewrite",
+      "explanationThai": "make + object + bare infinitive: made us rewrite",
+      "vocabularyTags": [
+        "causative"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-101",
+      "type": "error_identification",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "gerund",
+      "question": "Choose the underlined part that contains an error: I look forward [A to meet] [B your family] [C during] [D the holiday].",
+      "choices": [
+        "A to meet",
+        "B your family",
+        "C during",
+        "D the holiday"
+      ],
+      "answerIndex": 0,
+      "answer": "A to meet",
+      "explanationThai": "look forward to ตามด้วย gerund: to meeting",
+      "vocabularyTags": [
+        "gerund"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-102",
+      "type": "error_identification",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "subject_verb_agreement",
+      "question": "Choose the underlined part that contains an error: Each of the students [A have] [B submitted] [C the assignment] [D on time].",
+      "choices": [
+        "A have",
+        "B submitted",
+        "C the assignment",
+        "D on time"
+      ],
+      "answerIndex": 0,
+      "answer": "A have",
+      "explanationThai": "Each เป็นเอกพจน์ ใช้ has",
+      "vocabularyTags": [
+        "subject_verb_agreement"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-103",
+      "type": "error_identification",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "participial_adjectives",
+      "question": "Choose the underlined part that contains an error: The film was [A so bored] that [B several people] [C left] [D before it ended].",
+      "choices": [
+        "A so bored",
+        "B several people",
+        "C left",
+        "D before it ended"
+      ],
+      "answerIndex": 0,
+      "answer": "A so bored",
+      "explanationThai": "สิ่งที่ทำให้เบื่อใช้ boring ไม่ใช่ bored",
+      "vocabularyTags": [
+        "participial_adjectives"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-104",
+      "type": "error_identification",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "verb_pattern",
+      "question": "Choose the underlined part that contains an error: She explained [A me] [B how to solve] [C the problem] [D step by step].",
+      "choices": [
+        "A me",
+        "B how to solve",
+        "C the problem",
+        "D step by step"
+      ],
+      "answerIndex": 0,
+      "answer": "A me",
+      "explanationThai": "explain ต้องใช้ explain something to someone: explained to me",
+      "vocabularyTags": [
+        "verb_pattern"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-105",
+      "type": "error_identification",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "inversion",
+      "question": "Choose the underlined part that contains an error: Hardly had he arrived [A than] [B the meeting] [C began] [D immediately].",
+      "choices": [
+        "A than",
+        "B the meeting",
+        "C began",
+        "D immediately"
+      ],
+      "answerIndex": 0,
+      "answer": "A than",
+      "explanationThai": "Hardly ... when ไม่ใช่ than",
+      "vocabularyTags": [
+        "inversion"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-106",
+      "type": "error_identification",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "quantifiers",
+      "question": "Choose the underlined part that contains an error: I have [A less books] [B than] [C my sister] [D does].",
+      "choices": [
+        "A less books",
+        "B than",
+        "C my sister",
+        "D does"
+      ],
+      "answerIndex": 0,
+      "answer": "A less books",
+      "explanationThai": "books เป็นนามนับได้ ใช้ fewer books",
+      "vocabularyTags": [
+        "quantifiers"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-107",
+      "type": "error_identification",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "passive_voice",
+      "question": "Choose the underlined part that contains an error: The new policy [A will be discuss] [B at the meeting] [C next Monday] [D by the committee].",
+      "choices": [
+        "A will be discuss",
+        "B at the meeting",
+        "C next Monday",
+        "D by the committee"
+      ],
+      "answerIndex": 0,
+      "answer": "A will be discuss",
+      "explanationThai": "Passive ต้องใช้ will be discussed",
+      "vocabularyTags": [
+        "passive_voice"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-108",
+      "type": "error_identification",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "modal_verbs",
+      "question": "Choose the underlined part that contains an error: My father [A suggested] [B that I should to apply] [C for the scholarship] [D this year].",
+      "choices": [
+        "A suggested",
+        "B that I should to apply",
+        "C for the scholarship",
+        "D this year"
+      ],
+      "answerIndex": 1,
+      "answer": "B that I should to apply",
+      "explanationThai": "หลัง should ใช้กริยาช่อง 1 ไม่มี to",
+      "vocabularyTags": [
+        "modal_verbs"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-109",
+      "type": "error_identification",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "possessive",
+      "question": "Choose the underlined part that contains an error: The woman [A who lives next door] [B is] [C a friend of my mother] [D since childhood].",
+      "choices": [
+        "A who lives next door",
+        "B is",
+        "C a friend of my mother",
+        "D since childhood"
+      ],
+      "answerIndex": 2,
+      "answer": "C a friend of my mother",
+      "explanationThai": "ควรใช้ a friend of my mother's หรือ my mother's friend",
+      "vocabularyTags": [
+        "possessive"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-110",
+      "type": "error_identification",
+      "difficulty": "hard",
+      "cefr": "B2",
+      "topic": "conjunctions",
+      "question": "Choose the underlined part that contains an error: Although [A he was tired], [B but he continued] [C working] [D until midnight].",
+      "choices": [
+        "A he was tired",
+        "B but he continued",
+        "C working",
+        "D until midnight"
+      ],
+      "answerIndex": 1,
+      "answer": "B but he continued",
+      "explanationThai": "Although ไม่ใช้คู่กับ but ในประโยคเดียวกัน",
+      "vocabularyTags": [
+        "conjunctions"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-111",
+      "type": "conversation",
+      "difficulty": "easy",
+      "cefr": "A2",
+      "topic": "polite_request",
+      "question": "A: Would you mind opening the window?\nB: ____",
+      "choices": [
+        "Yes, I would mind.",
+        "Not at all.",
+        "I hope not.",
+        "That is impossible."
+      ],
+      "answerIndex": 1,
+      "answer": "Not at all.",
+      "explanationThai": "Not at all ใช้ตอบรับคำขออย่างสุภาพ หมายถึง ไม่รังเกียจ",
+      "vocabularyTags": [
+        "polite_request"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-112",
+      "type": "conversation",
+      "difficulty": "easy",
+      "cefr": "A2",
+      "topic": "apology",
+      "question": "A: I’m afraid I can’t attend the meeting tomorrow.\nB: ____",
+      "choices": [
+        "That’s all right. We can reschedule it.",
+        "You must be afraid.",
+        "Tomorrow was yesterday.",
+        "I attend it too."
+      ],
+      "answerIndex": 0,
+      "answer": "That’s all right. We can reschedule it.",
+      "explanationThai": "เป็นการตอบรับสถานการณ์และเสนอเลื่อนนัด",
+      "vocabularyTags": [
+        "apology"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-113",
+      "type": "conversation",
+      "difficulty": "easy",
+      "cefr": "A2",
+      "topic": "small_talk",
+      "question": "A: How did your presentation go?\nB: ____",
+      "choices": [
+        "It lasted for three rooms.",
+        "Better than I expected.",
+        "I went by bus.",
+        "At nine o’clock."
+      ],
+      "answerIndex": 1,
+      "answer": "Better than I expected.",
+      "explanationThai": "คำถามถามว่าผลเป็นอย่างไร จึงตอบ Better than I expected",
+      "vocabularyTags": [
+        "small_talk"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-114",
+      "type": "conversation",
+      "difficulty": "easy",
+      "cefr": "A2",
+      "topic": "directions",
+      "question": "A: Could you tell me how to get to the library?\nB: ____",
+      "choices": [
+        "It is very interesting.",
+        "Go straight and turn left at the bank.",
+        "I read there yesterday.",
+        "You should borrow it."
+      ],
+      "answerIndex": 1,
+      "answer": "Go straight and turn left at the bank.",
+      "explanationThai": "เป็นการบอกทาง",
+      "vocabularyTags": [
+        "directions"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-115",
+      "type": "conversation",
+      "difficulty": "easy",
+      "cefr": "A2",
+      "topic": "congratulations",
+      "question": "A: I’ve just passed my entrance exam!\nB: ____",
+      "choices": [
+        "Never mind.",
+        "What a pity!",
+        "Congratulations!",
+        "You are welcome."
+      ],
+      "answerIndex": 2,
+      "answer": "Congratulations!",
+      "explanationThai": "ใช้ Congratulations เมื่อแสดงความยินดี",
+      "vocabularyTags": [
+        "congratulations"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-116",
+      "type": "conversation",
+      "difficulty": "easy",
+      "cefr": "A2",
+      "topic": "apology",
+      "question": "A: I’m sorry for stepping on your foot.\nB: ____",
+      "choices": [
+        "No problem.",
+        "You must step again.",
+        "I disagree.",
+        "That sounds expensive."
+      ],
+      "answerIndex": 0,
+      "answer": "No problem.",
+      "explanationThai": "No problem ใช้ตอบรับคำขอโทษ",
+      "vocabularyTags": [
+        "apology"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-117",
+      "type": "conversation",
+      "difficulty": "easy",
+      "cefr": "A2",
+      "topic": "suggestion",
+      "question": "A: Shall we study together after school?\nB: ____",
+      "choices": [
+        "That sounds like a good idea.",
+        "No, I shall study yesterday.",
+        "The school is large.",
+        "I have studied English."
+      ],
+      "answerIndex": 0,
+      "answer": "That sounds like a good idea.",
+      "explanationThai": "ตอบรับข้อเสนออย่างเป็นธรรมชาติ",
+      "vocabularyTags": [
+        "suggestion"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-118",
+      "type": "conversation",
+      "difficulty": "easy",
+      "cefr": "A2",
+      "topic": "opinion",
+      "question": "A: What do you think of the new science teacher?\nB: ____",
+      "choices": [
+        "At half past eight.",
+        "She explains difficult ideas clearly.",
+        "In the science room.",
+        "For two weeks."
+      ],
+      "answerIndex": 1,
+      "answer": "She explains difficult ideas clearly.",
+      "explanationThai": "คำถามขอความคิดเห็น จึงตอบลักษณะของครู",
+      "vocabularyTags": [
+        "opinion"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-119",
+      "type": "conversation",
+      "difficulty": "easy",
+      "cefr": "A2",
+      "topic": "advice",
+      "question": "A: I don’t feel well today.\nB: ____",
+      "choices": [
+        "You should get some rest.",
+        "You are very well.",
+        "I have a rest yesterday.",
+        "The weather is good."
+      ],
+      "answerIndex": 0,
+      "answer": "You should get some rest.",
+      "explanationThai": "เป็นการให้คำแนะนำที่เหมาะสม",
+      "vocabularyTags": [
+        "advice"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-120",
+      "type": "conversation",
+      "difficulty": "easy",
+      "cefr": "A2",
+      "topic": "permission",
+      "question": "A: May I borrow your dictionary?\nB: ____",
+      "choices": [
+        "Of course. Here you are.",
+        "I borrowed yesterday.",
+        "The dictionary may be blue.",
+        "You are a dictionary."
+      ],
+      "answerIndex": 0,
+      "answer": "Of course. Here you are.",
+      "explanationThai": "ตอบอนุญาตและยื่นของให้",
+      "vocabularyTags": [
+        "permission"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-121",
+      "type": "conversation",
+      "difficulty": "easy",
+      "cefr": "A2",
+      "topic": "advice",
+      "question": "A: I missed the bus again.\nB: ____",
+      "choices": [
+        "Why don’t you leave home earlier?",
+        "The bus is missing you.",
+        "You must have a bus.",
+        "Earlier is a noun."
+      ],
+      "answerIndex": 0,
+      "answer": "Why don’t you leave home earlier?",
+      "explanationThai": "Why don’t you... ใช้เสนอแนะ",
+      "vocabularyTags": [
+        "advice"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-122",
+      "type": "conversation",
+      "difficulty": "easy",
+      "cefr": "A2",
+      "topic": "thanks",
+      "question": "A: Thank you for helping me with the project.\nB: ____",
+      "choices": [
+        "You’re welcome.",
+        "I’m afraid so.",
+        "Never thank me.",
+        "It does not matter what."
+      ],
+      "answerIndex": 0,
+      "answer": "You’re welcome.",
+      "explanationThai": "You’re welcome ใช้ตอบคำขอบคุณ",
+      "vocabularyTags": [
+        "thanks"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-123",
+      "type": "conversation",
+      "difficulty": "easy",
+      "cefr": "A2",
+      "topic": "future_plan",
+      "question": "A: Do you have any plans for the weekend?\nB: ____",
+      "choices": [
+        "I’m going to visit my grandparents.",
+        "It was a long weekend.",
+        "The plan is on the desk.",
+        "Weekends are seven days."
+      ],
+      "answerIndex": 0,
+      "answer": "I’m going to visit my grandparents.",
+      "explanationThai": "ตอบแผนในอนาคตด้วย be going to",
+      "vocabularyTags": [
+        "future_plan"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-124",
+      "type": "conversation",
+      "difficulty": "easy",
+      "cefr": "A2",
+      "topic": "polite_question",
+      "question": "A: Excuse me, is this seat taken?\nB: ____",
+      "choices": [
+        "No, please have a seat.",
+        "Yes, I take it yesterday.",
+        "The seat is taking.",
+        "Please sit the seat."
+      ],
+      "answerIndex": 0,
+      "answer": "No, please have a seat.",
+      "explanationThai": "หมายถึงที่นั่งยังว่างและเชิญให้นั่ง",
+      "vocabularyTags": [
+        "polite_question"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-125",
+      "type": "conversation",
+      "difficulty": "easy",
+      "cefr": "A2",
+      "topic": "agreement",
+      "question": "A: I think students should have less homework.\nB: ____",
+      "choices": [
+        "I partly agree, but practice is still necessary.",
+        "Homework is a school bag.",
+        "Students were yesterday.",
+        "Less is more than many."
+      ],
+      "answerIndex": 0,
+      "answer": "I partly agree, but practice is still necessary.",
+      "explanationThai": "เป็นการแสดงความคิดเห็นแบบเห็นด้วยบางส่วน",
+      "vocabularyTags": [
+        "agreement"
+      ],
+      "source": "original_generated"
+    },
+    {
+      "id": "TUENG-126",
+      "type": "cloze_test",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "context_clues",
+      "question": "The empty area was located ____ the library.",
+      "choices": [
+        "behind",
+        "through",
+        "among",
+        "above"
+      ],
+      "answerIndex": 0,
+      "answer": "behind",
+      "explanationThai": "ในบทความระบุว่า behind the library",
+      "vocabularyTags": [
+        "behind"
+      ],
+      "source": "original_generated",
+      "passageId": "CLZ-001"
+    },
+    {
+      "id": "TUENG-127",
+      "type": "cloze_test",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "context_clues",
+      "question": "Some plants died because students did not water them ____.",
+      "choices": [
+        "suddenly",
+        "regularly",
+        "politely",
+        "widely"
+      ],
+      "answerIndex": 1,
+      "answer": "regularly",
+      "explanationThai": "regularly หมายถึง อย่างสม่ำเสมอ",
+      "vocabularyTags": [
+        "regularly"
+      ],
+      "source": "original_generated",
+      "passageId": "CLZ-001"
+    },
+    {
+      "id": "TUENG-128",
+      "type": "cloze_test",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "context_clues",
+      "question": "Each class was given ____ for the garden on a different day.",
+      "choices": [
+        "responsibility",
+        "difficulty",
+        "electricity",
+        "possibility"
+      ],
+      "answerIndex": 0,
+      "answer": "responsibility",
+      "explanationThai": "take responsibility for หมายถึง รับผิดชอบ",
+      "vocabularyTags": [
+        "responsibility"
+      ],
+      "source": "original_generated",
+      "passageId": "CLZ-001"
+    },
+    {
+      "id": "TUENG-129",
+      "type": "cloze_test",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "context_clues",
+      "question": "The garden became greener ____ students followed a schedule.",
+      "choices": [
+        "although",
+        "because",
+        "unless",
+        "despite"
+      ],
+      "answerIndex": 1,
+      "answer": "because",
+      "explanationThai": "because ใช้บอกเหตุผล",
+      "vocabularyTags": [
+        "because"
+      ],
+      "source": "original_generated",
+      "passageId": "CLZ-001"
+    },
+    {
+      "id": "TUENG-130",
+      "type": "cloze_test",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "context_clues",
+      "question": "The project taught students the value of planning and ____.",
+      "choices": [
+        "competition",
+        "cooperation",
+        "pollution",
+        "celebration"
+      ],
+      "answerIndex": 1,
+      "answer": "cooperation",
+      "explanationThai": "cooperation หมายถึง ความร่วมมือ",
+      "vocabularyTags": [
+        "cooperation"
+      ],
+      "source": "original_generated",
+      "passageId": "CLZ-001"
+    },
+    {
+      "id": "TUENG-131",
+      "type": "cloze_test",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "context_clues",
+      "question": "Mistakes can be useful because they ____ areas for improvement.",
+      "choices": [
+        "hide",
+        "show",
+        "destroy",
+        "prevent"
+      ],
+      "answerIndex": 1,
+      "answer": "show",
+      "explanationThai": "บทความกล่าวว่าความผิดพลาดแสดงสิ่งที่ยังต้องเรียนรู้",
+      "vocabularyTags": [
+        "show"
+      ],
+      "source": "original_generated",
+      "passageId": "CLZ-002"
+    },
+    {
+      "id": "TUENG-132",
+      "type": "cloze_test",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "context_clues",
+      "question": "A learner who avoids all risks may improve more ____.",
+      "choices": [
+        "slowly",
+        "clearly",
+        "suddenly",
+        "heavily"
+      ],
+      "answerIndex": 0,
+      "answer": "slowly",
+      "explanationThai": "บทความระบุว่า may also improve more slowly",
+      "vocabularyTags": [
+        "slowly"
+      ],
+      "source": "original_generated",
+      "passageId": "CLZ-002"
+    },
+    {
+      "id": "TUENG-133",
+      "type": "cloze_test",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "context_clues",
+      "question": "Teachers should create a ____ classroom environment.",
+      "choices": [
+        "friendly",
+        "dangerous",
+        "formal",
+        "crowded"
+      ],
+      "answerIndex": 0,
+      "answer": "friendly",
+      "explanationThai": "friendly classroom ช่วยให้นักเรียนกล้าทดลอง",
+      "vocabularyTags": [
+        "friendly"
+      ],
+      "source": "original_generated",
+      "passageId": "CLZ-002"
+    },
+    {
+      "id": "TUENG-134",
+      "type": "cloze_test",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "context_clues",
+      "question": "Students should feel comfortable ____ with new language.",
+      "choices": [
+        "experimenting",
+        "to experimented",
+        "experiment",
+        "experiments"
+      ],
+      "answerIndex": 0,
+      "answer": "experimenting",
+      "explanationThai": "หลัง comfortable ใช้ gerund ได้ในบริบทนี้: comfortable experimenting",
+      "vocabularyTags": [
+        "gerund"
+      ],
+      "source": "original_generated",
+      "passageId": "CLZ-002"
+    },
+    {
+      "id": "TUENG-135",
+      "type": "cloze_test",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "context_clues",
+      "question": "The main idea is that mistakes are a natural part of the learning ____.",
+      "choices": [
+        "process",
+        "product",
+        "price",
+        "position"
+      ],
+      "answerIndex": 0,
+      "answer": "process",
+      "explanationThai": "learning process หมายถึง กระบวนการเรียนรู้",
+      "vocabularyTags": [
+        "process"
+      ],
+      "source": "original_generated",
+      "passageId": "CLZ-002"
+    },
+    {
+      "id": "TUENG-136",
+      "type": "reading_comprehension",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "main_idea",
+      "question": "What is the main purpose of the passage?",
+      "choices": [
+        "To explain why sleep supports learning",
+        "To describe a new examination",
+        "To compare different schools",
+        "To teach students how to dream"
+      ],
+      "answerIndex": 0,
+      "answer": "To explain why sleep supports learning",
+      "explanationThai": "บทความอธิบายว่าการนอนช่วยความจำ สมาธิ และการเรียน",
+      "vocabularyTags": [
+        "main_idea"
+      ],
+      "source": "original_generated",
+      "passageId": "READ-001"
+    },
+    {
+      "id": "TUENG-137",
+      "type": "reading_comprehension",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "detail",
+      "question": "According to the passage, what happens during sleep?",
+      "choices": [
+        "The brain stops working completely.",
+        "The brain organizes information.",
+        "Students learn new languages automatically.",
+        "Homework becomes easier."
+      ],
+      "answerIndex": 1,
+      "answer": "The brain organizes information.",
+      "explanationThai": "บทความระบุว่าสมองจัดระเบียบข้อมูลและเสริมความจำ",
+      "vocabularyTags": [
+        "detail"
+      ],
+      "source": "original_generated",
+      "passageId": "READ-001"
+    },
+    {
+      "id": "TUENG-138",
+      "type": "reading_comprehension",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "inference",
+      "question": "Which student may remember more?",
+      "choices": [
+        "One who studies all night without sleep",
+        "One who studies less but sleeps enough",
+        "One who skips both study and sleep",
+        "One who drinks coffee all night"
+      ],
+      "answerIndex": 1,
+      "answer": "One who studies less but sleeps enough",
+      "explanationThai": "บทความเปรียบเทียบและชี้ว่าการนอนพอช่วยความจำ",
+      "vocabularyTags": [
+        "inference"
+      ],
+      "source": "original_generated",
+      "passageId": "READ-001"
+    },
+    {
+      "id": "TUENG-139",
+      "type": "reading_comprehension",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "vocabulary",
+      "question": "The word “strengthens” is closest in meaning to ____.",
+      "choices": [
+        "weakens",
+        "improves",
+        "removes",
+        "confuses"
+      ],
+      "answerIndex": 1,
+      "answer": "improves",
+      "explanationThai": "strengthens ในบริบทนี้หมายถึง ทำให้ดีหรือแข็งแรงขึ้น",
+      "vocabularyTags": [
+        "vocabulary"
+      ],
+      "source": "original_generated",
+      "passageId": "READ-001"
+    },
+    {
+      "id": "TUENG-140",
+      "type": "reading_comprehension",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "recommendation",
+      "question": "What does the writer recommend?",
+      "choices": [
+        "Staying awake all night",
+        "Avoiding all examinations",
+        "Planning study time wisely",
+        "Sleeping during every lesson"
+      ],
+      "answerIndex": 2,
+      "answer": "Planning study time wisely",
+      "explanationThai": "ประโยคสุดท้ายเสนอให้วางแผนเวลาเรียนอย่างฉลาด",
+      "vocabularyTags": [
+        "recommendation"
+      ],
+      "source": "original_generated",
+      "passageId": "READ-001"
+    },
+    {
+      "id": "TUENG-141",
+      "type": "reading_comprehension",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "detail",
+      "question": "Why was the train station converted?",
+      "choices": [
+        "The town needed a public library.",
+        "The station was too crowded.",
+        "Businesses wanted a new office.",
+        "Volunteers needed a hotel."
+      ],
+      "answerIndex": 0,
+      "answer": "The town needed a public library.",
+      "explanationThai": "เมืองไม่มีห้องสมุดสาธารณะจึงดัดแปลงสถานีร้าง",
+      "vocabularyTags": [
+        "detail"
+      ],
+      "source": "original_generated",
+      "passageId": "READ-002"
+    },
+    {
+      "id": "TUENG-142",
+      "type": "reading_comprehension",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "detail",
+      "question": "Who helped provide furniture and computers?",
+      "choices": [
+        "Children",
+        "Local businesses",
+        "Train drivers",
+        "Tourists"
+      ],
+      "answerIndex": 1,
+      "answer": "Local businesses",
+      "explanationThai": "บทความระบุว่า local businesses donated shelves, tables, and computers",
+      "vocabularyTags": [
+        "detail"
+      ],
+      "source": "original_generated",
+      "passageId": "READ-002"
+    },
+    {
+      "id": "TUENG-143",
+      "type": "reading_comprehension",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "detail",
+      "question": "What service is offered to older people?",
+      "choices": [
+        "Free meals",
+        "Sports training",
+        "Computer lessons",
+        "Train tickets"
+      ],
+      "answerIndex": 2,
+      "answer": "Computer lessons",
+      "explanationThai": "มี computer lessons for older people",
+      "vocabularyTags": [
+        "detail"
+      ],
+      "source": "original_generated",
+      "passageId": "READ-002"
+    },
+    {
+      "id": "TUENG-144",
+      "type": "reading_comprehension",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "main_idea",
+      "question": "Why is the library more than a place to borrow books?",
+      "choices": [
+        "It also serves as a community centre.",
+        "It sells expensive computers.",
+        "It operates a railway.",
+        "It provides private apartments."
+      ],
+      "answerIndex": 0,
+      "answer": "It also serves as a community centre.",
+      "explanationThai": "คนต่างวัยมาพบและเรียนรู้ร่วมกัน",
+      "vocabularyTags": [
+        "main_idea"
+      ],
+      "source": "original_generated",
+      "passageId": "READ-002"
+    },
+    {
+      "id": "TUENG-145",
+      "type": "reading_comprehension",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "vocabulary",
+      "question": "The word “converted” is closest in meaning to ____.",
+      "choices": [
+        "changed",
+        "closed",
+        "destroyed",
+        "measured"
+      ],
+      "answerIndex": 0,
+      "answer": "changed",
+      "explanationThai": "converted หมายถึง เปลี่ยนให้มีหน้าที่ใหม่",
+      "vocabularyTags": [
+        "vocabulary"
+      ],
+      "source": "original_generated",
+      "passageId": "READ-002"
+    },
+    {
+      "id": "TUENG-146",
+      "type": "reading_comprehension",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "sequence",
+      "question": "What did students do first?",
+      "choices": [
+        "They closed the cafeteria.",
+        "They collected data about the waste.",
+        "They stopped serving side dishes.",
+        "They bought more food."
+      ],
+      "answerIndex": 1,
+      "answer": "They collected data about the waste.",
+      "explanationThai": "นักเรียนชั่งขยะและสัมภาษณ์เพื่อนก่อนดำเนินการ",
+      "vocabularyTags": [
+        "sequence"
+      ],
+      "source": "original_generated",
+      "passageId": "READ-003"
+    },
+    {
+      "id": "TUENG-147",
+      "type": "reading_comprehension",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "detail",
+      "question": "What was one cause of food waste?",
+      "choices": [
+        "The portions were too large.",
+        "The cafeteria had no tables.",
+        "Students had no choices at all.",
+        "Food was too expensive."
+      ],
+      "answerIndex": 0,
+      "answer": "The portions were too large.",
+      "explanationThai": "บทความระบุว่า portions were often too large",
+      "vocabularyTags": [
+        "detail"
+      ],
+      "source": "original_generated",
+      "passageId": "READ-003"
+    },
+    {
+      "id": "TUENG-148",
+      "type": "reading_comprehension",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "detail",
+      "question": "How did the cafeteria respond?",
+      "choices": [
+        "By increasing all portions",
+        "By offering smaller portions and choices",
+        "By removing lunch completely",
+        "By interviewing teachers only"
+      ],
+      "answerIndex": 1,
+      "answer": "By offering smaller portions and choices",
+      "explanationThai": "เป็นมาตรการที่ระบุในบทความ",
+      "vocabularyTags": [
+        "detail"
+      ],
+      "source": "original_generated",
+      "passageId": "READ-003"
+    },
+    {
+      "id": "TUENG-149",
+      "type": "reading_comprehension",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "detail",
+      "question": "How much did food waste decrease?",
+      "choices": [
+        "About ten percent",
+        "Nearly twenty percent",
+        "Nearly forty percent",
+        "More than ninety percent"
+      ],
+      "answerIndex": 2,
+      "answer": "Nearly forty percent",
+      "explanationThai": "บทความระบุ nearly forty percent",
+      "vocabularyTags": [
+        "detail"
+      ],
+      "source": "original_generated",
+      "passageId": "READ-003"
+    },
+    {
+      "id": "TUENG-150",
+      "type": "reading_comprehension",
+      "difficulty": "medium",
+      "cefr": "B1",
+      "topic": "inference",
+      "question": "What lesson did the project demonstrate?",
+      "choices": [
+        "Action should always come before research.",
+        "Collecting data can improve solutions.",
+        "Food waste cannot be reduced.",
+        "Students should never choose food."
+      ],
+      "answerIndex": 1,
+      "answer": "Collecting data can improve solutions.",
+      "explanationThai": "ใจความท้ายบทความคือข้อมูลช่วยให้แก้ปัญหาได้มีประสิทธิภาพ",
+      "vocabularyTags": [
+        "inference"
+      ],
+      "source": "original_generated",
+      "passageId": "READ-003"
+    }
+  ]
+}

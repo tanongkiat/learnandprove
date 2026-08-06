@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "type": "angle",
+    "vertexId": "p1",
+    "lineId1": "l1",
+    "lineId2": "l2",
+    "vx": 100,
+    "vy": 100,
+    "ang1": 0,
+    "ang2": 1.57,
+    "label": "90°"
+  }
+]

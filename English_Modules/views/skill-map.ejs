@@ -1,0 +1,20 @@
+<%- include('partials/header', { title }) %>
+
+<h1>Skill Map</h1>
+<p class="hint">Mastery is the share of correct attempts per skill.</p>
+
+<div class="skill-list">
+  <% skills.forEach(function(s) { %>
+    <div class="skill-row">
+      <div class="skill-row-head">
+        <span class="skill-name"><%= s.name %></span>
+        <span class="skill-category"><%= s.category %></span>
+        <span class="skill-pct"><%= Math.round(s.mastery * 100) %>%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width: <%= Math.round(s.mastery * 100) %>%"></div></div>
+      <div class="skill-meta"><%= s.attempt_count %> attempt<%= s.attempt_count === 1 ? '' : 's' %><% if (s.next_review_at) { %> · next review <%= s.next_review_at %><% } %></div>
+    </div>
+  <% }) %>
+</div>
+
+<%- include('partials/footer') %>

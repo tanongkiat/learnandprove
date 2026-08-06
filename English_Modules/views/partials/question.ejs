@@ -1,0 +1,54 @@
+<%
+// Locals expected: qo = { question, options }, index (1-based)
+// Optional: autoSubmit (bool) — when true, selecting a single/error-detection
+// option immediately submits the form (used by the one-question-at-a-time training flow).
+const q = qo.question;
+const options = qo.options;
+const autoSubmit = typeof locals.autoSubmit !== 'undefined' && locals.autoSubmit;
+%>
+<div class="question-card">
+  <div class="question-index">Question <%= index %> <span class="skill-tag"><%= q.type.replace('_', ' ') %></span></div>
+  <div class="question-prompt"><%= q.prompt %></div>
+
+  <% if (q.hint) { %>
+    <details class="hint-box">
+      <summary>💡 Hint</summary>
+      <p><%= q.hint %></p>
+    </details>
+  <% } %>
+
+  <% if (q.type === 'single_choice' || q.type === 'error_detection') { %>
+    <div class="options">
+      <% options.forEach(function(o) { %>
+        <label class="option">
+          <input type="radio" name="answer_<%= q.id %>" value="<%= o.id %>" required <%= autoSubmit ? 'onchange="this.form.requestSubmit()"' : '' %>>
+          <span><%= o.label %></span>
+        </label>
+      <% }) %>
+    </div>
+
+  <% } else if (q.type === 'multiple_choice') { %>
+    <div class="options">
+      <% options.forEach(function(o) { %>
+        <label class="option">
+          <input type="checkbox" name="answer_<%= q.id %>[]" value="<%= o.id %>">
+          <span><%= o.label %></span>
+        </label>
+      <% }) %>
+    </div>
+
+  <% } else if (q.type === 'fill_blank' || q.type === 'cloze') { %>
+    <input class="text-input" type="text" name="answer_<%= q.id %>" placeholder="Type your answer" autocomplete="off" required>
+
+  <% } else if (q.type === 'ordering') { %>
+    <p class="hint">Number each word to show the correct order (1 = first).</p>
+    <div class="ordering">
+      <% options.forEach(function(o, i) { %>
+        <div class="ordering-row">
+          <input class="pos-input" type="number" min="1" max="<%= options.length %>" name="pos_<%= q.id %>_<%= o.id %>" value="<%= i + 1 %>" required>
+          <span><%= o.label %></span>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</div>

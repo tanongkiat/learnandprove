@@ -1,0 +1,23 @@
+{
+  "name": "triamquest90",
+  "version": "0.1.0",
+  "description": "TriamQuest 90 - English exam-prep MVP (standalone Node.js app, hobby scope)",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "seed": "node db/seed.js",
+    "seed:expand": "node db/seedExpansion.js && node db/seedExpansion2.js && node db/seedExpansion3.js && node db/seedExpansion4.js"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-session": "^1.19.0",
+    "multer": "^2.2.0",
+    "pdf-parse": "^2.4.5"
+  }
+}

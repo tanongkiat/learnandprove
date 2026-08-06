@@ -1,0 +1,28 @@
+<%- include('../partials/header', { title }) %>
+
+<h1>Mock Exam</h1>
+
+<div class="hero-card">
+  <p>Mini Mock — 10 mixed questions across all skills, scored instantly.</p>
+  <a class="btn btn-primary btn-large" href="/mock/start">Start Mini Mock</a>
+</div>
+
+<h2>History</h2>
+<% if (history.length === 0) { %>
+  <div class="card"><p>No mock exams taken yet.</p></div>
+<% } else { %>
+  <table class="table">
+    <thead><tr><th>Date</th><th>Type</th><th>Score</th></tr></thead>
+    <tbody>
+      <% history.forEach(function(h) { %>
+        <tr>
+          <td><%= h.created_at %></td>
+          <td><%= h.type %></td>
+          <td><%= h.correct %>/<%= h.total %> (<%= Math.round((h.correct / h.total) * 100) %>%)</td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+<% } %>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,17 @@
+<%- include('../partials/header', { title }) %>
+
+<h1>Mini Mock</h1>
+
+<% if (questionSet.length === 0) { %>
+  <div class="card"><p>No questions available yet. Add some in <a href="/admin/questions/new">Admin</a>.</p></div>
+<% } else { %>
+  <form method="post" action="/mock/submit">
+    <% questionSet.forEach(function(qo, i) { %>
+      <input type="hidden" name="questionIds[]" value="<%= qo.question.id %>">
+      <%- include('../partials/question', { qo, index: i + 1 }) %>
+    <% }) %>
+    <button class="btn btn-primary btn-large" type="submit">Submit Mock</button>
+  </form>
+<% } %>
+
+<%- include('../partials/footer') %>

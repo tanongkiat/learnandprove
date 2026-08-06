@@ -3,179 +3,917 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Circle Problem — TU89 Q3</title>
+  <title>Circle Problem — Playback</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background: #0f1117;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
+      background: #0f1117; color: #e2e8f0;
       font-family: 'Segoe UI', Arial, sans-serif;
-      color: #e2e8f0;
-      gap: 1.2rem;
-      padding: 2rem;
+      display: flex; flex-direction: column; height: 100vh; overflow: hidden;
     }
     nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      display: flex; align-items: center; gap: 0.7rem;
-      padding: 0.8rem 1.5rem; background: #0f1117ee;
-      border-bottom: 1px solid #334155; backdrop-filter: blur(8px); z-index: 10;
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0 1.2rem; height: 44px; flex-shrink: 0;
+      background: #0f1117; border-bottom: 1px solid #334155; z-index: 10;
     }
-    nav a { color: #94a3b8; text-decoration: none; font-size: 0.85rem; }
+    nav a { color: #94a3b8; text-decoration: none; font-size: 0.82rem; }
     nav a:hover { color: #e2e8f0; }
-    nav .sep { color: #334155; }
-    nav .cur { color: #a78bfa; font-weight: 700; font-size: 0.85rem; }
+    .sep { color: #334155; }
+    .nav-cur { color: #a78bfa; font-size: 0.82rem; font-weight: 700; }
 
-    canvas {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 0 40px rgba(139,92,246,0.2);
-      display: block;
+    /* ── Question banner ── */
+    #question-banner {
+      display: none; flex-shrink: 0;
+      background: linear-gradient(90deg, #1a1b2e, #1e293b);
+      border-bottom: 2px solid #6366f1;
+      padding: 0.5rem 1.2rem;
+      font-size: 0.9rem; color: #e2e8f0; line-height: 1.4;
     }
-    .hint {
-      font-size: 0.82rem;
-      color: #64748b;
+    #question-banner .q-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #a78bfa; margin-right: 0.6rem;
     }
+    #question-banner .q-text { font-weight: 600; }
+
+    .layout { display: flex; flex: 1; overflow: hidden; }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      width: 240px; flex-shrink: 0; background: #1e293b;
+      border-right: 1px solid #334155; display: flex; flex-direction: column; overflow: hidden;
+    }
+    .sidebar-header { padding: 0.8rem; border-bottom: 1px solid #334155; flex-shrink: 0; }
+    .sidebar-title {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #64748b; margin-bottom: 0.5rem;
+    }
+    #playback-select {
+      width: 100%; background: #0f172a; border: 1px solid #334155;
+      color: #e2e8f0; font-size: 0.82rem; padding: 0.4rem 0.6rem; border-radius: 6px; cursor: pointer;
+    }
+    #playback-select:focus { outline: none; border-color: #6366f1; }
+
+    /* ── Color legend ── */
+    .legend-section {
+      padding: 0.6rem 0.8rem; border-bottom: 1px solid #334155; flex-shrink: 0;
+    }
+    .legend-title {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #64748b; margin-bottom: 0.45rem;
+    }
+    .legend-row {
+      display: flex; align-items: center; gap: 0.45rem;
+      font-size: 0.73rem; color: #94a3b8; margin-bottom: 0.3rem; line-height: 1.3;
+    }
+    .legend-swatch {
+      width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0;
+    }
+
+    .step-list-wrap { flex: 1; overflow-y: auto; padding: 0.4rem; }
+    .step-item {
+      padding: 0.45rem 0.6rem; border-radius: 6px; cursor: pointer;
+      font-size: 0.77rem; color: #94a3b8; border: 1px solid transparent;
+      line-height: 1.4; margin-bottom: 2px; position: relative;
+    }
+    .step-item:hover { background: #0f172a; color: #e2e8f0; }
+    .step-item.active { background: #1a1b2e; border-color: #6366f1; color: #a78bfa; }
+    .step-num { font-size: 0.67rem; color: #475569; margin-right: 0.3rem; }
+    .step-note { font-size: 0.69rem; color: #475569; display: block; margin-top: 0.1rem; }
+    .new-badge {
+      position: absolute; right: 6px; top: 6px;
+      background: #16a34a; color: #fff; font-size: 0.6rem;
+      font-weight: 700; padding: 1px 5px; border-radius: 999px; opacity: 0.85;
+    }
+
+    /* ── Canvas area ── */
+    .canvas-area { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+    .progress-bar { height: 3px; background: #1e293b; flex-shrink: 0; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #6366f1, #a78bfa); transition: width 0.25s; }
+    .canvas-wrap { flex: 1; position: relative; overflow: hidden; background: #f8fafc; }
+    #geom-canvas { display: block; position: absolute; top: 0; left: 0; }
+    .placeholder {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.5rem;
+      color: #64748b; font-size: 0.9rem; pointer-events: none; background: #f8fafc;
+    }
+
+    /* ── Note panel ── */
+    .note-panel {
+      flex-shrink: 0; background: #0f172a; border-top: 2px solid #334155;
+      padding: 0.8rem 1.1rem; min-height: 72px; max-height: 120px;
+      overflow-y: auto; line-height: 1.6;
+    }
+    .note-step-title {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #6366f1; margin-bottom: 0.3rem; display: block;
+    }
+    .note-text {
+      font-size: 1rem; color: #f1f5f9; font-weight: 500;
+    }
+    .note-empty { color: #475569; font-style: italic; font-size: 0.88rem; }
+
+    /* ── New elements indicator ── */
+    #new-indicator {
+      display: none; margin-left: 0.5rem;
+      background: #16a34a; color: #fff; font-size: 0.72rem;
+      font-weight: 700; padding: 2px 8px; border-radius: 999px;
+    }
+
+    /* ── Controls ── */
+    .controls {
+      flex-shrink: 0; background: #1e293b; border-top: 1px solid #334155;
+      padding: 0.55rem 1rem; display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap;
+    }
+    .ctrl-btn {
+      background: #0f172a; border: 1px solid #334155; color: #e2e8f0;
+      border-radius: 6px; padding: 0.32rem 0.6rem; font-size: 0.82rem; cursor: pointer;
+      transition: background 0.1s;
+    }
+    .ctrl-btn:hover { background: #263345; }
+    .ctrl-btn:disabled { opacity: 0.35; cursor: default; }
+    .ctrl-btn.primary { background: #6366f1; border-color: #6366f1; }
+    .ctrl-btn.primary:hover { background: #4f46e5; }
+    .ctrl-btn.playing { background: #f59e0b; border-color: #f59e0b; color: #111827; }
+    .step-counter { font-size: 0.82rem; color: #64748b; min-width: 88px; text-align: center; }
+    .kbd-hint { font-size: 0.7rem; color: #475569; margin-left: 0.2rem; }
+    .kbd { background: #1e293b; border: 1px solid #334155; border-radius: 4px; padding: 1px 5px; font-size: 0.68rem; color: #94a3b8; }
+    .speed-wrap { display: flex; align-items: center; gap: 0.4rem; margin-left: auto; }
+    .speed-label { font-size: 0.73rem; color: #64748b; }
+    #speed-select {
+      background: #0f172a; border: 1px solid #334155; color: #e2e8f0;
+      font-size: 0.78rem; padding: 0.28rem 0.5rem; border-radius: 6px; cursor: pointer;
+    }
+
+    /* ── Inline quiz panel ── */
+    #quiz-inline {
+      display: none; flex-shrink: 0;
+      background: #0c1120; border-top: 2px solid #7c3aed;
+    }
+    .qi-header {
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.45rem 1rem; border-bottom: 1px solid #334155;
+    }
+    .qi-progress-bar { flex: 1; height: 5px; background: #1e293b; border-radius: 999px; overflow: hidden; }
+    .qi-progress-fill { height: 100%; background: #a78bfa; transition: width 0.35s; }
+    .qi-qnum { font-size: 0.7rem; font-weight: 700; color: #64748b; white-space: nowrap; }
+    .qi-exit {
+      background: none; border: 1px solid #475569; border-radius: 6px;
+      color: #64748b; font-size: 0.72rem; padding: 2px 9px; cursor: pointer; white-space: nowrap;
+    }
+    .qi-exit:hover { color: #e2e8f0; border-color: #94a3b8; }
+    .qi-body { padding: 0.7rem 1rem 0.75rem; }
+    .qi-question {
+      font-size: 0.9rem; font-weight: 600; color: #f1f5f9;
+      line-height: 1.45; margin-bottom: 0.55rem;
+    }
+    .qi-opts { display: grid; grid-template-columns: repeat(4,1fr); gap: 0.4rem; }
+    .qi-opt {
+      background: #0f172a; border: 2px solid #334155; border-radius: 8px;
+      padding: 0.5rem 0.35rem; cursor: pointer; font-size: 0.82rem; color: #cbd5e1;
+      text-align: center; transition: border-color 0.12s, background 0.12s; line-height: 1.25;
+    }
+    .qi-opt:hover:not(:disabled) { border-color: #6366f1; color: #e2e8f0; }
+    .qi-opt.correct { border-color: #16a34a; background: rgba(22,163,74,0.18); color: #4ade80; }
+    .qi-opt.wrong   { border-color: #dc2626; background: rgba(220,38,38,0.14); color: #f87171; }
+    .qi-opt.reveal  { border-color: #16a34a; background: rgba(22,163,74,0.08); color: #86efac; }
+    .qi-opt:disabled { cursor: default; }
+    .qi-feedback {
+      margin-top: 0.5rem; padding: 0.4rem 0.7rem; border-radius: 6px;
+      font-size: 0.8rem; line-height: 1.4; display: none;
+    }
+    .qi-feedback.show { display: block; }
+    .qi-feedback.ok  { background: rgba(22,163,74,0.12); border: 1px solid #16a34a; color: #4ade80; }
+    .qi-feedback.bad { background: rgba(220,38,38,0.1);  border: 1px solid #dc2626; color: #f87171; }
+    .qi-score { text-align: center; padding: 0.8rem 1rem 0.9rem; }
+    .qi-score-num { font-size: 2.5rem; font-weight: 900; color: #a78bfa; line-height: 1; }
+    .qi-score-label { font-size: 0.8rem; color: #64748b; margin-bottom: 0.5rem; }
+    .qi-score-msg { font-size: 0.9rem; color: #f1f5f9; font-weight: 600; margin-bottom: 0.8rem; }
+    .qi-score-btn {
+      background: #6366f1; border: none; border-radius: 8px;
+      color: #fff; padding: 0.45rem 1.2rem; font-size: 0.85rem; cursor: pointer; margin: 0 0.25rem;
+    }
+    .qi-score-btn:hover { background: #4f46e5; }
+    .qi-score-btn.sec { background: #0f172a; border: 1px solid #334155; color: #94a3b8; }
+    .qi-score-btn.sec:hover { background: #1e293b; color: #e2e8f0; }
   </style>
 </head>
 <body>
-
 <nav>
   <a href="/">Home</a><span class="sep">/</span>
   <a href="/training">Training</a><span class="sep">/</span>
-  <span class="cur">Circle Problem</span>
+  <span class="nav-cur">Circle Problem</span>
 </nav>
 
-<canvas id="c" width="480" height="480"></canvas>
-<p class="hint">O is the center of the circle. Find the value of 2x − y.</p>
+<div id="question-banner">
+  <span class="q-label">Question</span>
+  <span class="q-text" id="question-text"></span>
+</div>
+
+<div class="layout">
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title">Playback file</div>
+      <select id="playback-select"><option value="">— select —</option></select>
+    </div>
+
+    <div class="legend-section">
+      <div class="legend-title">Color guide</div>
+      <div class="legend-row"><div class="legend-swatch" style="background:#1a1a2e;border:1px solid #475569"></div>Base geometry (given)</div>
+      <div class="legend-row"><div class="legend-swatch" style="background:#d97706"></div>Derived / calculated</div>
+      <div class="legend-row"><div class="legend-swatch" style="background:#2563eb"></div>Equal angles (key rule)</div>
+      <div class="legend-row"><div class="legend-swatch" style="background:#dc2626"></div>Auxiliary construction</div>
+      <div class="legend-row"><div class="legend-swatch" style="background:#16a34a"></div>Equal arcs / chords</div>
+      <div class="legend-row"><div class="legend-swatch" style="background:#0d9488"></div>Final answer</div>
+    </div>
+
+    <div class="step-list-wrap" id="step-list"></div>
+  </div>
+
+  <div class="canvas-area">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="canvas-wrap" id="canvas-wrap">
+      <canvas id="geom-canvas"></canvas>
+      <div class="placeholder" id="placeholder">Select a playback file to begin</div>
+    </div>
+    <div class="note-panel" id="note-panel">
+      <span class="note-empty">No step loaded</span>
+    </div>
+    <!-- quiz inline panel -->
+    <div id="quiz-inline">
+      <div class="qi-header">
+        <span class="qi-qnum" id="qi-qnum">Question 1 / 6</span>
+        <div class="qi-progress-bar"><div class="qi-progress-fill" id="qi-fill"></div></div>
+        <button class="qi-exit" id="qi-exit">✕ Exit Quiz</button>
+      </div>
+      <div class="qi-body" id="qi-body"></div>
+    </div>
+    <div class="controls">
+      <button class="ctrl-btn" id="btn-first" disabled title="First step">⏮</button>
+      <button class="ctrl-btn" id="btn-prev" disabled title="Previous (←)">◀ Prev</button>
+      <button class="ctrl-btn primary" id="btn-play" disabled title="Play/Pause (Space)">▶ Play</button>
+      <button class="ctrl-btn" id="btn-next" disabled title="Next (→)">Next ▶</button>
+      <button class="ctrl-btn" id="btn-last" disabled title="Last step">⏭</button>
+      <span class="step-counter" id="step-counter">—</span>
+      <span id="new-indicator"></span>
+      <span class="kbd-hint"><span class="kbd">←</span><span class="kbd">→</span><span class="kbd">Space</span></span>
+      <div class="speed-wrap">
+        <span class="speed-label">Speed</span>
+        <select id="speed-select">
+          <option value="3000">Slow</option>
+          <option value="1500" selected>Normal</option>
+          <option value="700">Fast</option>
+          <option value="250">Very fast</option>
+        </select>
+      </div>      <button class="ctrl-btn" id="btn-quiz" disabled style="margin-left:0.5rem;background:#7c3aed;border-color:#7c3aed;color:#fff">📝 Quiz</button>
+    </div>
+  </div>
+</div>
 
 <script>
-const canvas = document.getElementById('c');
-const ctx    = canvas.getContext('2d');
+var playback = null, stepIndex = 0, playTimer = null, isPlaying = false;
+var prevMarkupLines = null; // set of markup lines from previous step (for diff)
+var canvas = document.getElementById('geom-canvas');
+var ctx = canvas.getContext('2d');
+var canvasWrap = document.getElementById('canvas-wrap');
+var placeholder = document.getElementById('placeholder');
+var notePanel = document.getElementById('note-panel');
+var stepCounter = document.getElementById('step-counter');
+var progressFill = document.getElementById('progress-fill');
+var stepList = document.getElementById('step-list');
+var btnPlay = document.getElementById('btn-play');
+var btnPrev = document.getElementById('btn-prev');
+var btnNext = document.getElementById('btn-next');
+var btnFirst = document.getElementById('btn-first');
+var btnLast = document.getElementById('btn-last');
+var speedSelect = document.getElementById('speed-select');
+var pbSelect = document.getElementById('playback-select');
+var newIndicator = document.getElementById('new-indicator');
+var questionBanner = document.getElementById('question-banner');
+var questionText = document.getElementById('question-text');
 
-const CX = 240, CY = 248, R = 200;
-
-// Convert degrees-from-top-clockwise to canvas (x, y)
-function pt(deg) {
-  const rad = (deg - 90) * Math.PI / 180;
-  return { x: CX + R * Math.cos(rad), y: CY + R * Math.sin(rad) };
+/* ── Canvas resize ── */
+function resizeCanvas() {
+  var r = canvasWrap.getBoundingClientRect();
+  canvas.width = r.width; canvas.height = r.height;
+  if (playback) renderStep(stepIndex);
 }
+new ResizeObserver(resizeCanvas).observe(canvasWrap);
 
-// Line–line intersection (returns point or null)
-function intersect(a, b, c, d) {
-  const dx1 = b.x - a.x, dy1 = b.y - a.y;
-  const dx2 = d.x - c.x, dy2 = d.y - c.y;
-  const den  = dx1 * dy2 - dy1 * dx2;
-  if (Math.abs(den) < 1e-9) return null;
-  const t = ((c.x - a.x) * dy2 - (c.y - a.y) * dx2) / den;
-  return { x: a.x + t * dx1, y: a.y + t * dy1 };
-}
-
-// ── Points on circle ─────────────────────────────────────────────────
-// Positions matched to the diagram image (degrees from top, clockwise)
-const P1 = pt(328); // upper-left
-const P2 = pt(16);  // upper-right  → angle x
-const P3 = pt(82);  // right         → angle y
-const P4 = pt(152); // lower-right
-const P5 = pt(212); // lower-left    → 14°
-
-// Pentagram chords (skip-one connections): P1-P3, P3-P5, P5-P2, P2-P4, P4-P1
-const chords = [
-  [P1, P3],
-  [P3, P5],
-  [P5, P2],
-  [P2, P4],
-  [P4, P1],
-];
-
-// Interior intersection points where angle labels live
-const I34  = intersect(P1, P3, P5, P2); // upper-left interior  → 34°
-const I67  = intersect(P4, P1, P3, P5); // lower interior       → 67° (near O)
-
-// ── Drawing helpers ──────────────────────────────────────────────────
-function drawCircle() {
-  ctx.beginPath();
-  ctx.arc(CX, CY, R, 0, Math.PI * 2);
-  ctx.strokeStyle = '#1a1a2e';
-  ctx.lineWidth = 2;
-  ctx.stroke();
-}
-
-function drawChords() {
-  ctx.strokeStyle = '#1a1a2e';
-  ctx.lineWidth = 1.6;
-  chords.forEach(([a, b]) => {
-    ctx.beginPath();
-    ctx.moveTo(a.x, a.y);
-    ctx.lineTo(b.x, b.y);
-    ctx.stroke();
+/* ── Load playback list ── */
+async function loadPlaybackList() {
+  var names = await fetch('/api/playbacks').then(function(r){return r.json();}).catch(function(){return [];});
+  names.sort();
+  names.forEach(function(name) {
+    var opt = document.createElement('option');
+    opt.value = name; opt.textContent = name;
+    pbSelect.appendChild(opt);
   });
 }
 
-function dot(p, r = 3.5) {
-  ctx.beginPath();
-  ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
-  ctx.fillStyle = '#1a1a2e';
-  ctx.fill();
+pbSelect.addEventListener('change', async function() {
+  var name = pbSelect.value;
+  if (!name) { playback = null; clearDisplay(); return; }
+  stopPlay();
+  playback = await fetch('/api/playbacks/' + encodeURIComponent(name)).then(function(r){return r.json();}).catch(function(){return null;});
+  if (!playback || !Array.isArray(playback.steps)) { playback = null; clearDisplay(); return; }
+  // Show question from first step
+  if (playback.steps[0] && playback.steps[0].note) {
+    questionText.textContent = playback.steps[0].note;
+    questionBanner.style.display = 'block';
+  }
+  stepIndex = playback.currentIndex != null ? Math.min(playback.currentIndex, playback.steps.length - 1) : 0;
+  prevMarkupLines = null;
+  buildStepList();
+  btnPlay.disabled = false;
+  btnQuiz.disabled = false;
+  renderStep(stepIndex);
+});
+
+/* ── Build sidebar step list with new-element counts ── */
+function buildStepList() {
+  stepList.innerHTML = '';
+  var prevLines = null;
+  (playback.steps || []).forEach(function(step, i) {
+    var curLines = markupLineSet(step.markup || '');
+    var newCount = 0;
+    if (prevLines) {
+      curLines.forEach(function(l) { if (!prevLines.has(l)) newCount++; });
+    }
+    var div = document.createElement('div');
+    div.className = 'step-item'; div.dataset.i = i;
+    var shortName = (step.name || ('Step ' + i)).replace(/^.*\//, '').replace(/\.txt$/, '');
+    div.innerHTML = '<span class="step-num">' + (i+1) + '.</span>' + esc(shortName) +
+      '<span class="step-note">' + esc((step.note || '').slice(0, 55)) + '</span>';
+    if (newCount > 0 && i > 0) {
+      div.innerHTML += '<span class="new-badge">+' + newCount + '</span>';
+    }
+    div.addEventListener('click', function() { stopPlay(); goTo(i); });
+    stepList.appendChild(div);
+    prevLines = curLines;
+  });
 }
 
-// Draw a small angle arc at vertex v, between directions to a and b
-function angleArc(v, a, b, arcR = 22) {
-  const ang1 = Math.atan2(a.y - v.y, a.x - v.x);
-  const ang2 = Math.atan2(b.y - v.y, b.x - v.x);
-  ctx.beginPath();
-  ctx.arc(v.x, v.y, arcR, ang1, ang2);
-  ctx.strokeStyle = '#444';
-  ctx.lineWidth = 1;
-  ctx.stroke();
+function markupLineSet(markup) {
+  var s = new Set();
+  String(markup).split(/\r?\n/).forEach(function(l) { var t = l.trim(); if (t) s.add(t); });
+  return s;
 }
 
-function label(text, x, y, { size = 15, italic = true, color = '#111' } = {}) {
-  ctx.font = `${italic ? 'italic ' : ''}${size}px 'Times New Roman', serif`;
-  ctx.fillStyle = color;
-  ctx.fillText(text, x, y);
+function updateStepListActive() {
+  stepList.querySelectorAll('.step-item').forEach(function(el) {
+    el.classList.toggle('active', Number(el.dataset.i) === stepIndex);
+  });
+  var active = stepList.querySelector('.step-item.active');
+  if (active) active.scrollIntoView({ block: 'nearest' });
 }
 
-// ── Render ────────────────────────────────────────────────────────────
-drawCircle();
-drawChords();
-
-// Center O
-dot({ x: CX, y: CY });
-label('O', CX + 8, CY + 6, { italic: true });
-
-// Angle arcs + labels at circumference vertices
-// x at P2
-angleArc(P2, P5, P4, 26);
-label('x', P2.x - 6, P2.y + 28, { size: 15 });
-
-// y at P3
-angleArc(P3, P1, P5, 26);
-label('y', P3.x - 34, P3.y + 4, { size: 15 });
-
-// 14° at P5
-angleArc(P5, P2, P4, 28);
-label('14°', P5.x + 10, P5.y - 8, { size: 13 });
-
-// 34° at interior intersection I34
-if (I34) {
-  dot(I34, 2);
-  angleArc(I34, P3, P5, 20);
-  label('34°', I34.x + 6, I34.y - 4, { size: 13 });
+/* ── Navigation ── */
+function goTo(i) {
+  if (!playback) return;
+  var prev = stepIndex;
+  stepIndex = Math.max(0, Math.min(i, playback.steps.length - 1));
+  // Compute diff vs previous step
+  prevMarkupLines = (prev !== stepIndex && playback.steps[stepIndex > 0 ? stepIndex - 1 : 0])
+    ? markupLineSet(playback.steps[stepIndex > 0 ? stepIndex - 1 : 0].markup || '')
+    : null;
+  if (stepIndex === 0) prevMarkupLines = null;
+  renderStep(stepIndex);
 }
 
-// 67° at interior intersection I67 (near O)
-if (I67) {
-  dot(I67, 2);
-  angleArc(I67, P4, P3, 22);
-  label('67°', I67.x + 4, I67.y + 18, { size: 13 });
+btnFirst.addEventListener('click', function() { stopPlay(); goTo(0); });
+btnPrev.addEventListener('click', function() { stopPlay(); goTo(stepIndex - 1); });
+btnNext.addEventListener('click', function() { stopPlay(); goTo(stepIndex + 1); });
+btnLast.addEventListener('click', function() { stopPlay(); goTo(playback.steps.length - 1); });
+btnPlay.addEventListener('click', function() { if (isPlaying) stopPlay(); else startPlay(); });
+
+/* ── Keyboard shortcuts ── */
+document.addEventListener('keydown', function(e) {
+  if (!playback) return;
+  if (e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT') return;
+  if (e.key === 'ArrowRight') { stopPlay(); goTo(stepIndex + 1); e.preventDefault(); }
+  else if (e.key === 'ArrowLeft') { stopPlay(); goTo(stepIndex - 1); e.preventDefault(); }
+  else if (e.key === ' ') { if (isPlaying) stopPlay(); else startPlay(); e.preventDefault(); }
+});
+
+function startPlay() {
+  if (!playback) return;
+  isPlaying = true;
+  btnPlay.textContent = '⏸ Pause'; btnPlay.classList.add('playing');
+  scheduleNext();
+}
+function stopPlay() {
+  isPlaying = false; clearTimeout(playTimer);
+  btnPlay.textContent = '▶ Play'; btnPlay.classList.remove('playing');
+}
+function scheduleNext() {
+  var speed = Number(speedSelect.value) || 1500;
+  playTimer = setTimeout(function() {
+    if (!isPlaying || !playback) return;
+    if (stepIndex >= playback.steps.length - 1) { stopPlay(); return; }
+    goTo(stepIndex + 1); scheduleNext();
+  }, speed);
 }
 
-// Dots on circumference points (no labels needed for unlabeled ones)
-[P1, P2, P3, P4, P5].forEach(p => dot(p, 3));
+/* ── Render a step ── */
+function renderStep(i) {
+  if (!playback || !playback.steps[i]) return;
+  var step = playback.steps[i];
+  placeholder.style.display = 'none';
+  updateStepListActive();
+
+  var total = playback.steps.length;
+  stepCounter.textContent = 'Step ' + (i+1) + ' / ' + total;
+  progressFill.style.width = (((i+1) / total) * 100) + '%';
+  btnFirst.disabled = btnPrev.disabled = (i === 0);
+  btnNext.disabled = btnLast.disabled = (i === total - 1);
+
+  // Note panel
+  var shortName = (step.name || '').replace(/^.*\//, '').replace(/\.txt$/, '');
+  if (step.note) {
+    notePanel.innerHTML = '<span class="note-step-title">' + esc(shortName) + '</span>' +
+      '<span class="note-text">' + esc(step.note) + '</span>';
+  } else {
+    notePanel.innerHTML = '<span class="note-empty">No explanation for this step</span>';
+  }
+
+  // Compute new lines for glow
+  var curLines = markupLineSet(step.markup || '');
+  var newLines = new Set();
+  if (prevMarkupLines && i > 0) {
+    curLines.forEach(function(l) { if (!prevMarkupLines.has(l)) newLines.add(l); });
+  }
+
+  // Update new-elements indicator
+  if (newLines.size > 0 && i > 0) {
+    newIndicator.textContent = '+' + newLines.size + ' new';
+    newIndicator.style.display = 'inline-block';
+  } else {
+    newIndicator.style.display = 'none';
+  }
+
+  try {
+    var elements = parseMarkup(step.markup || '');
+    // Tag each element as new or not
+    var markupLinesArr = (step.markup || '').split(/\r?\n/).map(function(l){return l.trim();});
+    elements.forEach(function(el, idx) {
+      el._isNew = newLines.has(markupLinesArr[idx]) || newLines.has(markupLinesArr[idx+1]);
+    });
+    // Re-tag by matching line content
+    var newLinesList = Array.from(newLines);
+    elements.forEach(function(el) {
+      el._isNew = newLinesList.some(function(nl) {
+        return nl.indexOf('id=' + (el._id||'')) !== -1 || matchesElement(nl, el);
+      });
+    });
+    drawElements(elements);
+  } catch(e) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#ef4444'; ctx.font = '13px monospace';
+    ctx.fillText('Parse error: ' + e.message, 12, 24);
+  }
+}
+
+function matchesElement(line, el) {
+  // Rough match: check if line's coords match element's key coordinates
+  if (el.type === 'circle' && el.cx != null) return line.indexOf('cx=' + el.cx) !== -1;
+  if (el.type === 'line' && el.x1 != null) return line.indexOf('x1=' + el.x1) !== -1 && line.indexOf('y1=' + el.y1) !== -1;
+  if (el.type === 'point' && el.x != null) return line.indexOf('x=' + el.x) !== -1 && line.indexOf('y=' + el.y) !== -1;
+  if (el.type === 'angle' && el.vx != null) return line.indexOf('x=' + el.vx) !== -1 && line.indexOf('ang1=' + el.ang1) !== -1;
+  if (el.type === 'label' && el.x != null) return line.indexOf('x=' + el.x) !== -1 && line.indexOf('y=' + el.y) !== -1;
+  return false;
+}
+
+function clearDisplay() {
+  stepList.innerHTML = ''; placeholder.style.display = 'flex';
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  notePanel.innerHTML = '<span class="note-empty">No step loaded</span>';
+  stepCounter.textContent = '—'; progressFill.style.width = '0';
+  newIndicator.style.display = 'none';
+  questionBanner.style.display = 'none';
+  [btnFirst, btnPrev, btnPlay, btnNext, btnLast, btnQuiz].forEach(function(b){ b.disabled = true; });
+}
+
+/* ── Markup parser ── */
+function parseMarkup(text) {
+  var lines = String(text || '').split(/\r?\n/).map(function(l){return l.trim();}).filter(function(l){return l && !l.startsWith('#');});
+  var parsed = [];
+  function getVal(src, key) { var m = src.match(new RegExp('(?:^|\\s)' + key + '=([^\\s]+)')); return m ? m[1] : null; }
+  function getNum(src, key) { var v = getVal(src, key); return v != null ? Number(v) : null; }
+  function getColor(src) { var m = src.match(/(?:^|\s)color=([a-zA-Z0-9#]+)/); return m ? m[1] : '#1a1a2e'; }
+  function getVisible(src) { var m = src.match(/(?:^|\s)visible=([01])/); return m ? m[1] === '1' : true; }
+  function getType(src) { var m = src.match(/(?:^|\s)type=([a-zA-Z0-9_.:-]+)/); return m ? m[1].toLowerCase() : null; }
+  function getText(src) { var m = src.match(/(?:^|\s)text=(?:"([^"]*)"|([^\s]*))/); return m ? (m[1] != null ? m[1] : (m[2] || '')) : ''; }
+  function getId(src) { var m = src.match(/(?:^|\s)id=([^\s]+)/); return m ? m[1] : null; }
+  lines.forEach(function(line) {
+    var m = line.match(/^([a-zA-Z]+)(.*)/); if (!m) return;
+    var cmd = m[1].toLowerCase(), body = m[2];
+    if (!getVisible(body)) return;
+    var color = getColor(body);
+    var id = getId(body);
+    if (cmd === 'circle') {
+      var cx=getNum(body,'cx'),cy=getNum(body,'cy'),r=getNum(body,'r');
+      if (cx!=null) parsed.push({type:'circle',cx:cx,cy:cy,r:r,color:color,_id:id,_line:line});
+    } else if (cmd === 'line') {
+      var x1=getNum(body,'x1'),y1=getNum(body,'y1'),x2=getNum(body,'x2'),y2=getNum(body,'y2');
+      if (x1!=null) parsed.push({type:'line',x1:x1,y1:y1,x2:x2,y2:y2,color:color,_id:id,_line:line});
+    } else if (cmd === 'point') {
+      var x=getNum(body,'x'),y=getNum(body,'y');
+      if (x!=null) parsed.push({type:'point',x:x,y:y,color:color,_id:id,_line:line});
+    } else if (cmd === 'label') {
+      var t=getType(body),lx=getNum(body,'x'),ly=getNum(body,'y');
+      if (lx==null) return;
+      if (t==='angle') {
+        var a1=getNum(body,'ang1'),a2=getNum(body,'ang2'),ar=getNum(body,'r'),sz=getNum(body,'size')||14;
+        if (a1!=null) parsed.push({type:'angle',vx:lx,vy:ly,ang1:a1,ang2:a2,arcR:ar||24,size:sz,color:color,_id:id,_line:line});
+      } else {
+        var txt=getText(body),sz2=getNum(body,'size')||14;
+        parsed.push({type:'label',x:lx,y:ly,text:txt,size:sz2,color:color,_id:id,_line:line});
+      }
+    }
+  });
+  // Tag new elements by matching stored _line
+  return parsed;
+}
+
+/* ── Tag new elements by matching raw lines ── */
+function tagNewElements(elements, newLines) {
+  if (!newLines || newLines.size === 0) { elements.forEach(function(e){e._isNew=false;}); return; }
+  elements.forEach(function(el) {
+    el._isNew = el._line && newLines.has(el._line);
+  });
+}
+
+/* ── Geometry renderer with glow for new elements ── */
+function drawElements(elements) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  if (!elements.length) return;
+
+  // Bounding box
+  var minX=Infinity,maxX=-Infinity,minY=Infinity,maxY=-Infinity;
+  elements.forEach(function(el) {
+    if (el.type==='circle'){minX=Math.min(minX,el.cx-el.r);maxX=Math.max(maxX,el.cx+el.r);minY=Math.min(minY,el.cy-el.r);maxY=Math.max(maxY,el.cy+el.r);}
+    else if (el.type==='line'){minX=Math.min(minX,el.x1,el.x2);maxX=Math.max(maxX,el.x1,el.x2);minY=Math.min(minY,el.y1,el.y2);maxY=Math.max(maxY,el.y1,el.y2);}
+    else if (el.type==='point'){minX=Math.min(minX,el.x);maxX=Math.max(maxX,el.x);minY=Math.min(minY,el.y);maxY=Math.max(maxY,el.y);}
+    else if (el.type==='angle'){var ar=el.arcR||24;minX=Math.min(minX,el.vx-ar);maxX=Math.max(maxX,el.vx+ar);minY=Math.min(minY,el.vy-ar);maxY=Math.max(maxY,el.vy+ar);}
+    else if (el.type==='label'){minX=Math.min(minX,el.x);maxX=Math.max(maxX,el.x);minY=Math.min(minY,el.y);maxY=Math.max(maxY,el.y);}
+  });
+
+  var pad=50;
+  var sx=(canvas.width-pad*2)/Math.max(1,maxX-minX);
+  var sy=(canvas.height-pad*2)/Math.max(1,maxY-minY);
+  var sc=Math.min(sx,sy);
+  var ox=pad-minX*sc+((canvas.width-pad*2)-(maxX-minX)*sc)/2;
+  var oy=pad-minY*sc+((canvas.height-pad*2)-(maxY-minY)*sc)/2;
+  function tx(x){return x*sc+ox;} function ty(y){return y*sc+oy;} function ts(s){return Math.max(0.5,s*sc);}
+
+  // Re-tag using _line
+  var curStep = playback && playback.steps[stepIndex];
+  var curLineSet = curStep ? markupLineSet(curStep.markup||'') : new Set();
+  var prevStep = (stepIndex>0 && playback) ? playback.steps[stepIndex-1] : null;
+  var prevLineSet = prevStep ? markupLineSet(prevStep.markup||'') : new Set();
+  elements.forEach(function(el) {
+    el._isNew = (el._line && prevLineSet.size > 0 && !prevLineSet.has(el._line));
+  });
+
+  var order=['circle','line','point','angle','label'];
+  var sorted=elements.slice().sort(function(a,b){return order.indexOf(a.type)-order.indexOf(b.type);});
+
+  // Draw old elements first (dimmed slightly if there are new ones)
+  var hasNew = elements.some(function(e){return e._isNew;});
+
+  sorted.forEach(function(el) {
+    if (el._isNew) return; // draw new elements after
+    ctx.save();
+    if (hasNew) ctx.globalAlpha = 0.65; // dim old elements when something new is shown
+    drawOneElement(el, tx, ty, ts, sc, false);
+    ctx.restore();
+  });
+
+  // Draw new elements with glow
+  sorted.forEach(function(el) {
+    if (!el._isNew) return;
+    ctx.save();
+    // Draw glow layer
+    ctx.shadowColor = glowColor(el.color);
+    ctx.shadowBlur = 18;
+    drawOneElement(el, tx, ty, ts, sc, true);
+    ctx.shadowBlur = 0;
+    // Draw solid layer on top
+    drawOneElement(el, tx, ty, ts, sc, true);
+    ctx.restore();
+  });
+}
+
+function glowColor(c) {
+  // Return a bright version of the element's color for glow
+  if (!c || c === '#1a1a2e') return '#6366f1';
+  return c;
+}
+
+function drawOneElement(el, tx, ty, ts, sc, isNew) {
+  var lw = isNew ? Math.max(1.8, 2.2*sc) : Math.max(1,1.6*sc);
+  if (el.type==='circle') {
+    ctx.beginPath(); ctx.arc(tx(el.cx),ty(el.cy),ts(el.r),0,Math.PI*2);
+    ctx.strokeStyle=el.color; ctx.lineWidth=isNew?Math.max(2,2.5*sc):Math.max(1.5,2*sc); ctx.stroke();
+    ctx.beginPath(); ctx.arc(tx(el.cx),ty(el.cy),Math.max(2,4*sc),0,Math.PI*2);
+    ctx.fillStyle=el.color; ctx.fill();
+  } else if (el.type==='line') {
+    ctx.beginPath(); ctx.moveTo(tx(el.x1),ty(el.y1)); ctx.lineTo(tx(el.x2),ty(el.y2));
+    ctx.strokeStyle=el.color; ctx.lineWidth=lw; ctx.stroke();
+  } else if (el.type==='point') {
+    ctx.beginPath(); ctx.arc(tx(el.x),ty(el.y),Math.max(2,3.5*sc),0,Math.PI*2);
+    ctx.fillStyle=el.color; ctx.fill();
+  } else if (el.type==='angle') {
+    ctx.beginPath(); ctx.arc(tx(el.vx),ty(el.vy),ts(el.arcR),el.ang1,el.ang2);
+    ctx.strokeStyle=el.color; ctx.lineWidth=isNew?Math.max(1.5,2*sc):Math.max(0.8,1.2*sc); ctx.stroke();
+  } else if (el.type==='label') {
+    var fs=Math.max(11,el.size*sc);
+    ctx.font=(isNew?'bold ':'')+fs+'px "Segoe UI",Arial,sans-serif';
+    ctx.fillStyle=el.color; ctx.textBaseline='middle';
+    ctx.fillText(el.text,tx(el.x),ty(el.y));
+  }
+}
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+/* ── Quiz system (inline, step-linked, auto-advance) ── */
+var btnQuiz = document.getElementById('btn-quiz');
+var quizInline = document.getElementById('quiz-inline');
+var qiBody = document.getElementById('qi-body');
+var qiFill = document.getElementById('qi-fill');
+var qiQnum = document.getElementById('qi-qnum');
+var qiExit = document.getElementById('qi-exit');
+
+var quizState = { questions: [], current: 0, score: 0, answered: false, active: false, advTimer: null };
+
+/* Generate questions from playback steps by scanning notes for key numbers/rules */
+function generateQuestions(pb) {
+  // Built-in bank of question templates keyed on note patterns
+  // Each entry: { test: regex, make: fn(note, steps) → question object }
+  // A question object: { q, hint, opts:[{text,correct}], stepIdx, explain }
+  var qs = [];
+  var steps = pb.steps || [];
+
+  // Extract key angle values by scanning all markup labels
+  var allLabels = {};
+  steps.forEach(function(s, si) {
+    (s.markup||'').split('\n').forEach(function(line) {
+      var tm = line.match(/type=text[^\n]*text=(\S+)/);
+      if (tm && /^\d+$/.test(tm[1])) {
+        var v = parseInt(tm[1]);
+        if (!allLabels[v]) allLabels[v] = si;
+      }
+    });
+  });
+
+  // Q1 — vertical angles (Step 1 note mentions มุมตรงข้าม)
+  var step1 = steps.find(function(s){ return s.note && s.note.indexOf('ตรงข้าม') !== -1; });
+  if (step1) {
+    qs.push({
+      q: 'มุมตรงข้ามกัน (Vertical angles) มีขนาดเท่าไร ถ้ามุมหนึ่งมีขนาด 34°?',
+      hint: 'Vertical angles are always equal.',
+      opts: [
+        { text: '34°', correct: true },
+        { text: '146°', correct: false },
+        { text: '68°', correct: false },
+        { text: '17°', correct: false }
+      ],
+      stepIdx: steps.indexOf(step1),
+      explain: 'Vertical (opposite) angles are equal. So the answer is 34°.'
+    });
+  }
+
+  // Q2 — triangle angle sum (Step 2 note: "180 - (146 + 14)")
+  var step2 = steps.find(function(s){ return s.note && s.note.indexOf('(146 + 14)') !== -1; });
+  if (step2) {
+    qs.push({
+      q: 'ในสามเหลี่ยม มีมุม 146° และ 14° มุมที่สามมีขนาดเท่าไร?\n(Triangle: angles are 146° and 14°, find the third.)',
+      hint: 'Sum of angles in a triangle = 180°.',
+      opts: [
+        { text: '20°', correct: true },
+        { text: '40°', correct: false },
+        { text: '160°', correct: false },
+        { text: '10°', correct: false }
+      ],
+      stepIdx: steps.indexOf(step2),
+      explain: '180° − 146° − 14° = 20°. Triangle angle sum = 180°.'
+    });
+  }
+
+  // Q3 — central angle theorem (Step 9 note: "33x2 = 66")
+  var step9 = steps.find(function(s){ return s.note && s.note.indexOf('33x2') !== -1; });
+  if (step9) {
+    qs.push({
+      q: 'มุม inscribed (บนเส้นรอบวง) มีขนาด 33°\nมุม central (ที่จุดศูนย์กลาง) ที่รองรับส่วนโค้งเดียวกันมีขนาดเท่าไร?\n(Inscribed angle = 33°, find the central angle.)',
+      hint: 'Central angle = 2 × inscribed angle (same arc).',
+      opts: [
+        { text: '33°', correct: false },
+        { text: '66°', correct: true },
+        { text: '99°', correct: false },
+        { text: '16.5°', correct: false }
+      ],
+      stepIdx: steps.indexOf(step9),
+      explain: 'Central angle = 2 × 33° = 66°.'
+    });
+  }
+
+  // Q4 — isosceles from radii (Step 10: "(180 - 66) /2 = 57")
+  var step10 = steps.find(function(s){ return s.note && s.note.indexOf('(180 - 66)') !== -1; });
+  if (step10) {
+    qs.push({
+      q: 'สามเหลี่ยมที่สร้างจากรัศมีสองเส้น (isosceles) มีมุมที่จุดศูนย์กลาง 66°\nมุมฐานแต่ละมุมมีขนาดเท่าไร?\n(Isosceles triangle, apex angle = 66°, find base angles.)',
+      hint: 'Radii are equal → isosceles triangle. Base angles = (180° − apex) ÷ 2.',
+      opts: [
+        { text: '57°', correct: true },
+        { text: '66°', correct: false },
+        { text: '33°', correct: false },
+        { text: '114°', correct: false }
+      ],
+      stepIdx: steps.indexOf(step10),
+      explain: '(180° − 66°) ÷ 2 = 57°. Both base angles are equal since radii are equal.'
+    });
+  }
+
+  // Q5 — finding Y (Step 15: "Y = 57 + 27")
+  var step15 = steps.find(function(s){ return s.note && s.note.indexOf('57 + 27') !== -1; });
+  if (step15) {
+    qs.push({
+      q: 'จากการคำนวณ มุม y ประกอบจากมุม 57° และ 27°\nมุม y มีขนาดเท่าไร?\n(Angle y is composed of 57° and 27°, what is y?)',
+      hint: 'Add the two angle parts.',
+      opts: [
+        { text: '74°', correct: false },
+        { text: '84°', correct: true },
+        { text: '94°', correct: false },
+        { text: '64°', correct: false }
+      ],
+      stepIdx: steps.indexOf(step15),
+      explain: 'y = 57° + 27° = 84°.'
+    });
+  }
+
+  // Q6 — final answer (Step 17)
+  var step17 = steps.find(function(s){ return s.note && s.note.indexOf('42') !== -1 && s.note.indexOf('2x') !== -1; });
+  if (step17) {
+    qs.push({
+      q: 'เมื่อ x = 63° และ y = 84°\n2x − y มีค่าเท่าไร?\n(Given x = 63° and y = 84°, find 2x − y.)',
+      hint: 'Substitute into the expression.',
+      opts: [
+        { text: '21°', correct: false },
+        { text: '147°', correct: false },
+        { text: '42°', correct: true },
+        { text: '63°', correct: false }
+      ],
+      stepIdx: steps.indexOf(step17),
+      explain: '2(63°) − 84° = 126° − 84° = 42°.'
+    });
+  }
+
+  // Fallback: add a generic question if nothing matched
+  if (qs.length === 0) {
+    qs.push({
+      q: 'How many steps does this solution have?',
+      hint: 'Count the steps in the sidebar.',
+      opts: [
+        { text: String(steps.length), correct: true },
+        { text: String(steps.length - 2), correct: false },
+        { text: String(steps.length + 1), correct: false },
+        { text: String(Math.floor(steps.length / 2)), correct: false }
+      ],
+      stepIdx: steps.length - 1,
+      explain: 'There are ' + steps.length + ' steps in this playback.'
+    });
+  }
+
+  // Shuffle option order (keep correct answer random position)
+  qs.forEach(function(q) {
+    q.opts = shuffleArr(q.opts);
+  });
+  return qs;
+}
+
+function shuffleArr(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+  }
+  return a;
+}
+
+function openQuiz() {
+  if (!playback) return;
+  stopPlay();
+  clearTimeout(quizState.advTimer);
+  quizState.questions = generateQuestions(playback);
+  quizState.current = 0;
+  quizState.score = 0;
+  quizState.answered = false;
+  quizState.active = true;
+  // hide note panel, show inline quiz, lock playback controls
+  notePanel.style.display = 'none';
+  quizInline.style.display = 'block';
+  [btnFirst, btnPrev, btnPlay, btnNext, btnLast].forEach(function(b){ b.disabled = true; });
+  btnQuiz.disabled = true;
+  showQuizStep(0);
+}
+
+function closeQuiz() {
+  clearTimeout(quizState.advTimer);
+  quizState.active = false;
+  notePanel.style.display = '';
+  quizInline.style.display = 'none';
+  btnQuiz.disabled = false;
+  if (playback) {
+    btnPlay.disabled = false;
+    btnFirst.disabled = btnPrev.disabled = (stepIndex === 0);
+    btnNext.disabled = btnLast.disabled = (stepIndex >= playback.steps.length - 1);
+  }
+}
+
+function showQuizStep(idx) {
+  var qs = quizState.questions;
+  if (idx >= qs.length) { showQuizScore(); return; }
+  var q = qs[idx];
+  quizState.current = idx;
+  quizState.answered = false;
+
+  // Navigate playback to this question's step
+  goTo(q.stepIdx);
+
+  qiFill.style.width = ((idx / qs.length) * 100) + '%';
+  qiQnum.textContent = 'Question ' + (idx + 1) + ' / ' + qs.length;
+
+  var optsHtml = q.opts.map(function(o, i) {
+    return '<button class="qi-opt" data-i="' + i + '">' + esc(o.text) + '</button>';
+  }).join('');
+
+  qiBody.innerHTML =
+    '<div class="qi-question">' + esc(q.q).replace(/\n/g,'<br>') + '</div>' +
+    '<div class="qi-opts">' + optsHtml + '</div>' +
+    '<div class="qi-feedback" id="qi-fb"></div>';
+
+  qiBody.querySelectorAll('.qi-opt').forEach(function(btn, i) {
+    btn.addEventListener('click', function() {
+      if (quizState.answered || !quizState.active) return;
+      quizState.answered = true;
+      var correct = q.opts[i].correct;
+      if (correct) quizState.score++;
+
+      qiBody.querySelectorAll('.qi-opt').forEach(function(b, j) {
+        b.disabled = true;
+        if (q.opts[j].correct) b.classList.add(j === i ? 'correct' : 'reveal');
+        else if (j === i) b.classList.add('wrong');
+      });
+
+      var fb = document.getElementById('qi-fb');
+      fb.className = 'qi-feedback show ' + (correct ? 'ok' : 'bad');
+      fb.innerHTML = (correct ? '✅ ' : '❌ ') + esc(q.explain);
+
+      // Auto-advance to next question + step after delay
+      quizState.advTimer = setTimeout(function() {
+        if (!quizState.active) return;
+        showQuizStep(idx + 1);
+      }, 1800);
+    });
+  });
+}
+
+function showQuizScore() {
+  qiFill.style.width = '100%';
+  qiQnum.textContent = 'Quiz complete!';
+  var total = quizState.questions.length;
+  var score = quizState.score;
+  var pct = Math.round((score / total) * 100);
+  var msg = pct === 100 ? '🎉 Perfect! You mastered this solution!' :
+            pct >= 80  ? '🌟 Great work!' :
+            pct >= 60  ? '👍 Good effort. Try reviewing the steps.' :
+                         '📚 Try replaying the full solution first.';
+
+  qiBody.innerHTML =
+    '<div class="qi-score">' +
+      '<div class="qi-score-num">' + score + '/' + total + '</div>' +
+      '<div class="qi-score-label">' + pct + '% correct</div>' +
+      '<div class="qi-score-msg">' + esc(msg) + '</div>' +
+      '<button class="qi-score-btn" id="qi-retry">🔄 Try Again</button>' +
+      '<button class="qi-score-btn sec" id="qi-done">✓ Done</button>' +
+    '</div>';
+
+  document.getElementById('qi-retry').addEventListener('click', function() {
+    quizState.questions = generateQuestions(playback);
+    showQuizStep(0);
+  });
+  document.getElementById('qi-done').addEventListener('click', function() {
+    closeQuiz(); goTo(0);
+  });
+}
+
+btnQuiz.addEventListener('click', openQuiz);
+qiExit.addEventListener('click', closeQuiz);
+
+loadPlaybackList();
+resizeCanvas();
 </script>
 </body>
 </html>

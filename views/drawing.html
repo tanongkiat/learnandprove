@@ -71,14 +71,27 @@
     .cursor-point   { cursor: crosshair; }
     .cursor-angle   { cursor: crosshair; }
     .cursor-label   { cursor: text; }
+    .cursor-vertex-lines { cursor: crosshair; }
     .cursor-eraser  { cursor: cell; }
+    .vertex-selection-ui {
+      position: absolute; top: 12px; right: 12px; z-index: 6;
+      display: flex; gap: 0.45rem;
+    }
+    .vertex-selection-ui button {
+      border: 1px solid #334155; border-radius: 999px; padding: 0.38rem 0.7rem;
+      background: #0f172a; color: #e2e8f0; cursor: pointer; font-size: 0.78rem;
+    }
+    .vertex-selection-ui button:hover { background: #1e293b; }
+    .vertex-selection-ui .primary { background: #f59e0b; color: #111827; border-color: #f59e0b; }
+    .vertex-selection-ui .primary:hover { background: #d97706; }
 
     /* ── Properties panel ── */
     .panel {
-      width: 210px; flex-shrink: 0; background: #1e293b;
+      width: 260px; flex-shrink: 0; background: #1e293b;
       border-left: 1px solid #334155; overflow-y: auto;
       padding: 0.8rem;
     }
+    .panel.collapsed { display: none; }
     .panel-title {
       font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em;
       text-transform: uppercase; color: #64748b; margin-bottom: 0.8rem;
@@ -86,6 +99,35 @@
     .prop-group { margin-bottom: 1rem; }
     .prop-label { font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.3rem; display: block; }
     .prop-row { display: flex; align-items: center; gap: 0.5rem; }
+    .calc-card {
+      background: #0f172a; border: 1px solid #334155; border-radius: 8px;
+      padding: 0.6rem; display: grid; gap: 0.45rem;
+    }
+    .calc-display {
+      width: 100%; background: #020617; border: 1px solid #334155; color: #f8fafc;
+      font-size: 0.95rem; padding: 0.45rem 0.55rem; border-radius: 6px; text-align: right;
+    }
+    .calc-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.35rem;
+    }
+    .calc-btn {
+      border: 1px solid #334155; background: #1e293b; color: #e2e8f0; border-radius: 6px;
+      padding: 0.38rem 0; cursor: pointer; font-size: 0.8rem;
+    }
+    .calc-btn:hover { background: #263345; }
+    .calc-btn.operator { color: #a78bfa; }
+    .calc-btn.equal { background: #6366f1; color: white; border-color: #6366f1; }
+    .calc-btn.equal:hover { background: #4f46e5; }
+    .color-palette { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.5rem; }
+    .swatch-btn {
+      width: 24px; height: 24px; border-radius: 50%; border: 2px solid #334155;
+      background: var(--swatch-color); cursor: pointer; padding: 0;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
+    }
+    .swatch-btn:hover { transform: scale(1.05); }
+    .swatch-btn.active { border-color: #f8fafc; box-shadow: 0 0 0 2px #0f172a, 0 0 0 3px #f8fafc; }
+    .color-input-row { display: flex; align-items: center; gap: 0.45rem; }
+    .color-input-row .color-label { font-size: 0.72rem; color: #94a3b8; }
     input[type="color"] {
       width: 36px; height: 28px; border: 1px solid #334155; border-radius: 6px;
       background: #0f172a; cursor: pointer; padding: 2px;
@@ -103,13 +145,205 @@
     }
     .prop-val { font-size: 0.75rem; color: #64748b; min-width: 28px; text-align: right; }
     .prop-hint {
-      font-size: 0.72rem; color: #475569; line-height: 1.5;
-      padding: 0.5rem; background: #0f172a; border-radius: 6px; border: 1px solid #1e293b;
+      font-size: 0.83rem; color: #cbd5e1; line-height: 1.6;
+      padding: 0.7rem; background: #0f172a; border-radius: 6px; border: 1px solid #1e293b;
+      font-weight: 500;
     }
-    .prop-hint b { color: #94a3b8; }
+    .prop-hint b { color: #f8fafc; }
 
-    /* ── Snap indicator style (drawn on canvas) ── */
+    .markup-panel {
+      background: linear-gradient(180deg, rgba(15,23,42,0.95), rgba(15,23,42,0.8));
+      border: 1px solid #334155; border-radius: 10px; padding: 0.7rem;
+      display: grid; gap: 0.55rem;
+    }
+    .markup-float {
+      position: fixed; right: 16px; top: 56px; z-index: 1100;
+      display: none; width: min(420px, calc(100vw - 32px));
+      min-width: 280px; max-width: 640px;
+      min-height: 220px; max-height: calc(100vh - 90px);
+      resize: both; overflow: auto;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.45);
+      border-radius: 14px;
+      border: 1px solid #334155;
+      background: rgba(15,23,42,0.98);
+      backdrop-filter: blur(10px);
+    }
+    .markup-float.open { display: block; }
+    .markup-float header {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 0.5rem; padding: 0.7rem 0.8rem; cursor: move; border-bottom: 1px solid #334155;
+      background: rgba(2,6,23,0.9);
+      border-top-left-radius: 14px; border-top-right-radius: 14px;
+    }
+    .markup-float .title { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #a78bfa; }
+    .markup-float .header-btns { display: flex; gap: 0.35rem; }
+    .markup-float .header-btns button {
+      border: 1px solid #334155; background: #1e293b; color: #e2e8f0; border-radius: 6px;
+      padding: 0.3rem 0.45rem; cursor: pointer; font-size: 0.74rem;
+    }
+    .markup-float .header-btns button:hover { background: #263345; }
+    .markup-float .body { padding: 0.8rem; display: grid; gap: 0.55rem; }
+    .markup-float .body .markup-panel { border: none; padding: 0; background: transparent; }
+    .markup-float .body .markup-editor { min-height: 180px; }
+    .markup-float .resizer {
+      position: absolute; right: 6px; bottom: 6px; width: 14px; height: 14px;
+      cursor: nwse-resize; opacity: 0.7;
+    }
+    .markup-float .resizer::before {
+      content: ''; display: block; width: 100%; height: 100%; border-right: 2px solid #64748b; border-bottom: 2px solid #64748b;
+    }
+    .markup-hint {
+      font-size: 0.74rem; color: #94a3b8; line-height: 1.45;
+    }
+    .markup-editor {
+      width: 100%; min-height: 150px; resize: vertical; border: 1px solid #334155;
+      border-radius: 8px; background: #020617; color: #e2e8f0; padding: 0.6rem;
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace; font-size: 0.8rem;
+      line-height: 1.5;
+    }
+    .markup-editor:focus { outline: none; border-color: #6366f1; }
+    .markup-actions { display: flex; gap: 0.45rem; flex-wrap: wrap; }
+    .markup-btn {
+      border: 1px solid #334155; background: #1e293b; color: #e2e8f0;
+      border-radius: 6px; padding: 0.4rem 0.6rem; cursor: pointer; font-size: 0.77rem;
+    }
+    .markup-btn:hover { background: #263345; }
+    .markup-btn.primary { background: #6366f1; border-color: #6366f1; color: white; }
+    .markup-btn.primary:hover { background: #4f46e5; }
+    .markup-status {
+      font-size: 0.74rem; color: #cbd5e1; background: rgba(15,23,42,0.75);
+      border: 1px solid #1e293b; border-radius: 6px; padding: 0.45rem 0.55rem;
+      min-height: 2rem; display: flex; align-items: center;
+    }
+    .markup-status.error { color: #fda4af; border-color: #7f1d1d; }
+
+    /* ── Save drawing dialog ── */
+    #save-dialog {
+      display:none; position:fixed; inset:0; z-index:1000;
+      background:rgba(0,0,0,0.55); align-items:center; justify-content:center;
+    }
+    #save-dialog.open { display:flex; }
+    #save-box {
+      background:#1e293b; border:1px solid #334155; border-radius:12px;
+      padding:1.4rem 1.6rem; min-width:320px; max-width:480px; width:90%;
+      color:#e2e8f0; box-shadow:0 8px 40px rgba(0,0,0,0.6);
+    }
+    #save-box h2 { margin:0 0 1rem; font-size:1rem; color:#f8fafc; }
+    #save-name-row { display:flex; gap:0.5rem; margin-bottom:0.8rem; }
+    #save-name-input {
+      flex:1; background:#0f172a; border:1px solid #334155; border-radius:6px;
+      padding:0.45rem 0.7rem; color:#f8fafc; font-size:0.9rem;
+    }
+    #save-name-input:focus { outline:none; border-color:#6366f1; }
+    #save-confirm-btn {
+      background:#6366f1; border:none; border-radius:6px;
+      color:#fff; padding:0.45rem 1rem; cursor:pointer; font-size:0.9rem;
+    }
+    #save-confirm-btn:hover { background:#4f46e5; }
+    #save-list { list-style:none; margin:0; padding:0; max-height:200px; overflow-y:auto; }
+    #save-list li {
+      padding:0.45rem 0.7rem; border-radius:6px; cursor:pointer;
+      font-size:0.88rem; border:1px solid transparent;
+    }
+    #save-list li:hover { background:#0f172a; border-color:#334155; }
+    #save-list .existing-label { font-size:0.7rem; text-transform:uppercase;
+      letter-spacing:0.07em; color:#475569; margin-bottom:0.3rem; }
+    #save-close {
+      float:right; background:none; border:none; color:#94a3b8;
+      font-size:1.1rem; cursor:pointer;
+    }
+    #save-close:hover { color:#f8fafc; }
+    #load-dialog {
+      display:none; position:fixed; inset:0; z-index:1000;
+      background:rgba(0,0,0,0.55); align-items:center; justify-content:center;
+    }
+    #load-dialog.open { display:flex; }
+    #load-box {
+      background:#1e293b; border:1px solid #334155; border-radius:12px;
+      padding:1.4rem 1.6rem; min-width:320px; max-width:480px; width:90%;
+      color:#e2e8f0; box-shadow:0 8px 40px rgba(0,0,0,0.6);
+    }
+    #load-box h2 { margin:0 0 1rem; font-size:1rem; color:#f8fafc; }
+    #load-list { list-style:none; margin:0; padding:0; max-height:240px; overflow-y:auto; }
+    #load-list li {
+      padding:0.55rem 0.8rem; border-radius:6px; cursor:pointer;
+      display:flex; justify-content:space-between; align-items:center;
+      font-size:0.9rem; border:1px solid transparent;
+    }
+    #load-list li:hover { background:#0f172a; border-color:#334155; }
+    #load-list .del-btn {
+      background:none; border:none; color:#ef4444; cursor:pointer;
+      font-size:0.85rem; padding:0 4px; opacity:0.7;
+    }
+    #load-list .del-btn:hover { opacity:1; }
+    /* shared pagination bar */
+    .page-bar {
+      display:flex; align-items:center; gap:0.4rem; margin-top:0.6rem;
+      font-size:0.8rem; color:#64748b;
+    }
+    .page-bar button {
+      background:#0f172a; border:1px solid #334155; color:#a78bfa;
+      border-radius:4px; padding:2px 8px; cursor:pointer; font-size:0.8rem;
+    }
+    .page-bar button:disabled { opacity:0.35; cursor:default; }
+    .page-bar button:not(:disabled):hover { background:#1e293b; }
+    #load-empty { color:#64748b; font-size:0.88rem; padding:0.5rem 0; }
+    #load-close {
+      float:right; background:none; border:none; color:#94a3b8;
+      font-size:1.1rem; cursor:pointer;
+    }
+    #load-close:hover { color:#f8fafc; }
     #snap-indicator { display: none; }
+
+    /* ── Always-visible shortcut legend ── */
+    #shortcut-legend {
+      position: fixed; bottom: 16px; right: 16px; z-index: 900;
+      background: #0f172a; border: 1px solid #1e293b; border-radius: 10px;
+      padding: 0.7rem 0.9rem; font-size: 0.75rem; color: #94a3b8;
+      line-height: 1.8; pointer-events: none;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+    #shortcut-legend.hidden { display: none; }
+    #shortcut-legend kbd {
+      display: inline-block; padding: 0 5px; border-radius: 3px;
+      background: #1e293b; border: 1px solid #334155; color: #a78bfa;
+      font-family: monospace; font-size: 0.72rem;
+    }
+    #shortcut-legend .leg-row { display: flex; gap: 0.5rem; justify-content: space-between; }
+    #shortcut-legend .leg-title {
+      font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em;
+      color: #475569; margin-bottom: 0.3rem;
+    }
+
+    /* ── Shortcut help panel (right side) ── */
+    #help-overlay {
+      position: fixed; top: 0; right: -340px; width: 320px; height: 100vh;
+      z-index: 999; background: #1e293b; border-left: 1px solid #334155;
+      box-shadow: -4px 0 24px rgba(0,0,0,0.5);
+      transition: right 0.22s ease; overflow-y: auto;
+      padding: 1.2rem 1.4rem 2rem;
+      color: #e2e8f0;
+    }
+    #help-overlay.open { right: 0; }
+    #help-box h2 { margin: 0 0 1rem; font-size: 1.05rem; color: #f8fafc; }
+    #help-box table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    #help-box tr + tr td { border-top: 1px solid #1e3a52; }
+    #help-box td { padding: 0.3rem 0.4rem; vertical-align: middle; }
+    #help-box td:first-child { white-space: nowrap; width: 46%; }
+    #help-box kbd {
+      display: inline-block; padding: 1px 5px; border-radius: 4px;
+      background: #0f172a; border: 1px solid #475569; color: #a78bfa;
+      font-family: monospace; font-size: 0.78rem;
+    }
+    #help-box .section-head td {
+      padding-top: 0.75rem; font-size: 0.7rem; text-transform: uppercase;
+      letter-spacing: 0.08em; color: #64748b;
+    }
+    #help-close {
+      float: right; background: none; border: none; color: #94a3b8;
+      font-size: 1.1rem; cursor: pointer; margin-top: -0.1rem;
+    }
+    #help-close:hover { color: #f8fafc; }
   </style>
 </head>
 <body>
@@ -122,10 +356,91 @@
   <div class="nav-actions">
     <button class="nav-btn" onclick="undo()" title="Ctrl+Z">↩ Undo</button>
     <button class="nav-btn" onclick="redo()" title="Ctrl+Y">↪ Redo</button>
-    <button class="nav-btn" onclick="exportPNG()">⬇ Export</button>
-    <button class="nav-btn danger" onclick="clearAll()">🗑 Clear</button>
+    <button class="nav-btn" onclick="saveDrawing()" title="Ctrl+S">💾 Save</button>
+    <button class="nav-btn" onclick="loadDrawing()">📂 Load</button>
+    <button class="nav-btn" onclick="exportPNG()">⬇ Export PNG</button>
+    <button class="nav-btn danger" onclick="clearAll()" title="Ctrl+Backspace">🗑 Clear</button>
+    <button class="nav-btn" onclick="toggleHelp()" title="? Shortcuts">? Help</button>
   </div>
 </nav>
+
+<!-- Save drawing dialog -->
+<div id="save-dialog" onclick="if(event.target===this)closeSaveDialog()">
+  <div id="save-box">
+    <button id="save-close" onclick="closeSaveDialog()">&#x2715;</button>
+    <h2>Save Drawing</h2>
+    <div id="save-name-row">
+      <input id="save-name-input" type="text" placeholder="Drawing name"/>
+      <button id="save-confirm-btn" onclick="confirmSave()">Save</button>
+    </div>
+    <div id="save-list-wrap">
+      <div class="existing-label">Existing drawings</div>
+      <ul id="save-list"></ul>
+      <div class="page-bar" id="save-page-bar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Load drawing dialog -->
+<div id="load-dialog" onclick="if(event.target===this)closeLoadDialog()">
+  <div id="load-box">
+    <button id="load-close" onclick="closeLoadDialog()">&#x2715;</button>
+    <h2>Load Drawing</h2>
+    <ul id="load-list"></ul>
+    <div class="page-bar" id="load-page-bar"></div>
+    <p id="load-empty" style="display:none">No saved drawings found.</p>
+  </div>
+</div>
+
+<!-- Always-visible shortcut legend -->
+<div id="shortcut-legend">
+  <div class="leg-title">Shortcuts</div>
+  <div class="leg-row"><span><kbd>V</kbd> Select</span><span><kbd>C</kbd> Circle</span></div>
+  <div class="leg-row"><span><kbd>L</kbd> Line</span><span><kbd>P</kbd> Point</span></div>
+  <div class="leg-row"><span><kbd>U</kbd> Vertex lines</span><span><kbd>A</kbd> Angle</span></div>
+  <div class="leg-row"><span><kbd>T</kbd> Label</span><span><kbd>E</kbd> Eraser</span></div>
+  <div style="border-top:1px solid #1e293b;margin:0.4rem 0"></div>
+  <div class="leg-row"><span><kbd>Ctrl Z</kbd> Undo</span><span><kbd>Ctrl Y</kbd> Redo</span></div>
+  <div class="leg-row"><span><kbd>Ctrl S</kbd> Export</span><span><kbd>Del</kbd> Delete</span></div>
+  <div class="leg-row"><span><kbd>Ctrl/Cmd H</kbd> Toggle shortcuts</span><span><kbd>Esc</kbd> Cancel</span></div>
+</div>
+
+<!-- Shortcut help panel (right side) -->
+<div id="help-overlay">
+  <div id="help-box">
+    <button id="help-close" onclick="toggleHelp()">&#x2715;</button>
+    <h2>Keyboard Shortcuts</h2>
+    <table>
+      <tr class="section-head"><td colspan="2">Tools</td></tr>
+      <tr><td><kbd>V</kbd></td><td>Select</td></tr>
+      <tr><td><kbd>C</kbd></td><td>Circle</td></tr>
+      <tr><td><kbd>L</kbd></td><td>Line</td></tr>
+      <tr><td><kbd>P</kbd></td><td>Point</td></tr>
+      <tr><td><kbd>U</kbd></td><td>Vertex lines</td></tr>
+      <tr><td><kbd>A</kbd></td><td>Angle</td></tr>
+      <tr><td><kbd>T</kbd></td><td>Label (Text)</td></tr>
+      <tr><td><kbd>E</kbd></td><td>Eraser</td></tr>
+      <tr class="section-head"><td colspan="2">Drawing modifiers (Line tool)</td></tr>
+      <tr><td><kbd>Shift</kbd> + drag</td><td>Free draw — no snapping</td></tr>
+      <tr><td><kbd>Ctrl</kbd> + drag</td><td>Snap segment through vertex</td></tr>
+      <tr><td>(default)</td><td>Snap to nearest vertex → line → circle</td></tr>
+      <tr class="section-head"><td colspan="2">Angle tool (Shift mode)</td></tr>
+      <tr><td><kbd>Shift</kbd>+click ray 1</td><td>Select first ray</td></tr>
+      <tr><td><kbd>Shift</kbd>+click ray 2</td><td>Select second ray</td></tr>
+      <tr><td>Click in sector</td><td>Draw angle arc for that sector</td></tr>
+      <tr class="section-head"><td colspan="2">Edit</td></tr>
+      <tr><td><kbd>Ctrl</kbd><kbd>Z</kbd></td><td>Undo</td></tr>
+      <tr><td><kbd>Ctrl</kbd><kbd>Y</kbd> / <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>Z</kbd></td><td>Redo</td></tr>
+      <tr><td><kbd>Ctrl</kbd><kbd>S</kbd></td><td>Export PNG</td></tr>
+      <tr><td><kbd>Ctrl</kbd><kbd>Backspace</kbd></td><td>Clear all</td></tr>
+      <tr><td><kbd>Delete</kbd> / <kbd>Backspace</kbd></td><td>Delete selected</td></tr>
+      <tr><td><kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd></td><td>Nudge selected (1 px)</td></tr>
+      <tr><td><kbd>Shift</kbd>+<kbd>Arrow</kbd></td><td>Nudge selected (10 px)</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>Cancel / deselect</td></tr>
+      <tr><td><kbd>?</kbd></td><td>Toggle this help</td></tr>
+    </table>
+  </div>
+</div>
 
 <div class="workspace">
 
@@ -136,6 +451,7 @@
     <button class="tool-btn"        id="btn-circle"  onclick="setTool('circle')"  title="Circle  (C)">⊙</button>
     <button class="tool-btn"        id="btn-line"    onclick="setTool('line')"    title="Line    (L)">╱</button>
     <button class="tool-btn"        id="btn-point"   onclick="setTool('point')"   title="Point   (P)">•</button>
+    <button class="tool-btn"        id="btn-vertex-lines" onclick="setTool('vertex-lines')" title="Vertex lines (U)">⟷</button>
     <div class="tool-sep"></div>
     <button class="tool-btn"        id="btn-angle"   onclick="setTool('angle')"   title="Angle   (A)">∠</button>
     <button class="tool-btn"        id="btn-label"   onclick="setTool('label')"   title="Label   (T)">T</button>
@@ -145,16 +461,36 @@
 
   <!-- Canvas -->
   <div class="canvas-wrap" id="canvas-wrap">
-    <canvas id="canvas"></canvas>
+    <div id="vertex-selection-ui" class="vertex-selection-ui" style="display:none">
+  <button id="finish-vertex-selection" class="primary" type="button">Finish</button>
+  <button id="hide-nonselected-vertex-selection" type="button">Hide others</button>
+  <button id="cancel-vertex-selection" type="button">Cancel</button>
+</div>
+<canvas id="canvas"></canvas>
   </div>
 
   <!-- Properties panel -->
-  <div class="panel">
+  <div class="panel" id="props-panel">
+    <div class="prop-group">
+      <button class="markup-btn primary" type="button" onclick="toggleMarkupPanel()" style="width:100%;margin-bottom:0.5rem">✦ Open markup editor</button>
+    </div>
+
     <div class="panel-title">Properties</div>
 
     <div class="prop-group">
       <span class="prop-label">Stroke color</span>
-      <input type="color" id="p-stroke" value="#1a1a2e" oninput="props.stroke=this.value; render()">
+      <div class="color-palette" aria-label="Simple color palette">
+        <button class="swatch-btn active" type="button" data-color="#1a1a2e" style="--swatch-color:#1a1a2e" title="Dark navy"></button>
+        <button class="swatch-btn" type="button" data-color="#ef4444" style="--swatch-color:#ef4444" title="Red"></button>
+        <button class="swatch-btn" type="button" data-color="#f59e0b" style="--swatch-color:#f59e0b" title="Orange"></button>
+        <button class="swatch-btn" type="button" data-color="#10b981" style="--swatch-color:#10b981" title="Green"></button>
+        <button class="swatch-btn" type="button" data-color="#3b82f6" style="--swatch-color:#3b82f6" title="Blue"></button>
+        <button class="swatch-btn" type="button" data-color="#8b5cf6" style="--swatch-color:#8b5cf6" title="Purple"></button>
+      </div>
+      <div class="color-input-row">
+        <input type="color" id="p-stroke" value="#1a1a2e" oninput="setStrokeColor(this.value)">
+        <span class="color-label">Custom</span>
+      </div>
     </div>
 
     <div class="prop-group">
@@ -163,6 +499,35 @@
         <input type="range" id="p-width" min="1" max="8" value="2"
                oninput="props.width=+this.value; document.getElementById('p-width-val').textContent=this.value; render()">
         <span class="prop-val" id="p-width-val">2</span>
+      </div>
+    </div>
+
+    <div class="prop-group">
+      <span class="prop-label">Calculator</span>
+      <div class="calc-card">
+        <input class="calc-display" id="calc-display" type="text" value="0" readonly tabindex="0" aria-label="Calculator display">
+        <div class="calc-grid">
+          <button class="calc-btn clear" type="button" data-action="clear">C</button>
+          <button class="calc-btn operator" type="button" data-value="/">÷</button>
+          <button class="calc-btn operator" type="button" data-value="*">×</button>
+          <button class="calc-btn operator" type="button" data-action="back">⌫</button>
+          <button class="calc-btn" type="button" data-value="7">7</button>
+          <button class="calc-btn" type="button" data-value="8">8</button>
+          <button class="calc-btn" type="button" data-value="9">9</button>
+          <button class="calc-btn operator" type="button" data-value="-">−</button>
+          <button class="calc-btn" type="button" data-value="4">4</button>
+          <button class="calc-btn" type="button" data-value="5">5</button>
+          <button class="calc-btn" type="button" data-value="6">6</button>
+          <button class="calc-btn operator" type="button" data-value="+">+</button>
+          <button class="calc-btn" type="button" data-value="1">1</button>
+          <button class="calc-btn" type="button" data-value="2">2</button>
+          <button class="calc-btn" type="button" data-value="3">3</button>
+          <button class="calc-btn equal" type="button" data-action="equal">=</button>
+          <button class="calc-btn" type="button" data-value="0">0</button>
+          <button class="calc-btn" type="button" data-value=".">.</button>
+          <button class="calc-btn" type="button" data-value="00">00</button>
+          <button class="calc-btn" type="button" data-action="clear">AC</button>
+        </div>
       </div>
     </div>
 
@@ -181,6 +546,16 @@
       </div>
     </div>
 
+    <div class="prop-group" id="pg-angle-rules" style="display:none">
+      <span class="prop-label">Rules</span>
+      <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.8rem;color:#cbd5e1;cursor:pointer">
+        <input type="checkbox" id="p-opposite-angle" onchange="props.oppositeAngle=this.checked; if (props.oppositeAngle) { props.labelText = props.oppositeAngleLabel || props.labelText; document.getElementById('p-label').value = props.labelText; } render()">
+        <span>Opposite Angle</span>
+      </label>
+      <input type="text" id="p-opposite-angle-label" value="°" placeholder="Opposite angle label"
+             oninput="props.oppositeAngleLabel=this.value; if (props.oppositeAngle) { props.labelText=this.value; document.getElementById('p-label').value=this.value; } render()" style="margin-top:0.4rem">
+    </div>
+
     <div class="prop-group" id="pg-font" style="display:none">
       <span class="prop-label">Font size</span>
       <div class="prop-row">
@@ -195,6 +570,34 @@
     </div>
   </div>
 
+</div>
+
+<div id="markup-float" class="markup-float" aria-label="Markup editor popup">
+  <header>
+    <div class="title">Markup editor</div>
+    <div class="header-btns">
+      <button type="button" onclick="toggleMarkupPanel(false)">Hide</button>
+      <button type="button" onclick="resetMarkupPanelSize()">Reset</button>
+    </div>
+  </header>
+  <div class="body">
+    <div class="prop-group markup-panel">
+      <div class="markup-hint">Enter geometry markup here. The parser will render basic shapes on the canvas, and you can expand the grammar later.</div>
+      <textarea id="markup-editor" class="markup-editor" spellcheck="false">circle 100 100 60
+line 20 20 180 180
+point 100 100 A
+label 140 85 "Angle A"
+</textarea>
+      <div class="markup-actions">
+        <button class="markup-btn primary" type="button" onclick="renderMarkupFromEditor()">Render</button>
+        <button class="markup-btn" type="button" onclick="convertCurrentDrawingToMarkup()">From canvas</button>
+        <button class="markup-btn" type="button" onclick="loadMarkupExample()">Example</button>
+        <button class="markup-btn" type="button" onclick="clearMarkupEditor()">Clear</button>
+      </div>
+      <div id="markup-status" class="markup-status">Ready for markup input.</div>
+    </div>
+  </div>
+  <div class="resizer"></div>
 </div>
 
 <script>
@@ -214,9 +617,646 @@ let previewEl   = null;    // element being previewed while dragging
 let snapPt      = null;    // nearest snap point under cursor
 let hoveredId   = null;
 let selectedId  = null;
+let markupSelectionId = null;
 let dragOffset  = null;    // {dx,dy} for moving selected element
+let pendingAngleSelection = null;
+let pendingAngleStep = 0;
+let vertexAuxHover = null;
+let vertexAuxSelection = [];
+let vertexAuxCommitted = [];
+let vertexAuxHideUnselected = false;
 
-const props = { stroke: '#1a1a2e', width: 2, fontSize: 15, labelText: '°', arcR: 28 };
+const props = { stroke: '#1a1a2e', width: 2, fontSize: 15, labelText: '°', arcR: 28, oppositeAngle: false, oppositeAngleLabel: '°' };
+
+function getAngleLabelText(sourceLabel = null) {
+  if (props.oppositeAngle && sourceLabel) return sourceLabel;
+  return props.oppositeAngle ? (props.oppositeAngleLabel || props.labelText || '°') : (props.labelText || '°');
+}
+
+function findOppositeAngleSector(vx, vy) {
+  if (!props.oppositeAngle) return null;
+
+  const sourceLabel = String(props.labelText || props.oppositeAngleLabel || '').trim();
+  if (!sourceLabel) return null;
+
+  const source = elements.find(el => {
+    if (el.type !== 'angle' || !el.label) return false;
+    if (Math.abs((el.vx || 0) - vx) > 3 || Math.abs((el.vy || 0) - vy) > 3) return false;
+    return String(el.label).trim() === sourceLabel;
+  });
+
+  if (!source) return null;
+
+  return {
+    ang1: normalizeAngle(source.ang1 + Math.PI),
+    ang2: normalizeAngle(source.ang2 + Math.PI),
+    label: source.label
+  };
+}
+
+function setStrokeColor(color) {
+  props.stroke = color;
+  const input = document.getElementById('p-stroke');
+  if (input) input.value = color;
+
+  document.querySelectorAll('.swatch-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.color === color);
+  });
+
+  render();
+}
+
+function initColorPalette() {
+  document.querySelectorAll('.swatch-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      setStrokeColor(btn.dataset.color || '#1a1a2e');
+    });
+  });
+}
+
+initColorPalette();
+
+function initCalculator() {
+  const display = document.getElementById('calc-display');
+  const grid = document.querySelector('.calc-grid');
+
+  if (!display || !grid) return;
+
+  const updateDisplay = (value) => {
+    if (display.value === '0' && value !== '.' && !['+', '-', '*', '/'].includes(value)) {
+      display.value = value;
+    } else {
+      display.value += value;
+    }
+  };
+
+  const clearDisplay = () => {
+    display.value = '0';
+  };
+
+  const backspace = () => {
+    if (display.value.length <= 1) {
+      display.value = '0';
+    } else {
+      display.value = display.value.slice(0, -1);
+    }
+  };
+
+  const evaluateExpression = () => {
+    const expr = display.value.trim();
+    if (!expr || expr === '0') return;
+
+    const safeExpr = expr.replace(/[^0-9+\-*/().\s]/g, '');
+    if (!safeExpr || safeExpr !== expr) {
+      display.value = 'Error';
+      return;
+    }
+
+    try {
+      const result = Function(`"use strict"; return (${safeExpr})`)();
+      if (!Number.isFinite(result)) throw new Error('Invalid result');
+      display.value = String(result);
+    } catch (err) {
+      display.value = 'Error';
+    }
+  };
+
+  const handleInput = (value) => {
+    if (display.value === 'Error') {
+      display.value = '0';
+    }
+    updateDisplay(value);
+  };
+
+  display.addEventListener('keydown', (event) => {
+    const key = event.key;
+
+    if (/^[0-9]$/.test(key)) {
+      event.preventDefault();
+      handleInput(key);
+    } else if (key === '.' || key === ',') {
+      event.preventDefault();
+      handleInput('.');
+    } else if (key === '+' || key === '-' || key === '*' || key === '/' || key === 'x' || key === 'X') {
+      event.preventDefault();
+      const operator = key === 'x' || key === 'X' ? '*' : key;
+      handleInput(operator);
+    } else if (key === 'Enter' || key === '=') {
+      event.preventDefault();
+      evaluateExpression();
+    } else if (key === 'Backspace') {
+      event.preventDefault();
+      backspace();
+    } else if (key === 'Escape' || key === 'Delete') {
+      event.preventDefault();
+      clearDisplay();
+    }
+  });
+
+  grid.addEventListener('click', (event) => {
+    const btn = event.target.closest('button');
+    if (!btn) return;
+
+    const action = btn.dataset.action;
+    const value = btn.dataset.value;
+
+    if (action === 'clear') {
+      clearDisplay();
+    } else if (action === 'back') {
+      backspace();
+    } else if (action === 'equal') {
+      evaluateExpression();
+    } else if (value !== undefined) {
+      handleInput(value);
+    }
+  });
+}
+
+initCalculator();
+
+function setMarkupStatus(message, isError = false) {
+  const status = document.getElementById('markup-status');
+  if (!status) return;
+  status.textContent = message;
+  status.classList.toggle('error', isError);
+}
+
+function toggleMarkupPanel(forceOpen) {
+  const panel = document.getElementById('markup-float');
+  if (!panel) return;
+  const shouldOpen = typeof forceOpen === 'boolean' ? forceOpen : !panel.classList.contains('open');
+  panel.classList.toggle('open', shouldOpen);
+  const btn = document.querySelector('#props-panel .markup-btn.primary');
+  if (btn) btn.textContent = shouldOpen ? '✦ Close markup editor' : '✦ Open markup editor';
+
+  if (shouldOpen) {
+    const editor = document.getElementById('markup-editor');
+    if (editor) {
+      convertCurrentDrawingToMarkup();
+      try {
+        const parsed = parseMarkup(editor.value);
+        elements = parsed;
+        selectedId = null;
+        hoveredId = null;
+        markupSelectionId = null;
+        isDrawing = false;
+        previewEl = null;
+        drawStart = null;
+        snapPt = null;
+        pendingAngleSelection = null;
+        pendingAngleStep = 0;
+        undoStack = ['[]'];
+        undoIndex = 0;
+        nextId = 1;
+        elements.forEach(el => { const numericId = Number(el.id); if (Number.isFinite(numericId) && numericId >= nextId) nextId = numericId + 1; });
+        saveState();
+        render();
+        persistCurrentDrawing();
+      } catch (error) {
+        setMarkupStatus(error.message, true);
+      }
+    }
+  }
+}
+
+function resetMarkupPanelSize() {
+  const panel = document.getElementById('markup-float');
+  if (!panel) return;
+  panel.style.width = '';
+  panel.style.height = '';
+}
+
+let markupDrag = null;
+const markupHeader = document.querySelector('#markup-float header');
+const markupPanel = document.getElementById('markup-float');
+
+if (markupHeader && markupPanel) {
+  markupHeader.addEventListener('mousedown', (event) => {
+    if (event.target.closest('button')) return;
+    markupDrag = { x: event.clientX, y: event.clientY, left: markupPanel.offsetLeft, top: markupPanel.offsetTop };
+  });
+}
+
+document.addEventListener('mousemove', (event) => {
+  if (!markupDrag) return;
+  markupPanel.style.left = `${Math.max(12, Math.min(window.innerWidth - 280, markupDrag.left + (event.clientX - markupDrag.x)))}px`;
+  markupPanel.style.top = `${Math.max(48, Math.min(window.innerHeight - 180, markupDrag.top + (event.clientY - markupDrag.y)))}px`;
+});
+
+document.addEventListener('mouseup', () => {
+  markupDrag = null;
+});
+
+if (markupPanel) {
+  markupPanel.addEventListener('dblclick', (event) => {
+    if (!event.target.closest('button') && !event.target.closest('textarea')) {
+      resetMarkupPanelSize();
+    }
+  });
+}
+
+function getMarkupExample() {
+  return `# Geometry markup example
+circle id=10 visible=1 cx=100 cy=100 r=60 color=#1a1a2e
+line id=11 visible=1 x1=20 y1=20 x2=180 y2=180 color=#1a1a2e
+point id=12 visible=1 x=100 y=100 color=#1a1a2e
+label id=13 visible=1 x=140 y=85 text="Angle A" color=#1a1a2e
+label id=14 visible=1 type=angle x=100 y=100 ang1=0.5 ang2=1.2 text="θ" color=#1a1a2e`;
+}
+
+function loadMarkupExample() {
+  const editor = document.getElementById('markup-editor');
+  if (!editor) return;
+  editor.value = getMarkupExample();
+  setMarkupStatus('Example markup loaded.');
+}
+
+function clearMarkupEditor() {
+  const editor = document.getElementById('markup-editor');
+  if (!editor) return;
+  editor.value = '';
+  setMarkupStatus('Editor cleared.');
+}
+
+function quoteMarkupValue(value) {
+  const text = String(value ?? '').trim();
+  if (!text) return '""';
+  return /\s|"/.test(text) ? `"${text.replace(/"/g, '\\"')}"` : text;
+}
+
+function normalizeMarkupId(value) {
+  if (value == null) return null;
+  const text = String(value).trim();
+  if (!text) return null;
+  const numeric = Number(text);
+  return Number.isInteger(numeric) ? numeric : text;
+}
+
+function getLineVertexSegments(line) {
+  const start = { x: line.x1, y: line.y1 };
+  const end = { x: line.x2, y: line.y2 };
+  const dx = end.x - start.x;
+  const dy = end.y - start.y;
+  const len2 = dx * dx + dy * dy;
+
+  if (len2 <= 0) return [{ x1: start.x, y1: start.y, x2: end.x, y2: end.y }];
+
+  const points = [{ x: start.x, y: start.y }];
+  const addCandidate = (x, y) => {
+    if (!Number.isFinite(x) || !Number.isFinite(y)) return;
+    const distToLine = Math.abs((dy * (x - start.x)) - (dx * (y - start.y))) / Math.sqrt(len2);
+    if (distToLine > 1.2) return;
+    const t = ((x - start.x) * dx + (y - start.y) * dy) / len2;
+    if (t <= 0.001 || t >= 0.999) return;
+    points.push({ x, y });
+  };
+
+  for (const el of elements) {
+    if (el.type === 'circle') {
+      addCandidate(el.cx, el.cy);
+    }
+  }
+
+  for (const el of elements) {
+    if (el.type === 'point') {
+      addCandidate(el.x, el.y);
+    }
+  }
+
+  for (const other of elements) {
+    if (other.type !== 'line' || other.id === line.id) continue;
+    const intersection = segIntersect(line, other);
+    if (intersection) {
+      addCandidate(intersection.x, intersection.y);
+    }
+  }
+
+  const ordered = points
+    .map(p => ({ ...p, t: ((p.x - start.x) * dx + (p.y - start.y) * dy) / len2 }))
+    .sort((a, b) => a.t - b.t)
+    .filter((p, index, arr) => {
+      if (index === 0) return true;
+      const prev = arr[index - 1];
+      return Math.hypot(p.x - prev.x, p.y - prev.y) > 0.5;
+    });
+
+  const segments = [];
+  const anchors = [{ x: start.x, y: start.y }, ...ordered.slice(1), { x: end.x, y: end.y }];
+  for (let i = 0; i < anchors.length - 1; i++) {
+    const a = anchors[i];
+    const b = anchors[i + 1];
+    if (Math.hypot(b.x - a.x, b.y - a.y) < 0.5) continue;
+    segments.push({ x1: a.x, y1: a.y, x2: b.x, y2: b.y });
+  }
+
+  return segments.length ? segments : [{ x1: start.x, y1: start.y, x2: end.x, y2: end.y }];
+}
+
+function convertCurrentDrawingToMarkup() {
+  const editor = document.getElementById('markup-editor');
+  if (!editor) return;
+
+  if (!elements.length) {
+    setMarkupStatus('There is nothing on the canvas to convert.', true);
+    return;
+  }
+
+  const lines = [];
+  for (const el of elements) {
+    const color = (el.color || props.stroke || '#1a1a2e').toLowerCase();
+    const visiblePart = el.visible === false ? ' visible=0' : ' visible=1';
+    if (el.type === 'circle') {
+      const idPart = el.id != null ? ` id=${el.id}` : '';
+      lines.push(`circle${idPart}${visiblePart} cx=${el.cx.toFixed(0)} cy=${el.cy.toFixed(0)} r=${el.r.toFixed(0)} color=${color}`);
+    } else if (el.type === 'line') {
+      const segments = getLineVertexSegments(el);
+      segments.forEach((segment, segmentIndex) => {
+        const segmentId = segments.length > 1 ? `${el.id}.${segmentIndex + 1}` : el.id;
+        lines.push(`line id=${segmentId}${visiblePart} x1=${segment.x1.toFixed(0)} y1=${segment.y1.toFixed(0)} x2=${segment.x2.toFixed(0)} y2=${segment.y2.toFixed(0)} color=${color}`);
+      });
+    } else if (el.type === 'point') {
+      const idPart = el.id != null ? ` id=${el.id}` : '';
+      lines.push(`point${idPart}${visiblePart} x=${el.x.toFixed(0)} y=${el.y.toFixed(0)} color=${color}`);
+    } else if (el.type === 'label') {
+      const idPart = el.id != null ? ` id=${el.id}` : '';
+      const text = el.text ?? el.label ?? '';
+      lines.push(`label${idPart}${visiblePart} x=${el.x.toFixed(0)} y=${el.y.toFixed(0)} text=${quoteMarkupValue(text)} color=${color}`);
+    } else if (el.type === 'angle') {
+      const idPart = el.id != null ? ` id=${el.id}` : '';
+      const label = quoteMarkupValue(el.label ?? el.text ?? '');
+      lines.push(`label${idPart}${visiblePart} type=angle x=${el.vx.toFixed(0)} y=${el.vy.toFixed(0)} ang1=${el.ang1.toFixed(3)} ang2=${el.ang2.toFixed(3)} text=${label} color=${color}`);
+    }
+  }
+
+  editor.value = lines.join('\n');
+  setMarkupStatus(`Converted ${lines.length} geometry element${lines.length === 1 ? '' : 's'} to markup.`);
+}
+
+function parseMarkup(text) {
+  const lines = String(text || '')
+    .split(/\r?\n/)
+    .map(line => line.trim())
+    .filter(line => line && !line.startsWith('#'));
+
+  if (!lines.length) throw new Error('Enter at least one geometry command.');
+
+  const parsed = [];
+
+  const tokenizeBody = (source) => {
+    const tokens = [];
+    const regex = /"[^"]*"|[^\s]+/g;
+    let match;
+    while ((match = regex.exec(source)) !== null) {
+      tokens.push(match[0]);
+    }
+    return tokens;
+  };
+
+  const extractValue = (source, key) => {
+    const match = source.match(new RegExp(`(?:^|\\s)${key}=([^\\s]+)`));
+    return match ? match[1] : null;
+  };
+
+  const extractNumbers = (source) =>
+    tokenizeBody(source)
+      .filter(token => /^-?\d+(?:\.\d+)?$/.test(token))
+      .map(Number);
+
+  const extractColor = (source) => {
+    const match = source.match(/(?:^|\s)color=([a-zA-Z0-9#]+)/);
+    return match ? match[1] : null;
+  };
+
+  const extractId = (source) => extractValue(source, 'id');
+
+  const extractVisible = (source) => {
+    const match = source.match(/(?:^|\s)visible=([01])/);
+    return match ? match[1] === '1' : true;
+  };
+
+  const extractType = (source) => {
+    const match = source.match(/(?:^|\s)type=([a-zA-Z0-9_.:-]+)/);
+    return match ? match[1].toLowerCase() : null;
+  };
+
+  const extractCoordinate = (source, key) => {
+    const value = extractValue(source, key);
+    return value != null ? Number(value) : null;
+  };
+
+  const extractTextValue = (source) => {
+    const match = source.match(/(?:^|\s)text=(?:"([^"]*)"|([^\s]+))/);
+    return match ? (match[1] ?? match[2] ?? '') : '';
+  };
+
+  const extractLabel = (source) => {
+    const textValue = extractTextValue(source);
+    if (textValue) return textValue;
+
+    const tokens = tokenizeBody(source);
+    const labelToken = tokens.find(token => {
+      if (/^-?\d+(?:\.\d+)?$/.test(token)) return false;
+      if (/^(?:color=|id=|visible=|display=|text=)/i.test(token)) return false;
+      return true;
+    });
+    if (!labelToken) return '';
+    if (labelToken.startsWith('"') && labelToken.endsWith('"')) return labelToken.slice(1, -1);
+    return labelToken.replace(/^['"]|['"]$/g, '');
+  };
+
+  for (const line of lines) {
+    const match = line.match(/^([a-zA-Z]+)(.*)$/);
+    if (!match) continue;
+
+    const [, commandRaw, body = ''] = match;
+    const command = commandRaw.toLowerCase();
+    const nums = extractNumbers(body);
+
+    const rawId = extractId(body);
+    const normalizedId = normalizeMarkupId(rawId);
+    const fallbackId = uid();
+    const visible = extractVisible(body);
+
+    if (command === 'circle') {
+      const cx = extractCoordinate(body, 'cx');
+      const cy = extractCoordinate(body, 'cy');
+      const r = extractCoordinate(body, 'r');
+      if (cx == null || cy == null || r == null) throw new Error('Circle needs cx, cy, and r.');
+      const color = extractColor(body) || props.stroke;
+      parsed.push({ id: normalizedId != null ? normalizedId : fallbackId, type: 'circle', cx, cy, r, color, width: props.width, visible });
+      continue;
+    }
+
+    if (command === 'line') {
+      const x1 = extractCoordinate(body, 'x1');
+      const y1 = extractCoordinate(body, 'y1');
+      const x2 = extractCoordinate(body, 'x2');
+      const y2 = extractCoordinate(body, 'y2');
+      if (x1 == null || y1 == null || x2 == null || y2 == null) throw new Error('Line needs x1, y1, x2, and y2.');
+      const color = extractColor(body) || props.stroke;
+      parsed.push({ id: normalizedId != null ? normalizedId : fallbackId, type: 'line', x1, y1, x2, y2, color, width: props.width, visible });
+      continue;
+    }
+
+    if (command === 'point') {
+      const x = extractCoordinate(body, 'x');
+      const y = extractCoordinate(body, 'y');
+      if (x == null || y == null) throw new Error('Point needs x and y.');
+      const color = extractColor(body) || props.stroke;
+      parsed.push({ id: normalizedId != null ? normalizedId : fallbackId, type: 'point', x, y, color, size: props.fontSize, visible });
+      continue;
+    }
+
+    if (command === 'label') {
+      const typeValue = extractType(body);
+      if (typeValue === 'angle') {
+        const x = extractCoordinate(body, 'x');
+        const y = extractCoordinate(body, 'y');
+        const ang1 = extractCoordinate(body, 'ang1');
+        const ang2 = extractCoordinate(body, 'ang2');
+        if (x == null || y == null || ang1 == null || ang2 == null) throw new Error('Angle markup needs x, y, ang1, and ang2.');
+        const label = extractLabel(body) || 'θ';
+        const color = extractColor(body) || props.stroke;
+        parsed.push({ id: normalizedId != null ? normalizedId : fallbackId, type: 'angle', vx: x, vy: y, ang1, ang2, arcR: props.arcR, label, color, size: props.fontSize, visible });
+        continue;
+      }
+
+      const x = extractCoordinate(body, 'x');
+      const y = extractCoordinate(body, 'y');
+      if (x == null || y == null) throw new Error('Label needs x and y.');
+      const label = extractLabel(body) || 'text';
+      const color = extractColor(body) || props.stroke;
+      parsed.push({ id: normalizedId != null ? normalizedId : fallbackId, type: 'label', x, y, text: label, color, size: props.fontSize, visible });
+      continue;
+    }
+
+    if (command === 'angle') {
+      const x = extractCoordinate(body, 'x');
+      const y = extractCoordinate(body, 'y');
+      const ang1 = extractCoordinate(body, 'ang1');
+      const ang2 = extractCoordinate(body, 'ang2');
+      if (x == null || y == null || ang1 == null || ang2 == null) throw new Error('Angle needs x, y, ang1, and ang2.');
+      const label = extractLabel(body) || 'θ';
+      const color = extractColor(body) || props.stroke;
+      parsed.push({ id: normalizedId != null ? normalizedId : fallbackId, type: 'angle', vx: x, vy: y, ang1, ang2, arcR: props.arcR, label, color, size: props.fontSize, visible });
+      continue;
+    }
+
+    throw new Error(`Unsupported markup command: ${command}`);
+  }
+
+  return parsed;
+}
+
+function renderMarkupFromEditor() {
+  const editor = document.getElementById('markup-editor');
+  if (!editor) return;
+
+  try {
+    const parsed = parseMarkup(editor.value);
+    elements = parsed;
+    selectedId = null;
+    hoveredId = null;
+    markupSelectionId = null;
+    isDrawing = false;
+    previewEl = null;
+    drawStart = null;
+    snapPt = null;
+    pendingAngleSelection = null;
+    pendingAngleStep = 0;
+    undoStack = ['[]'];
+    undoIndex = 0;
+    nextId = 1;
+    elements.forEach(el => {
+      const numericId = Number(el.id);
+      if (Number.isFinite(numericId) && numericId >= nextId) nextId = numericId + 1;
+    });
+    saveState();
+    render();
+    persistCurrentDrawing();
+    setMarkupStatus(`Rendered ${elements.length} geometry element${elements.length === 1 ? '' : 's'}.`);
+  } catch (error) {
+    setMarkupStatus(error.message, true);
+  }
+}
+
+const markupEditor = document.getElementById('markup-editor');
+if (markupEditor) {
+  markupEditor.addEventListener('keydown', (event) => {
+    if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+      event.preventDefault();
+      renderMarkupFromEditor();
+    }
+  });
+
+  markupEditor.addEventListener('keyup', () => {
+    syncMarkupSelectionToCanvas();
+  });
+
+  markupEditor.addEventListener('click', () => {
+    syncMarkupSelectionToCanvas();
+  });
+}
+
+function getMarkupLineIndexAtCursor(editor) {
+  const text = editor.value || '';
+  const pos = editor.selectionStart;
+  const before = text.slice(0, pos);
+  const lines = before.split(/\r?\n/);
+  return lines.length - 1;
+}
+
+function getMarkupElementIdForLine(editor, lineIndex) {
+  const lines = String(editor.value || '').split(/\r?\n/);
+  const line = lines[lineIndex] || '';
+  const match = line.match(/(?:^|\s)id=([a-zA-Z0-9_.:-]+)/);
+  return match ? match[1] : null;
+}
+
+function syncMarkupSelectionToCanvas() {
+  const editor = document.getElementById('markup-editor');
+  if (!editor) return;
+  const index = getMarkupLineIndexAtCursor(editor);
+  const idValue = getMarkupElementIdForLine(editor, index);
+  if (!idValue) {
+    markupSelectionId = null;
+    selectedId = null;
+    render();
+    return;
+  }
+
+  const targetId = normalizeMarkupId(idValue);
+  const element = elements.find(el => el.id === targetId);
+  if (!element) {
+    markupSelectionId = null;
+    selectedId = null;
+    render();
+    return;
+  }
+
+  markupSelectionId = targetId;
+  selectedId = targetId;
+  render();
+}
+
+function syncCanvasSelectionToMarkup() {
+  const editor = document.getElementById('markup-editor');
+  if (!editor || selectedId == null) return;
+
+  const element = elements.find(el => el.id === selectedId);
+  if (!element) return;
+
+  const lines = String(editor.value || '').split(/\r?\n/);
+  const targetLine = lines.findIndex(line => line.includes(`id=${element.id}`));
+  if (targetLine < 0) return;
+
+  const prefix = lines.slice(0, targetLine).join('\n');
+  const start = prefix.length + (targetLine > 0 ? 1 : 0);
+  const end = start + lines[targetLine].length;
+  editor.focus();
+  editor.setSelectionRange(start, end);
+  editor.scrollTop = Math.max(0, (targetLine - 2) * 20);
+}
 
 // ────────────────────────────────────────────────────────────────────────────
 // Canvas setup
@@ -266,6 +1306,82 @@ function ptToCircleDist(px,py, cx,cy, r) {
   return Math.abs(dist(px,py,cx,cy)-r);
 }
 
+function normalizeAngle(a) {
+  while (a < 0) a += Math.PI * 2;
+  while (a >= Math.PI * 2) a -= Math.PI * 2;
+  return a;
+}
+
+function canvasAngle(dx, dy) {
+  return Math.atan2(dy, dx);
+}
+
+function angleInInterval(target, start, end) {
+  const t = normalizeAngle(target);
+  const s = normalizeAngle(start);
+  const e = normalizeAngle(end);
+  if (s <= e) return t >= s && t <= e;
+  return t >= s || t <= e;
+}
+
+function getVertexDirections(vx, vy, lines) {
+  const dirs = [];
+  for (const line of lines) {
+    const onP1 = dist(vx, vy, line.x1, line.y1) < 1.5;
+    const ox = onP1 ? line.x2 : line.x1;
+    const oy = onP1 ? line.y2 : line.y1;
+    const dir = normalizeAngle(canvasAngle(ox - vx, oy - vy));
+    const opp = normalizeAngle(dir + Math.PI);
+    const addIfNew = (value) => {
+      const exists = dirs.some(d => Math.abs(normalizeAngle(d - value)) < 1e-3);
+      if (!exists) dirs.push(value);
+    };
+    addIfNew(dir);
+    addIfNew(opp);
+  }
+  return dirs.sort((a, b) => a - b);
+}
+
+function resolveNearestAngleSector(vx, vy, lines, mx, my) {
+  const dirs = getVertexDirections(vx, vy, lines);
+  if (dirs.length < 2) {
+    const defaultDir = dirFrom(vx, vy, lines[0]);
+    return { ang1: defaultDir, ang2: defaultDir + Math.PI / 2 };
+  }
+
+  const target = normalizeAngle(canvasAngle(mx - vx, my - vy));
+  let best = null;
+  let bestGap = Infinity;
+
+  for (let i = 0; i < dirs.length; i++) {
+    const start = dirs[i];
+    const end = dirs[(i + 1) % dirs.length];
+    let span = normalizeAngle(end - start);
+    if (span < 1e-3) continue;
+
+    let containsTarget = false;
+    if (start <= end) {
+      containsTarget = target >= start && target <= end;
+    } else {
+      containsTarget = target >= start || target <= end;
+    }
+
+    if (containsTarget) {
+      const gap = span;
+      if (gap < bestGap) {
+        bestGap = gap;
+        best = { ang1: start, ang2: end };
+      }
+    }
+  }
+
+  if (best) return best;
+
+  const first = dirs[0];
+  const second = dirs[1];
+  return { ang1: first, ang2: second };
+}
+
 // ────────────────────────────────────────────────────────────────────────────
 // Snap system
 // ────────────────────────────────────────────────────────────────────────────
@@ -275,7 +1391,10 @@ function getSnapCandidates() {
 
   // Endpoints, circle centers, points
   for (const e of elements) {
-    if (e.type==='line')   { pts.push({x:e.x1,y:e.y1,src:'ep'}); pts.push({x:e.x2,y:e.y2,src:'ep'}); }
+    if (e.type==='line')   {
+      pts.push({x:e.x1,y:e.y1,src:'line-endpoint'});
+      pts.push({x:e.x2,y:e.y2,src:'line-endpoint'});
+    }
     if (e.type==='circle') pts.push({x:e.cx,y:e.cy,src:'center'});
     if (e.type==='point')  pts.push({x:e.x, y:e.y, src:'pt'});
   }
@@ -288,27 +1407,55 @@ function getSnapCandidates() {
   return pts;
 }
 
-function nearestSnap(mx,my,r=14) {
-  let best=null, bd=Infinity;
+function shouldUseSnap(event) {
+  return !event || !event.shiftKey;
+}
 
-  // Priority 1: discrete points (endpoints, centers, intersections)
-  for (const p of getSnapCandidates()) {
-    const d=dist(mx,my,p.x,p.y);
-    if (d<r && d<bd) { best=p; bd=d; }
+function nearestSnap(mx,my,r=14,event) {
+  if (!shouldUseSnap(event)) return null;
+
+  const priority = ['line-endpoint', 'line', 'intersect', 'pt', 'center'];
+  const candidates = getSnapCandidates();
+
+  for (const src of priority) {
+    let best=null, bd=Infinity;
+    if (src==='line') {
+      for (const e of elements) {
+        if (e.type!=='line') continue;
+        const dx=e.x2-e.x1, dy=e.y2-e.y1;
+        const len2=dx*dx+dy*dy;
+        if (len2===0) continue;
+        const t=Math.max(0, Math.min(1, ((mx-e.x1)*dx + (my-e.y1)*dy)/len2));
+        const px=e.x1 + t*dx;
+        const py=e.y1 + t*dy;
+        const d=dist(mx,my,px,py);
+        if (d<16 && d<bd) {
+          best={x:px,y:py,src:'line',line:e};
+          bd=d;
+        }
+      }
+    } else {
+      for (const p of candidates) {
+        if (p.src!==src) continue;
+        const snapR = src==='line-endpoint' ? 18 : src==='intersect' ? 16 : r;
+        const d=dist(mx,my,p.x,p.y);
+        if (d<snapR && d<bd) { best=p; bd=d; }
+      }
+    }
+    if (best) return best;
   }
 
   // Priority 2: circle perimeter — snap to exact point on edge
   for (const e of elements) {
     if (e.type!=='circle') continue;
     const dToEdge = Math.abs(dist(mx,my,e.cx,e.cy) - e.r);
-    if (dToEdge < r && dToEdge < bd) {
+    if (dToEdge < r) {
       const angle = Math.atan2(my-e.cy, mx-e.cx);
-      best = { x: e.cx+e.r*Math.cos(angle), y: e.cy+e.r*Math.sin(angle), src:'perimeter' };
-      bd = dToEdge;
+      return { x: e.cx+e.r*Math.cos(angle), y: e.cy+e.r*Math.sin(angle), src:'perimeter' };
     }
   }
 
-  return best;
+  return null;
 }
 
 // When drawing a line: if direction from 'from' to mouse aligns with a circle center,
@@ -336,24 +1483,379 @@ function throughCenterSnap(from, mx, my, perimR=20, axisThreshDeg=10) {
   return null;
 }
 
-// For angle tool: find vertex (intersection or shared endpoint) near click
-function findAngleVertex(mx,my,r=20) {
+function shouldUseThroughCenterSnap(event) {
+  return shouldUseSnap(event);
+}
+
+function nearestSnapToVertex(mx, my, r=18) {
+  let best = null, bestD = Infinity;
+  for (const p of getSnapCandidates()) {
+    if (!['line-endpoint', 'intersect', 'pt', 'center'].includes(p.src)) continue;
+    const d = dist(mx, my, p.x, p.y);
+    if (d < r && d < bestD) { best = { x: p.x, y: p.y, src: p.src }; bestD = d; }
+  }
+  return best;
+}
+
+function lineThroughPointSnap(start, mx, my) {
+  const currentLen = dist(start.x, start.y, mx, my);
+  if (currentLen < 4) return null;
+
+  let best = null;
+  let bestD = Infinity;
+
+  for (const p of getSnapCandidates()) {
+    if (dist(p.x, p.y, start.x, start.y) < 2) continue; // skip the start point itself
+    const d = ptToSegDist(p.x, p.y, start.x, start.y, mx, my);
+    if (d < 16 && d < bestD) {
+      const dx = p.x - start.x;
+      const dy = p.y - start.y;
+      const len = Math.hypot(dx, dy) || 1;
+      best = {
+        x: start.x + (dx / len) * currentLen,
+        y: start.y + (dy / len) * currentLen,
+        src: 'line',
+        target: p,
+      };
+      bestD = d;
+    }
+  }
+
+  return best;
+}
+
+function segmentSnapToVertex(start, mx, my, event) {
+  if (!shouldUseSnap(event)) return null;
+
+  const seg = { x1: start.x, y1: start.y, x2: mx, y2: my };
+  let best = null;
+  let bestD = Infinity;
+
+  for (const p of getSnapCandidates()) {
+    if (dist(p.x, p.y, start.x, start.y) < 2) continue; // skip the start point itself
+    const d = ptToSegDist(p.x, p.y, seg.x1, seg.y1, seg.x2, seg.y2);
+    if (d < 16 && d < bestD) {
+      best = { x: p.x, y: p.y, src: p.src, lines: p.lines };
+      bestD = d;
+    }
+  }
+
+  return best;
+}
+
+function resetAngleSelection() {
+  pendingAngleSelection = null;
+  pendingAngleStep = 0;
+}
+
+function resolveLineEndpoint(start, mx, my, event) {
+  if (event?.shiftKey) return { x: mx, y: my };           // Shift = free draw
+  if (event?.ctrlKey) {                                   // Ctrl = snap segment through vertex
+    const throughPoint = lineThroughPointSnap(start, mx, my);
+    return throughPoint || { x: mx, y: my };
+  }
+  // Default: vertex > line > circle
+  const vertex = nearestSnapToVertex(mx, my);
+  if (vertex) return vertex;
+  const tcs = throughCenterSnap(start, mx, my);
+  const lineSnap = nearestSnap(mx, my, 14, event);
+  return tcs || lineSnap || { x: mx, y: my };
+}
+
+function getVertexAnchor(mx, my, r = 18) {
+  const candidates = getSnapCandidates().filter(p => ['line-endpoint', 'intersect', 'pt', 'center'].includes(p.src));
+  let best = null;
+  let bestD = Infinity;
+  for (const p of candidates) {
+    const d = dist(mx, my, p.x, p.y);
+    if (d < r && d < bestD) {
+      best = p;
+      bestD = d;
+    }
+  }
+  return best;
+}
+
+function getVertexAnchors() {
+  return getSnapCandidates().filter(p => ['line-endpoint', 'intersect', 'pt', 'center'].includes(p.src));
+}
+
+function getPossibleVertexLines() {
+  const vertices = getVertexAnchors();
+  if (vertices.length < 2) return [];
+
+  const lines = [];
+  const seen = new Set();
+
+  for (let i = 0; i < vertices.length; i++) {
+    for (let j = i + 1; j < vertices.length; j++) {
+      const a = vertices[i];
+      const b = vertices[j];
+      const key = [a.x.toFixed(2), a.y.toFixed(2), b.x.toFixed(2), b.y.toFixed(2)].join('|');
+      if (seen.has(key)) continue;
+      seen.add(key);
+      seen.add([b.x.toFixed(2), b.y.toFixed(2), a.x.toFixed(2), a.y.toFixed(2)].join('|'));
+      if (lineAlreadyExists(a.x, a.y, b.x, b.y, 1.5)) continue;
+      lines.push({
+        key,
+        x1: a.x,
+        y1: a.y,
+        x2: b.x,
+        y2: b.y
+      });
+    }
+  }
+
+  return lines;
+}
+
+function getVertexLineAt(mx, my, tol = 10) {
+  return getPossibleVertexLines().find(line => ptToSegDist(mx, my, line.x1, line.y1, line.x2, line.y2) < tol);
+}
+
+function resetVertexSelectionFlow() {
+  vertexAuxHover = null;
+  vertexAuxSelection = [];
+  vertexAuxHideUnselected = false;
+}
+
+function renderVertexAuxPreview() {
+  const candidates = getPossibleVertexLines();
+  if (!candidates.length) return [];
+
+  const selected = new Set(vertexAuxSelection);
+  return candidates.map(candidate => ({
+    ...candidate,
+    selected: selected.has(candidate.key)
+  }));
+}
+
+function getVisibleVertexAuxPreviewLines() {
+  const visibleLines = [];
+  const seen = new Set();
+
+  const addLine = (line) => {
+    const key = [line.x1.toFixed(2), line.y1.toFixed(2), line.x2.toFixed(2), line.y2.toFixed(2)].join('|');
+    if (seen.has(key)) return;
+    seen.add(key);
+    visibleLines.push(line);
+  };
+
+  const previewLines = renderVertexAuxPreview() || [];
+  previewLines.forEach(line => {
+    if (vertexAuxHideUnselected && !line.selected) return;
+    addLine(line);
+  });
+
+  if (vertexAuxHover) {
+    addLine({ ...vertexAuxHover, selected: true });
+  }
+
+  return visibleLines;
+}
+
+function commitVertexAuxSelection() {
+  const candidates = getPossibleVertexLines();
+  const selectedCandidates = candidates.filter(line => vertexAuxSelection.includes(line.key));
+  if (!selectedCandidates.length) {
+    resetVertexSelectionFlow();
+    render();
+    setTool('line');
+    return;
+  }
+
+  const existingCommitted = elements.filter(el => el.type === 'line' && el.auxiliary && el.auxiliaryKind === 'vertex');
+  elements = elements.filter(el => !(el.type === 'line' && el.auxiliary && el.auxiliaryKind === 'vertex'));
+  elements = elements.filter(el => !(el.type === 'point' && el.auxiliaryPoint));
+
+  const activeVertices = new Map();
+  const addActiveVertex = (x, y) => {
+    const key = [x.toFixed(2), y.toFixed(2)].join('|');
+    if (!activeVertices.has(key)) {
+      activeVertices.set(key, { x, y });
+    }
+  };
+
+  const queue = [...selectedCandidates];
+  const addedKeys = new Set();
+  const addLine = (line) => {
+    const key = [line.x1.toFixed(2), line.y1.toFixed(2), line.x2.toFixed(2), line.y2.toFixed(2)].join('|');
+    if (addedKeys.has(key) || lineAlreadyExists(line.x1, line.y1, line.x2, line.y2, 1.5)) return;
+    addedKeys.add(key);
+    const newLine = {
+      id: uid(),
+      type: 'line',
+      x1: line.x1,
+      y1: line.y1,
+      x2: line.x2,
+      y2: line.y2,
+      color: '#f59e0b',
+      width: Math.max(1, props.width),
+      auxiliary: true,
+      auxiliaryKind: 'vertex'
+    };
+    elements.push(newLine);
+    addIntersectionVertices(newLine);
+    addActiveVertex(line.x1, line.y1);
+    addActiveVertex(line.x2, line.y2);
+  };
+
+  selectedCandidates.forEach(line => {
+    addActiveVertex(line.x1, line.y1);
+    addActiveVertex(line.x2, line.y2);
+  });
+
+  while (queue.length) {
+    const line = queue.shift();
+    addLine(line);
+
+    for (const candidate of candidates) {
+      if (addedKeys.has(candidate.key)) continue;
+      const touchesActiveVertex = (x, y) => {
+        const key = [x.toFixed(2), y.toFixed(2)].join('|');
+        return activeVertices.has(key);
+      };
+      if (touchesActiveVertex(candidate.x1, candidate.y1) || touchesActiveVertex(candidate.x2, candidate.y2)) {
+        queue.push(candidate);
+      }
+    }
+  }
+
+  existingCommitted.forEach(line => {
+    const key = [line.x1.toFixed(2), line.y1.toFixed(2), line.x2.toFixed(2), line.y2.toFixed(2)].join('|');
+    if (!addedKeys.has(key)) {
+      addActiveVertex(line.x1, line.y1);
+      addActiveVertex(line.x2, line.y2);
+      elements.push({ ...line, id: line.id });
+    }
+  });
+
+  if (addedKeys.size) {
+    vertexAuxCommitted = [...addedKeys];
+    saveState();
+    persistCurrentDrawing();
+  }
+
+  resetVertexSelectionFlow();
+  render();
+  setTool('line');
+}
+
+function finishVertexSelectionFlow() {
+  const visibleCandidates = getVisibleVertexAuxPreviewLines();
+
+  const existingCommitted = elements.filter(el => el.type === 'line' && el.auxiliary && el.auxiliaryKind === 'vertex');
+  elements = elements.filter(el => !(el.type === 'line' && el.auxiliary && el.auxiliaryKind === 'vertex'));
+  elements = elements.filter(el => !(el.type === 'point' && el.auxiliaryPoint));
+
+  const addedKeys = new Set();
+  const addLine = (line) => {
+    const key = [line.x1.toFixed(2), line.y1.toFixed(2), line.x2.toFixed(2), line.y2.toFixed(2)].join('|');
+    if (addedKeys.has(key) || lineAlreadyExists(line.x1, line.y1, line.x2, line.y2, 1.5)) return;
+    addedKeys.add(key);
+    const newLine = {
+      id: uid(),
+      type: 'line',
+      x1: line.x1,
+      y1: line.y1,
+      x2: line.x2,
+      y2: line.y2,
+      color: '#f59e0b',
+      width: Math.max(1, props.width),
+      auxiliary: true,
+      auxiliaryKind: 'vertex'
+    };
+    elements.push(newLine);
+    addIntersectionVertices(newLine);
+  };
+
+  visibleCandidates.forEach(addLine);
+  existingCommitted.forEach(line => {
+    const key = [line.x1.toFixed(2), line.y1.toFixed(2), line.x2.toFixed(2), line.y2.toFixed(2)].join('|');
+    if (!addedKeys.has(key)) {
+      elements.push({ ...line, id: line.id });
+    }
+  });
+
+  if (addedKeys.size) {
+    vertexAuxCommitted = [...addedKeys];
+    saveState();
+    persistCurrentDrawing();
+  }
+
+  resetVertexSelectionFlow();
+  render();
+  setTool('line');
+}
+
+function hideUnselectedVertexLines() {
+  vertexAuxHideUnselected = true;
+  render();
+}
+
+function cancelVertexSelectionFlow() {
+  resetVertexSelectionFlow();
+  render();
+  setTool('line');
+}
+
+function lineAlreadyExists(x1, y1, x2, y2, tol = 2) {
+  return elements.some(el => el.type === 'line' && (
+    (dist(el.x1, el.y1, x1, y1) < tol && dist(el.x2, el.y2, x2, y2) < tol) ||
+    (dist(el.x1, el.y1, x2, y2) < tol && dist(el.x2, el.y2, x1, y1) < tol)
+  ));
+}
+
+// For angle tool: find the nearest valid vertex (intersection or shared endpoint)
+function findAngleVertex(mx,my,r=160) {
   const lines = elements.filter(e=>e.type==='line');
   const cands = getSnapCandidates();
+  let best = null;
+  let bestD = Infinity;
 
   for (const p of cands) {
-    if (dist(mx,my,p.x,p.y)>r) continue;
+    const d = dist(mx,my,p.x,p.y);
+    if (d > r) continue;
 
-    // Intersection already has two lines
-    if (p.src==='intersect') return p;
+    if (p.src==='intersect') {
+      if (d < bestD) {
+        best = p;
+        bestD = d;
+      }
+      continue;
+    }
 
-    // Endpoint: find 2+ lines that share this point
     const connected = lines.filter(l=>
       (dist(l.x1,l.y1,p.x,p.y)<1.5) || (dist(l.x2,l.y2,p.x,p.y)<1.5)
     );
-    if (connected.length>=2) return {...p, src:'vertex', lines:connected};
+    if (connected.length>=2 && d < bestD) {
+      best = {...p, src:'vertex', lines:connected};
+      bestD = d;
+    }
   }
-  return null;
+
+  if (best) return best;
+
+  for (const p of cands) {
+    const d = dist(mx,my,p.x,p.y);
+    if (p.src==='intersect') {
+      if (d < bestD) {
+        best = p;
+        bestD = d;
+      }
+      continue;
+    }
+
+    const connected = lines.filter(l=>
+      (dist(l.x1,l.y1,p.x,p.y)<1.5) || (dist(l.x2,l.y2,p.x,p.y)<1.5)
+    );
+    if (connected.length>=2 && d < bestD) {
+      best = {...p, src:'vertex', lines:connected};
+      bestD = d;
+    }
+  }
+
+  return best;
 }
 
 // Direction from vertex toward a line's other end
@@ -361,12 +1863,112 @@ function dirFrom(vx,vy, line) {
   const onP1 = dist(vx,vy,line.x1,line.y1)<1.5;
   const ox = onP1 ? line.x2 : line.x1;
   const oy = onP1 ? line.y2 : line.y1;
-  return Math.atan2(oy-vy, ox-vx);
+  return canvasAngle(ox-vx, oy-vy);
+}
+
+function getRaySelection(vx, vy, lines_hint, mx, my) {
+  const target = normalizeAngle(canvasAngle(mx - vx, my - vy));
+  const allLines = elements.filter(e => e.type === 'line');
+  let best = null;
+  let bestScore = Infinity;
+
+  for (const line of allLines) {
+    let dir;
+    if (dist(vx, vy, line.x1, line.y1) < 2) {
+      dir = normalizeAngle(canvasAngle(line.x2 - vx, line.y2 - vy));
+    } else if (dist(vx, vy, line.x2, line.y2) < 2) {
+      dir = normalizeAngle(canvasAngle(line.x1 - vx, line.y1 - vy));
+    } else if (ptToSegDist(vx, vy, line.x1, line.y1, line.x2, line.y2) < 2) {
+      dir = normalizeAngle(canvasAngle(line.x2 - line.x1, line.y2 - line.y1));
+    } else {
+      continue;
+    }
+    // both directions of the ray through the vertex
+    for (const d of [dir, normalizeAngle(dir + Math.PI)]) {
+      const diff = normalizeAngle(target - d);
+      const score = diff < Math.PI ? diff : Math.PI * 2 - diff;
+      if (score < bestScore) { bestScore = score; best = { dir: d, line }; }
+    }
+  }
+
+  return best;
+}
+
+function angleContainsTarget(start, end, target) {
+  const s = normalizeAngle(start);
+  const e = normalizeAngle(end);
+  const t = normalizeAngle(target);
+  if (s <= e) return t >= s && t <= e;
+  return t >= s || t <= e;
+}
+
+function resolveTwoRaySector(ray1, ray2, target) {
+  const a = { ang1: normalizeAngle(ray1), ang2: normalizeAngle(ray2) };
+  const b = { ang1: normalizeAngle(ray2), ang2: normalizeAngle(ray1) };
+  if (angleContainsTarget(a.ang1, a.ang2, target)) return a;
+  if (angleContainsTarget(b.ang1, b.ang2, target)) return b;
+  return a;
+}
+
+function resolveSmallerSector(ray1, ray2) {
+  const r1 = normalizeAngle(ray1);
+  const r2 = normalizeAngle(ray2);
+  const span1 = normalizeAngle(r2 - r1);
+  const span2 = normalizeAngle(r1 - r2);
+  return span1 <= span2 ? { ang1: r1, ang2: r2 } : { ang1: r2, ang2: r1 };
+}
+
+function resolveAngleSemanticIds(vx, vy, lines, ang1, ang2) {
+  const vertexPoint = elements.find(el => el.type === 'point' && dist(el.x, el.y, vx, vy) < 2);
+  const boundaryAngles = [normalizeAngle(ang1), normalizeAngle(ang2)];
+  const lineIds = [];
+
+  for (const boundary of boundaryAngles) {
+    let best = null;
+    let bestDiff = Infinity;
+
+    for (const line of lines || []) {
+      const onP1 = dist(vx, vy, line.x1, line.y1) < 1.5;
+      const ox = onP1 ? line.x2 : line.x1;
+      const oy = onP1 ? line.y2 : line.y1;
+      const dir = normalizeAngle(canvasAngle(ox - vx, oy - vy));
+      const alt = normalizeAngle(dir + Math.PI);
+      const diff = Math.min(
+        Math.abs(normalizeAngle(dir - boundary)),
+        Math.abs(normalizeAngle(alt - boundary))
+      );
+      if (diff < bestDiff) {
+        bestDiff = diff;
+        best = line.id;
+      }
+    }
+
+    if (best !== null) lineIds.push(best);
+  }
+
+  return {
+    vertexId: vertexPoint ? vertexPoint.id : null,
+    lineId1: lineIds[0] || null,
+    lineId2: lineIds[1] || null
+  };
 }
 
 // ────────────────────────────────────────────────────────────────────────────
 // Undo / Redo
 // ────────────────────────────────────────────────────────────────────────────
+async function persistCurrentDrawing(force = false) {
+  if (!force || !currentDrawingName || currentDrawingName === 'untitled') return;
+  try {
+    await fetch('/api/drawings/' + encodeURIComponent(currentDrawingName), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(elements, null, 2)
+    });
+  } catch (err) {
+    console.error('Failed to persist drawing', err);
+  }
+}
+
 function saveState() {
   undoStack = undoStack.slice(0, undoIndex+1);
   undoStack.push(JSON.stringify(elements));
@@ -377,18 +1979,66 @@ function undo() {
   undoIndex--;
   elements = JSON.parse(undoStack[undoIndex]);
   render();
+  persistCurrentDrawing();
 }
 function redo() {
   if (undoIndex>=undoStack.length-1) return;
   undoIndex++;
   elements = JSON.parse(undoStack[undoIndex]);
   render();
+  persistCurrentDrawing();
 }
 function clearAll() {
   if (!confirm('Clear the canvas?')) return;
   elements = [];
   saveState();
   render();
+  persistCurrentDrawing();
+}
+
+function addStraightAngleAtVertex(point, lineA, lineB) {
+  const dir1 = canvasAngle(lineA.x1 - point.x, lineA.y1 - point.y);
+  const dir2 = canvasAngle(lineB.x2 - point.x, lineB.y2 - point.y);
+  const span = normalizeAngleSpan(dir1, dir2);
+  if (Math.abs(span - Math.PI) > 0.2) return;
+
+  const exists = elements.some(el =>
+    el.type === 'angle' &&
+    Math.abs((el.vx || 0) - point.x) < 2 &&
+    Math.abs((el.vy || 0) - point.y) < 2 &&
+    Math.abs(normalizeAngleSpan(el.ang1 || 0, el.ang2 || 0) - Math.PI) < 0.2
+  );
+
+  if (!exists) {
+    elements.push({
+      id: uid(),
+      type: 'angle',
+      vertexId: point.id,
+      lineId1: lineA.id,
+      lineId2: lineB.id,
+      ang1: dir1,
+      ang2: dir2,
+      arcR: props.arcR,
+      label: '180°',
+      color: props.stroke,
+      size: props.fontSize,
+      angle: 180
+    });
+  }
+}
+
+function addIntersectionVertices(newLine) {
+  const lines = elements.filter(e => e.type === 'line');
+  for (const existing of lines) {
+    const p = segIntersect(newLine, existing);
+    if (!p) continue;
+    const exists = elements.some(e => e.type === 'point' && dist(e.x, e.y, p.x, p.y) < 2);
+    if (!exists) {
+      const point = { id: uid(), type: 'point', x: p.x, y: p.y, label: '', color: props.stroke, size: props.fontSize, auxiliaryPoint: true };
+      elements.push(point);
+      addStraightAngleAtVertex(point, newLine, existing);
+    }
+  }
 }
 
 // ────────────────────────────────────────────────────────────────────────────
@@ -397,18 +2047,36 @@ function clearAll() {
 const hints = {
   select: '<b>Select:</b> Click to select. Drag to move. Delete key to remove.',
   circle: '<b>Circle:</b> Click center, drag to set radius.',
-  line:   '<b>Line:</b> Click start point, drag to end point.',
+  line:   '<b>Line:</b> Default: snaps endpoint to nearest vertex, then line, then circle. Hold <b>Ctrl</b> to snap segment through a vertex. Hold <b>Shift</b> for no snapping.',
   point:  '<b>Point:</b> Click to place a labeled dot.',
-  angle:  '<b>Angle:</b> Click near a vertex where two lines meet. Uses the label from the text field.',
+  'vertex-lines': '<b>Vertex aux. lines:</b> Select the candidate lines you want to keep, then press Finish.',
+  angle:  '<b>Angle:</b> Click anywhere near an angle to mark the nearest sector. For polygons or crossed lines, hold Shift and pick two rays first, then click the angle. Uses the label from the text field.',
   label:  '<b>Label:</b> Click anywhere to place a text label.',
   eraser: '<b>Eraser:</b> Click any element to delete it.',
 };
+
+function toggleHelp() {
+  document.getElementById('help-overlay').classList.toggle('open');
+}
+
+function toggleShortcutsLegend(force) {
+  const legend = document.getElementById('shortcut-legend');
+  if (!legend) return;
+  const shouldHide = typeof force === 'boolean' ? force : !legend.classList.contains('hidden');
+  legend.classList.toggle('hidden', shouldHide);
+}
 
 function setTool(t) {
   activeTool = t;
   isDrawing  = false;
   previewEl  = null;
   selectedId = null;
+  resetAngleSelection();
+  if (t === 'vertex-lines') {
+    resetVertexSelectionFlow();
+  } else {
+    resetVertexSelectionFlow();
+  }
 
   document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
   const btn = document.getElementById('btn-'+t);
@@ -420,8 +2088,10 @@ function setTool(t) {
   // Show/hide property groups
   document.getElementById('pg-label').style.display = ['angle','label','point'].includes(t) ? '' : 'none';
   document.getElementById('pg-arc').style.display   = t==='angle' ? '' : 'none';
+  document.getElementById('pg-angle-rules').style.display = t==='angle' ? '' : 'none';
   document.getElementById('pg-font').style.display  = ['label','point','angle'].includes(t) ? '' : 'none';
   document.getElementById('p-hint').innerHTML = hints[t] || '';
+  document.getElementById('vertex-selection-ui').style.display = t === 'vertex-lines' ? 'flex' : 'none';
   render();
 }
 setTool('line'); // default to line
@@ -432,6 +2102,16 @@ setTool('line'); // default to line
 function getXY(e) {
   const rect = canvas.getBoundingClientRect();
   return { x: e.clientX-rect.left, y: e.clientY-rect.top };
+}
+
+function resolveLineStartPoint(mx, my, event) {
+  if (event?.shiftKey) return { x: mx, y: my };           // Shift = ignore snap
+  // vertex first
+  const vertex = nearestSnapToVertex(mx, my);
+  if (vertex) return { x: vertex.x, y: vertex.y };
+  // then nearest line or circle via regular snap
+  const s = nearestSnap(mx, my, 14, event);
+  return s ? { x: s.x, y: s.y } : { x: mx, y: my };
 }
 
 canvas.addEventListener('mousedown', onMouseDown);
@@ -450,53 +2130,143 @@ function onMouseDown(e) {
       const el = elements.find(e=>e.id===selectedId);
       dragOffset = computeDragOffset(el,x,y);
       isDrawing = true;
+      syncCanvasSelectionToMarkup();
+    } else {
+      const editor = document.getElementById('markup-editor');
+      if (editor) {
+        editor.blur();
+      }
     }
     render(); return;
   }
 
   if (activeTool==='eraser') {
     const id = hitTest(x,y);
-    if (id!==null) { elements = elements.filter(e=>e.id!==id); saveState(); render(); }
+    if (id!==null) { elements = elements.filter(e=>e.id!==id); saveState(); render(); persistCurrentDrawing(); }
     return;
   }
 
-  if (activeTool==='circle' || activeTool==='line') {
+  if (activeTool==='circle') {
     isDrawing = true;
     drawStart = {x:snap.x, y:snap.y};
     return;
   }
 
+  if (activeTool==='line') {
+    isDrawing = true;
+    drawStart = resolveLineStartPoint(x, y, e);
+    snapPt = null;
+    previewEl = null;
+    render();
+    return;
+  }
+
   if (activeTool==='point') {
-    elements.push({id:uid(), type:'point', x:snap.x, y:snap.y, label:props.labelText||'', color:props.stroke, size:props.fontSize});
-    saveState(); render(); return;
+    elements.push({id:uid(), type:'point', x:snap.x, y:snap.y, color:props.stroke, size:props.fontSize});
+    saveState(); render(); persistCurrentDrawing(); return;
+  }
+
+  if (activeTool==='vertex-lines') {
+    const line = getVertexLineAt(x, y);
+    if (!line) return;
+    const exists = vertexAuxSelection.includes(line.key);
+    vertexAuxSelection = exists
+      ? vertexAuxSelection.filter(key => key !== line.key)
+      : [...vertexAuxSelection, line.key];
+    render();
+    return;
   }
 
   if (activeTool==='label') {
     elements.push({id:uid(), type:'label', x:snap.x, y:snap.y, text:props.labelText||'text', color:props.stroke, size:props.fontSize});
-    saveState(); render(); return;
+    saveState(); render(); persistCurrentDrawing(); return;
   }
 
   if (activeTool==='angle') {
     const v = findAngleVertex(x,y);
     if (!v || !v.lines || v.lines.length<2) return;
-    const ang1 = dirFrom(v.x,v.y,v.lines[0]);
-    const ang2 = dirFrom(v.x,v.y,v.lines[1]);
+
+    if (e.shiftKey) {
+      const selection = getRaySelection(v.x, v.y, v.lines, x, y);
+      if (!selection) return;
+
+      if (pendingAngleStep === 0) {
+        pendingAngleSelection = { vx: v.x, vy: v.y, ray1: selection.dir, ray1Line: selection.line };
+        pendingAngleStep = 1;
+        render();
+        return;
+      }
+
+      if (pendingAngleStep === 1) {
+        // reject only when same line AND same direction (truly identical ray)
+        if (selection.line && pendingAngleSelection.ray1Line &&
+            selection.line.id === pendingAngleSelection.ray1Line.id) {
+          const diff = normalizeAngle(selection.dir - pendingAngleSelection.ray1);
+          if (diff < 0.08 || diff > Math.PI * 2 - 0.08) { render(); return; }
+        }
+        pendingAngleSelection.ray2 = selection.dir;
+        pendingAngleStep = 2;
+        render();
+        return;
+      }
+
+      if (pendingAngleStep === 2) {
+        // third click picks which sector contains the click
+        const target = canvasAngle(x - pendingAngleSelection.vx, y - pendingAngleSelection.vy);
+        const sector = resolveTwoRaySector(pendingAngleSelection.ray1, pendingAngleSelection.ray2, target);
+        const oppositeSector = props.oppositeAngle ? findOppositeAngleSector(pendingAngleSelection.vx, pendingAngleSelection.vy) : null;
+        const semantic = resolveAngleSemanticIds(
+          pendingAngleSelection.vx,
+          pendingAngleSelection.vy,
+          v.lines,
+          oppositeSector ? oppositeSector.ang1 : sector.ang1,
+          oppositeSector ? oppositeSector.ang2 : sector.ang2
+        );
+        elements.push({
+          id:uid(), type:'angle',
+          vx: pendingAngleSelection.vx, vy: pendingAngleSelection.vy,
+          ...semantic,
+          ang1: oppositeSector ? oppositeSector.ang1 : sector.ang1,
+          ang2: oppositeSector ? oppositeSector.ang2 : sector.ang2,
+          arcR: props.arcR,
+          label: oppositeSector ? getAngleLabelText(oppositeSector.label) : getAngleLabelText(),
+          color: props.oppositeAngle ? '#f59e0b' : props.stroke,
+          size: props.fontSize,
+        });
+        saveState(); render(); resetAngleSelection(); persistCurrentDrawing(); return;
+      }
+    }
+
+    const sector = resolveNearestAngleSector(v.x, v.y, v.lines, x, y);
+    const oppositeSector = props.oppositeAngle ? findOppositeAngleSector(v.x, v.y) : null;
+    const semantic = resolveAngleSemanticIds(v.x, v.y, v.lines, oppositeSector ? oppositeSector.ang1 : sector.ang1, oppositeSector ? oppositeSector.ang2 : sector.ang2);
     elements.push({
       id:uid(), type:'angle',
       vx:v.x, vy:v.y,
-      ang1, ang2,
+      ...semantic,
+      ang1: oppositeSector ? oppositeSector.ang1 : sector.ang1,
+      ang2: oppositeSector ? oppositeSector.ang2 : sector.ang2,
       arcR: props.arcR,
-      label: props.labelText||'°',
-      color: props.stroke,
+      label: oppositeSector ? getAngleLabelText(oppositeSector.label) : getAngleLabelText(),
+      color: props.oppositeAngle ? '#f59e0b' : props.stroke,
       size: props.fontSize,
     });
-    saveState(); render(); return;
+    saveState(); render(); persistCurrentDrawing(); return;
   }
 }
 
 function onMouseMove(e) {
   const {x,y} = getXY(e);
-  snapPt = nearestSnap(x,y);
+  if (activeTool==='line' && !isDrawing) {
+    snapPt = null;
+  } else if (activeTool==='line' && isDrawing && drawStart) {
+    snapPt = resolveLineEndpoint(drawStart, x, y, e);
+  } else if (activeTool==='vertex-lines') {
+    vertexAuxHover = getVertexLineAt(x, y);
+    snapPt = null;
+  } else {
+    snapPt = nearestSnap(x,y,14,e);
+  }
   const snap = snapPt || {x,y};
 
   if (activeTool==='select' && isDrawing && selectedId!==null) {
@@ -515,10 +2285,8 @@ function onMouseMove(e) {
     previewEl = {type:'circle',cx:drawStart.x,cy:drawStart.y,r,color:props.stroke,width:props.width};
   }
   if (activeTool==='line' && drawStart) {
-    // Through-center snap overrides regular snap when aligned with a circle axis
-    const tcs = throughCenterSnap(drawStart, x, y);
-    if (tcs) snapPt = tcs;
-    const endPt = snapPt || {x,y};
+    const endPt = activeTool==='line' && isDrawing ? resolveLineEndpoint(drawStart, x, y, e) : {x,y};
+    snapPt = endPt;
     previewEl = {type:'line',x1:drawStart.x,y1:drawStart.y,x2:endPt.x,y2:endPt.y,color:props.stroke,width:props.width};
   }
   render();
@@ -526,24 +2294,28 @@ function onMouseMove(e) {
 
 function onMouseUp(e) {
   const {x,y} = getXY(e);
-  let snap = nearestSnap(x,y) || {x,y};
+  let snap = nearestSnap(x,y,14,e) || {x,y};
 
   // Honour through-center snap on release — same logic as mousemove preview
   if (activeTool==='line' && isDrawing && drawStart) {
-    const tcs = throughCenterSnap(drawStart, x, y);
-    if (tcs) snap = tcs;
+    const endPt = resolveLineEndpoint(drawStart, x, y, e);
+    snap = endPt;
   }
 
-  if (activeTool==='select') { isDrawing=false; dragOffset=null; saveState(); render(); return; }
+  if (activeTool==='select') { isDrawing=false; dragOffset=null; saveState(); render(); persistCurrentDrawing(); return; }
 
   if (isDrawing && drawStart) {
     if (activeTool==='circle') {
       const r = dist(drawStart.x,drawStart.y,snap.x,snap.y);
-      if (r>4) { elements.push({id:uid(),type:'circle',cx:drawStart.x,cy:drawStart.y,r,color:props.stroke,width:props.width}); saveState(); }
+      if (r>4) { elements.push({id:uid(),type:'circle',cx:drawStart.x,cy:drawStart.y,r,color:props.stroke,width:props.width}); saveState(); persistCurrentDrawing(); }
     }
     if (activeTool==='line') {
       if (dist(drawStart.x,drawStart.y,snap.x,snap.y)>4) {
-        elements.push({id:uid(),type:'line',x1:drawStart.x,y1:drawStart.y,x2:snap.x,y2:snap.y,color:props.stroke,width:props.width}); saveState();
+        const newLine = {id:uid(),type:'line',x1:drawStart.x,y1:drawStart.y,x2:snap.x,y2:snap.y,color:props.stroke,width:props.width};
+        elements.push(newLine);
+        addIntersectionVertices(newLine);
+        saveState();
+        persistCurrentDrawing();
       }
     }
   }
@@ -559,13 +2331,13 @@ function onDblClick(e) {
   const el = elements.find(e=>e.id===id);
   if (!el) return;
   // Inline edit label/text
-  if (el.type==='label'||el.type==='point') {
-    const t = prompt('Edit text:', el.text||el.label||'');
-    if (t!==null) { el.text=t; el.label=t; saveState(); render(); }
+  if (el.type==='label') {
+    const t = prompt('Edit text:', el.text ?? el.label ?? '');
+    if (t!==null) { el.text=t; el.label=t; saveState(); render(); persistCurrentDrawing(); }
   }
   if (el.type==='angle') {
     const t = prompt('Edit angle label:', el.label||'');
-    if (t!==null) { el.label=t; saveState(); render(); }
+    if (t!==null) { el.label=t; saveState(); render(); persistCurrentDrawing(); }
   }
 }
 
@@ -594,13 +2366,20 @@ function computeDragOffset(el,mx,my) {
   if (el.type==='angle')  return {dx:mx-el.vx,dy:my-el.vy};
   return {dx:0,dy:0};
 }
-function moveElement(id,nx,ny) {
+function moveElement(id,nx,ny,isDelta=false) {
   const el=elements.find(e=>e.id===id);
   if (!el) return;
-  if (el.type==='circle')                { el.cx=nx+dragOffset.dx; el.cy=ny+dragOffset.dy; }
-  if (el.type==='line')   { const dx=nx-el.x1,dy=ny-el.y1; el.x1+=dx;el.y1+=dy;el.x2+=dx;el.y2+=dy; }
-  if (el.type==='point'||el.type==='label') { el.x=nx+dragOffset.dx; el.y=ny+dragOffset.dy; }
-  if (el.type==='angle')  { el.vx=nx+dragOffset.dx; el.vy=ny+dragOffset.dy; }
+  if (isDelta) {
+    if (el.type==='circle') { el.cx+=nx; el.cy+=ny; }
+    if (el.type==='line')   { el.x1+=nx;el.y1+=ny;el.x2+=nx;el.y2+=ny; }
+    if (el.type==='point'||el.type==='label') { el.x+=nx; el.y+=ny; }
+    if (el.type==='angle')  { el.vx+=nx; el.vy+=ny; }
+  } else {
+    if (el.type==='circle')                { el.cx=nx+dragOffset.dx; el.cy=ny+dragOffset.dy; }
+    if (el.type==='line')   { const dx=nx-el.x1,dy=ny-el.y1; el.x1+=dx;el.y1+=dy;el.x2+=dx;el.y2+=dy; }
+    if (el.type==='point'||el.type==='label') { el.x=nx+dragOffset.dx; el.y=ny+dragOffset.dy; }
+    if (el.type==='angle')  { el.vx=nx+dragOffset.dx; el.vy=ny+dragOffset.dy; }
+  }
 }
 
 // ────────────────────────────────────────────────────────────────────────────
@@ -620,10 +2399,38 @@ function render() {
   // Preview
   if (previewEl) { ctx.globalAlpha=0.6; drawElement(previewEl,false); ctx.globalAlpha=1; }
 
+  if (activeTool==='vertex-lines') {
+    const candidateLines = getVisibleVertexAuxPreviewLines();
+    candidateLines.forEach(line => {
+      ctx.save();
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = line.selected ? 2.2 : 1.2;
+      ctx.setLineDash(line.selected ? [] : [6, 4]);
+      ctx.beginPath();
+      ctx.moveTo(line.x1, line.y1);
+      ctx.lineTo(line.x2, line.y2);
+      ctx.stroke();
+      ctx.restore();
+    });
+
+    if (vertexAuxHover) {
+      ctx.save();
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([3, 3]);
+      ctx.beginPath();
+      ctx.moveTo(vertexAuxHover.x1, vertexAuxHover.y1);
+      ctx.lineTo(vertexAuxHover.x2, vertexAuxHover.y2);
+      ctx.stroke();
+      ctx.restore();
+    }
+  }
+
   // Snap indicator — color encodes snap type
   if (snapPt) {
     const color = snapPt.src==='through-center' ? '#10b981'   // teal  = axis through center
                 : snapPt.src==='perimeter'       ? '#f59e0b'   // amber = perimeter
+                : snapPt.src==='line'            ? '#38bdf8'   // sky   = snap to line
                 : snapPt.src==='ep'              ? '#22c55e'   // green = continue line (endpoint)
                 : snapPt.src==='intersect'       ? '#f43f5e'   // rose  = intersection
                 : '#6366f1';                                    // purple = other
@@ -637,11 +2444,36 @@ function render() {
     }
   }
 
-  // Angle tool: highlight vertex
-  if (activeTool==='angle' && !isDrawing) {
-    const rect=canvas.getBoundingClientRect();
-    // Highlight drawn via mousemove's snapPt fallthrough — done above
+  // Angle tool: Shift multi-step feedback
+  if (activeTool==='angle' && pendingAngleSelection) {
+    const { vx, vy, ray1, ray2 } = pendingAngleSelection;
+    const rayLen = 70;
+
+    ctx.beginPath(); ctx.arc(vx, vy, 7, 0, Math.PI*2);
+    ctx.strokeStyle = '#f43f5e'; ctx.lineWidth = 2; ctx.setLineDash([3,2]); ctx.stroke(); ctx.setLineDash([]);
+
+    // first ray
+    ctx.beginPath();
+    ctx.moveTo(vx - Math.cos(ray1)*rayLen, vy - Math.sin(ray1)*rayLen);
+    ctx.lineTo(vx + Math.cos(ray1)*rayLen, vy + Math.sin(ray1)*rayLen);
+    ctx.strokeStyle = '#f43f5e'; ctx.lineWidth = 2; ctx.setLineDash([5,3]); ctx.stroke(); ctx.setLineDash([]);
+
+    if (pendingAngleStep === 1) {
+      ctx.fillStyle = '#f43f5e'; ctx.font = 'bold 12px sans-serif';
+      ctx.fillText('Shift+click second ray', vx + 10, vy - 14);
+    }
+
+    if (pendingAngleStep === 2 && ray2 !== undefined) {
+      // second ray
+      ctx.beginPath();
+      ctx.moveTo(vx - Math.cos(ray2)*rayLen, vy - Math.sin(ray2)*rayLen);
+      ctx.lineTo(vx + Math.cos(ray2)*rayLen, vy + Math.sin(ray2)*rayLen);
+      ctx.strokeStyle = '#6366f1'; ctx.lineWidth = 2; ctx.setLineDash([5,3]); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = '#6366f1'; ctx.font = 'bold 12px sans-serif';
+      ctx.fillText('Click inside the sector to draw', vx + 10, vy - 14);
+    }
   }
+
 }
 
 function drawElement(el, selected=false) {
@@ -663,34 +2495,47 @@ function drawElement(el, selected=false) {
   }
 
   if (el.type==='line') {
+    if (el.auxiliary) {
+      ctx.setLineDash(el.dash || []);
+    }
     ctx.beginPath(); ctx.moveTo(el.x1,el.y1); ctx.lineTo(el.x2,el.y2); ctx.stroke();
+    ctx.setLineDash([]);
     // endpoint dots
     ctx.beginPath(); ctx.arc(el.x1,el.y1,2.5,0,Math.PI*2); ctx.fill();
     ctx.beginPath(); ctx.arc(el.x2,el.y2,2.5,0,Math.PI*2); ctx.fill();
   }
 
   if (el.type==='point') {
-    ctx.beginPath(); ctx.arc(el.x,el.y,4,0,Math.PI*2); ctx.fill();
-    if (el.label) {
-      ctx.font=`italic ${el.size||15}px 'Times New Roman',serif`;
-      ctx.fillText(el.label, el.x+8, el.y-6);
+    if (selected) {
+      ctx.save();
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(el.x, el.y, 8, 0, Math.PI * 2); ctx.stroke();
+      ctx.restore();
     }
+    ctx.beginPath(); ctx.arc(el.x,el.y,4,0,Math.PI*2); ctx.fill();
   }
 
   if (el.type==='label') {
+    const text = el.text ?? el.label ?? '';
+    if (selected) {
+      ctx.save();
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = 1.5;
+      const metrics = ctx.measureText(text);
+      ctx.strokeRect(el.x - 3, el.y - 15, metrics.width + 6, 18);
+      ctx.restore();
+    }
     ctx.font=`italic ${el.size||15}px 'Times New Roman',serif`;
-    ctx.fillText(el.text||'', el.x, el.y);
+    ctx.fillText(text, el.x, el.y);
   }
 
   if (el.type==='angle') {
     const {vx,vy,ang1,ang2,arcR,label,size} = el;
-    // Draw arc from ang1 to ang2 (smaller arc)
-    let a1=ang1, a2=ang2;
-    // Normalize: draw the smaller of the two arcs
-    let diff = ((a2-a1) % (Math.PI*2) + Math.PI*2) % (Math.PI*2);
-    if (diff>Math.PI) { [a1,a2]=[a2,a1]; diff=Math.PI*2-diff; }
+    const a1 = ang1;
+    const a2 = ang2;
+    const diff = normalizeAngle(a2 - a1);
     ctx.beginPath(); ctx.arc(vx,vy,arcR,a1,a2); ctx.lineWidth=1.2; ctx.stroke();
-    // Label at midpoint angle
     const mid = a1 + diff/2;
     const lx  = vx + (arcR+12)*Math.cos(mid);
     const ly  = vy + (arcR+12)*Math.sin(mid);
@@ -706,24 +2551,202 @@ function drawElement(el, selected=false) {
 // ────────────────────────────────────────────────────────────────────────────
 document.addEventListener('keydown', e => {
   if (e.target.tagName==='INPUT') return;
-  if (e.key==='v'||e.key==='V') setTool('select');
-  if (e.key==='c'||e.key==='C') setTool('circle');
-  if (e.key==='l'||e.key==='L') setTool('line');
-  if (e.key==='p'||e.key==='P') setTool('point');
-  if (e.key==='a'||e.key==='A') setTool('angle');
-  if (e.key==='t'||e.key==='T') setTool('label');
-  if (e.key==='e'||e.key==='E') setTool('eraser');
-  if ((e.ctrlKey||e.metaKey)&&e.key==='z') { e.preventDefault(); undo(); }
-  if ((e.ctrlKey||e.metaKey)&&e.key==='y') { e.preventDefault(); redo(); }
-  if (e.key==='Delete'||e.key==='Backspace') {
-    if (selectedId!==null) { elements=elements.filter(el=>el.id!==selectedId); selectedId=null; saveState(); render(); }
+
+  if (activeTool==='vertex-lines' && e.key==='Escape') {
+    e.preventDefault();
+    cancelVertexSelectionFlow();
+    return;
   }
-  if (e.key==='Escape') { isDrawing=false; previewEl=null; selectedId=null; render(); }
+
+  // Tools
+  if (!e.ctrlKey && !e.metaKey) {
+    if (e.key==='v'||e.key==='V') setTool('select');
+    if (e.key==='c'||e.key==='C') setTool('circle');
+    if (e.key==='l'||e.key==='L') setTool('line');
+    if (e.key==='p'||e.key==='P') setTool('point');
+    if (e.key==='u'||e.key==='U') setTool('vertex-lines');
+    if (e.key==='a'||e.key==='A') setTool('angle');
+    if (e.key==='t'||e.key==='T') setTool('label');
+    if (e.key==='e'||e.key==='E') setTool('eraser');
+  }
+
+  // Undo / Redo
+  if ((e.ctrlKey||e.metaKey) && e.key==='z') { e.preventDefault(); undo(); }
+  if ((e.ctrlKey||e.metaKey) && e.key==='y') { e.preventDefault(); redo(); }
+  if ((e.ctrlKey||e.metaKey) && e.key==='Z') { e.preventDefault(); redo(); } // Ctrl+Shift+Z
+
+  // Export
+  if ((e.ctrlKey||e.metaKey) && e.key==='s') { e.preventDefault(); saveDrawing(); }
+
+  // Hide/show shortcuts legend
+  if ((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='h') { e.preventDefault(); toggleShortcutsLegend(); }
+
+  // Clear all
+  if ((e.ctrlKey||e.metaKey) && (e.key==='Backspace'||e.key==='Delete')) { e.preventDefault(); clearAll(); }
+
+  // Delete selected
+  if (!e.ctrlKey && !e.metaKey && (e.key==='Delete'||e.key==='Backspace')) {
+    if (selectedId!==null) { elements=elements.filter(el=>el.id!==selectedId); selectedId=null; saveState(); render(); persistCurrentDrawing(); }
+  }
+
+  // Nudge selected element with arrow keys
+  if (selectedId!==null && ['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) {
+    e.preventDefault();
+    const step = e.shiftKey ? 10 : 1;
+    const dx = e.key==='ArrowRight' ? step : e.key==='ArrowLeft' ? -step : 0;
+    const dy = e.key==='ArrowDown'  ? step : e.key==='ArrowUp'   ? -step : 0;
+    moveElement(selectedId, dx, dy, true);
+    saveState(); render(); persistCurrentDrawing();
+  }
+
+  // Cancel / deselect
+  if (e.key==='Escape') { isDrawing=false; previewEl=null; selectedId=null; resetAngleSelection(); render(); }
+
+  // Toggle help
+  if (e.key==='?') toggleHelp();
 });
 
 // ────────────────────────────────────────────────────────────────────────────
 // Export
 // ────────────────────────────────────────────────────────────────────────────
+let currentDrawingName = 'untitled';
+const PAGE_SIZE = 20;
+let _saveNames = [], _savePage = 0;
+let _loadNames = [], _loadPage = 0;
+
+function renderPageBar(barId, page, total, onPage) {
+  const bar = document.getElementById(barId);
+  bar.innerHTML = '';
+  const pages = Math.ceil(total / PAGE_SIZE);
+  if (pages <= 1) return;
+  const prev = document.createElement('button');
+  prev.textContent = '‹ Prev'; prev.disabled = page === 0;
+  prev.onclick = () => onPage(page - 1);
+  const next = document.createElement('button');
+  next.textContent = 'Next ›'; next.disabled = page >= pages - 1;
+  next.onclick = () => onPage(page + 1);
+  const info = document.createElement('span');
+  info.textContent = (page + 1) + ' / ' + pages;
+  bar.appendChild(prev); bar.appendChild(info); bar.appendChild(next);
+}
+
+function renderSavePage(page) {
+  _savePage = page;
+  const list = document.getElementById('save-list');
+  list.innerHTML = '';
+  const slice = _saveNames.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
+  for (const name of slice) {
+    const li = document.createElement('li');
+    li.textContent = name;
+    li.onclick = () => { document.getElementById('save-name-input').value = name; document.getElementById('save-name-input').focus(); };
+    list.appendChild(li);
+  }
+  renderPageBar('save-page-bar', page, _saveNames.length, renderSavePage);
+}
+
+function renderLoadPage(page) {
+  _loadPage = page;
+  const list = document.getElementById('load-list');
+  list.innerHTML = '';
+  const slice = _loadNames.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
+  for (const name of slice) {
+    const li = document.createElement('li');
+    const span = document.createElement('span');
+    span.textContent = name; span.style.flex = '1';
+    span.onclick = () => applyDrawing(name);
+    const del = document.createElement('button');
+    del.className = 'del-btn'; del.textContent = '✕'; del.title = 'Delete';
+    del.onclick = async (e) => {
+      e.stopPropagation();
+      if (!confirm('Delete "' + name + '"?')) return;
+      await fetch('/api/drawings/' + encodeURIComponent(name), { method: 'DELETE' });
+      await refreshLoadList();
+    };
+    li.appendChild(span); li.appendChild(del);
+    list.appendChild(li);
+  }
+  renderPageBar('load-page-bar', page, _loadNames.length, renderLoadPage);
+}
+
+async function saveDrawing() {
+  const listRes = await fetch('/api/drawings');
+  _saveNames = await listRes.json();
+  const input = document.getElementById('save-name-input');
+  input.value = currentDrawingName;
+  renderSavePage(0);
+  document.getElementById('save-dialog').classList.add('open');
+  input.focus();
+}
+
+function closeSaveDialog() {
+  document.getElementById('save-dialog').classList.remove('open');
+}
+
+async function confirmSave() {
+  const name = document.getElementById('save-name-input').value.trim();
+  if (!name) return;
+  const slug = name.replace(/[^a-zA-Z0-9_\-]/g, '_').slice(0, 80) || 'drawing';
+  const listRes = await fetch('/api/drawings');
+  const existing = await listRes.json();
+  if (existing.includes(slug) && !confirm('"' + slug + '" already exists. Overwrite?')) return;
+  const res = await fetch('/api/drawings/' + encodeURIComponent(name), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(elements)
+  });
+  const data = await res.json();
+  if (data.ok) {
+    currentDrawingName = data.name;
+    closeSaveDialog();
+    alert('Saved as "' + data.name + '"');
+  } else alert('Save failed');
+}
+
+async function refreshLoadList() {
+  const res = await fetch('/api/drawings');
+  _loadNames = await res.json();
+  const empty = document.getElementById('load-empty');
+  if (!_loadNames.length) { empty.style.display = ''; document.getElementById('load-list').innerHTML = ''; return; }
+  empty.style.display = 'none';
+  const page = Math.min(_loadPage, Math.ceil(_loadNames.length / PAGE_SIZE) - 1);
+  renderLoadPage(page);
+}
+
+async function loadDrawing() {
+  await refreshLoadList();
+  document.getElementById('load-dialog').classList.add('open');
+}
+
+function closeLoadDialog() {
+  document.getElementById('load-dialog').classList.remove('open');
+}
+
+async function applyDrawing(name) {
+  const res = await fetch('/api/drawings/' + encodeURIComponent(name));
+  if (!res.ok) { alert('Drawing not found: ' + name); return; }
+  elements = await res.json();
+  currentDrawingName = name;
+  selectedId = null;
+  hoveredId = null;
+  isDrawing = false;
+  previewEl = null;
+  drawStart = null;
+  snapPt = null;
+  pendingAngleSelection = null;
+  pendingAngleStep = 0;
+  undoStack = ['[]'];
+  undoIndex = 0;
+  nextId = 1;
+  elements.forEach(el => { if (el.id >= nextId) nextId = el.id + 1; });
+  closeLoadDialog();
+  saveState();
+  render();
+}
+
+document.getElementById('finish-vertex-selection').addEventListener('click', finishVertexSelectionFlow);
+document.getElementById('hide-nonselected-vertex-selection').addEventListener('click', hideUnselectedVertexLines);
+document.getElementById('cancel-vertex-selection').addEventListener('click', cancelVertexSelectionFlow);
+
 function exportPNG() {
   // Render to a white-bg canvas
   const tmp = document.createElement('canvas');

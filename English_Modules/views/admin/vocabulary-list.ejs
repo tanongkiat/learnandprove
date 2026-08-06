@@ -1,0 +1,32 @@
+<%- include('../partials/header', { title }) %>
+
+<h1>Vocabulary</h1>
+
+<% if (imported !== null) { %>
+  <div class="card"><p>Imported <%= imported %> word<%= imported === 1 ? '' : 's' %> as draft. Review and publish below.</p></div>
+<% } %>
+
+<form class="inline-form" method="get" action="/admin/vocabulary">
+  <input class="text-input" type="text" name="q" value="<%= q %>" placeholder="Search lemma or Thai meaning">
+  <button class="btn btn-secondary" type="submit">Search</button>
+  <a class="btn btn-primary" href="/admin/vocabulary/new">+ New Entry</a>
+  <a class="btn btn-secondary" href="/admin/import">Import from PDF</a>
+</form>
+
+<table class="table">
+  <thead><tr><th>Lemma</th><th>POS</th><th>CEFR</th><th>Thai Meaning</th><th>Status</th><th></th></tr></thead>
+  <tbody>
+    <% rows.forEach(function(r) { %>
+      <tr>
+        <td><%= r.lemma %></td>
+        <td><%= r.pos || '—' %></td>
+        <td><%= r.cefr || '—' %></td>
+        <td><%= r.thai_meaning %></td>
+        <td><span class="badge"><%= r.status %></span></td>
+        <td><a href="/admin/vocabulary/<%= r.id %>/edit">Edit</a></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,42 @@
+<%- include('../partials/header', { title }) %>
+
+<h1>Review Import — <%= batch.filename %></h1>
+<p class="hint">
+  <%= candidates.length %> candidate word<%= candidates.length === 1 ? '' : 's' %> found. Uncheck any you don't want,
+  edit the text if extraction got something wrong, then commit. Everything is created as
+  <strong>DRAFT</strong> — publish it from the Vocabulary list once you've reviewed it there too.
+</p>
+
+<% if (candidates.length === 0) { %>
+  <div class="card">
+    <p>No "word - Thai meaning" style lines were found in this PDF.</p>
+    <details>
+      <summary>Show extracted text</summary>
+      <pre class="raw-text"><%= batch.raw_text.slice(0, 5000) %></pre>
+    </details>
+  </div>
+<% } else { %>
+  <form method="post" action="/admin/import/<%= batch.id %>/commit">
+    <table class="table">
+      <thead><tr><th></th><th>Word</th><th>POS</th><th>Thai Meaning</th></tr></thead>
+      <tbody>
+        <% candidates.forEach(function(c, i) { %>
+          <tr>
+            <td><input type="checkbox" name="include" value="<%= i %>" checked></td>
+            <td><input class="text-input" type="text" name="lemma" value="<%= c.lemma %>"></td>
+            <td><input class="text-input" type="text" name="pos" value="<%= c.pos %>"></td>
+            <td><input class="text-input" type="text" name="thai_meaning" value="<%= c.thai_meaning %>"></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <button class="btn btn-primary btn-large" type="submit">Add Checked as Draft Vocabulary</button>
+  </form>
+
+  <details style="margin-top: 20px;">
+    <summary>Show full extracted text</summary>
+    <pre class="raw-text"><%= batch.raw_text.slice(0, 8000) %></pre>
+  </details>
+<% } %>
+
+<%- include('../partials/footer') %>
