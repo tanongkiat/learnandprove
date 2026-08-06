@@ -111,7 +111,14 @@ router.post('/:code/answer', (req, res) => {
   session.results.push(results[0]);
   session.xpTotal += xpGain;
   session.streak = streak;
-  session.awaitingContinue = true;
+
+  // For click-to-answer flows, jump straight to the next question.
+  if (qo.question.type === 'single_choice' || qo.question.type === 'error_detection') {
+    session.index += 1;
+    session.awaitingContinue = false;
+  } else {
+    session.awaitingContinue = true;
+  }
 
   res.redirect(`/training/${skill.code}/play?sid=${sid}`);
 });

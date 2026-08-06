@@ -1,0 +1,2859 @@
+{
+  "metadata": {
+    "title": "Triam Udom English Error Identification Batch 1",
+    "totalQuestions": 150,
+    "source": "original_generated"
+  },
+  "questions": [
+    {
+      "id": "TU-ERR-0001",
+      "type": "error_identification",
+      "topic": "subject_verb_agreement",
+      "cefr": "B1",
+      "difficulty": 1,
+      "question": "Choose the incorrect part: The group of students / are / preparing / for the competition.",
+      "choices": [
+        "The group of students",
+        "are",
+        "preparing",
+        "for the competition"
+      ],
+      "answerIndex": 1,
+      "answer": "are",
+      "explanationThai": "group เป็นคำนามเอกพจน์ ต้องใช้ is ไม่ใช่ are",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0002",
+      "type": "error_identification",
+      "topic": "tense",
+      "cefr": "B2",
+      "difficulty": 2,
+      "question": "Choose the incorrect part: She has finished / her homework / two hours ago / before dinner.",
+      "choices": [
+        "She has finished",
+        "her homework",
+        "two hours ago",
+        "before dinner"
+      ],
+      "answerIndex": 0,
+      "answer": "She has finished",
+      "explanationThai": "two hours ago เป็นเวลาที่จบแล้ว ต้องใช้ past simple",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0003",
+      "type": "error_identification",
+      "topic": "passive_voice",
+      "cefr": "B1",
+      "difficulty": 3,
+      "question": "Choose the incorrect part: The letters / was sent / yesterday / by the secretary.",
+      "choices": [
+        "The letters",
+        "was sent",
+        "yesterday",
+        "by the secretary"
+      ],
+      "answerIndex": 1,
+      "answer": "was sent",
+      "explanationThai": "letters เป็นพหูพจน์ ต้องใช้ were sent",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0004",
+      "type": "error_identification",
+      "topic": "gerund",
+      "cefr": "B2",
+      "difficulty": 4,
+      "question": "Choose the incorrect part: He suggested / to take / a taxi / home.",
+      "choices": [
+        "He suggested",
+        "to take",
+        "a taxi",
+        "home"
+      ],
+      "answerIndex": 1,
+      "answer": "to take",
+      "explanationThai": "suggest ตามด้วย gerund: suggested taking",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0005",
+      "type": "error_identification",
+      "topic": "relative_clause",
+      "cefr": "B1",
+      "difficulty": 5,
+      "question": "Choose the incorrect part: The book / who / I borrowed / is interesting.",
+      "choices": [
+        "The book",
+        "who",
+        "I borrowed",
+        "is interesting"
+      ],
+      "answerIndex": 1,
+      "answer": "who",
+      "explanationThai": "book เป็นสิ่งของ ใช้ which หรือ that",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0006",
+      "type": "error_identification",
+      "topic": "conditional",
+      "cefr": "B2",
+      "difficulty": 6,
+      "question": "Choose the incorrect part: If I knew / the answer, / I will tell / you.",
+      "choices": [
+        "If I knew",
+        "the answer",
+        "I will tell",
+        "you"
+      ],
+      "answerIndex": 2,
+      "answer": "I will tell",
+      "explanationThai": "Conditional type 2 ใช้ would tell",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0007",
+      "type": "error_identification",
+      "topic": "reported_speech",
+      "cefr": "B1",
+      "difficulty": 7,
+      "question": "Choose the incorrect part: He said / that he is / tired / yesterday.",
+      "choices": [
+        "He said",
+        "that he is",
+        "tired",
+        "yesterday"
+      ],
+      "answerIndex": 1,
+      "answer": "that he is",
+      "explanationThai": "Reported speech ควรเปลี่ยน is เป็น was",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0008",
+      "type": "error_identification",
+      "topic": "preposition",
+      "cefr": "B2",
+      "difficulty": 8,
+      "question": "Choose the incorrect part: She is good / in / mathematics / at school.",
+      "choices": [
+        "She is good",
+        "in",
+        "mathematics",
+        "at school"
+      ],
+      "answerIndex": 1,
+      "answer": "in",
+      "explanationThai": "good at ไม่ใช่ good in",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0009",
+      "type": "error_identification",
+      "topic": "comparison",
+      "cefr": "B1",
+      "difficulty": 9,
+      "question": "Choose the incorrect part: This car is / more cheaper / than / that one.",
+      "choices": [
+        "This car is",
+        "more cheaper",
+        "than",
+        "that one"
+      ],
+      "answerIndex": 1,
+      "answer": "more cheaper",
+      "explanationThai": "cheap ขั้นกว่าใช้ cheaper ไม่ใช้ more cheaper",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0010",
+      "type": "error_identification",
+      "topic": "quantifier",
+      "cefr": "B2",
+      "difficulty": 10,
+      "question": "Choose the incorrect part: There are / much students / in the classroom / today.",
+      "choices": [
+        "There are",
+        "much students",
+        "in the classroom",
+        "today"
+      ],
+      "answerIndex": 1,
+      "answer": "much students",
+      "explanationThai": "students นับได้ ใช้ many students",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0011",
+      "type": "error_identification",
+      "topic": "subject_verb_agreement",
+      "cefr": "B1",
+      "difficulty": 1,
+      "question": "Choose the incorrect part: The group of students / are / preparing / for the competition.",
+      "choices": [
+        "The group of students",
+        "are",
+        "preparing",
+        "for the competition"
+      ],
+      "answerIndex": 1,
+      "answer": "are",
+      "explanationThai": "group เป็นคำนามเอกพจน์ ต้องใช้ is ไม่ใช่ are",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0012",
+      "type": "error_identification",
+      "topic": "tense",
+      "cefr": "B2",
+      "difficulty": 2,
+      "question": "Choose the incorrect part: She has finished / her homework / two hours ago / before dinner.",
+      "choices": [
+        "She has finished",
+        "her homework",
+        "two hours ago",
+        "before dinner"
+      ],
+      "answerIndex": 0,
+      "answer": "She has finished",
+      "explanationThai": "two hours ago เป็นเวลาที่จบแล้ว ต้องใช้ past simple",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0013",
+      "type": "error_identification",
+      "topic": "passive_voice",
+      "cefr": "B1",
+      "difficulty": 3,
+      "question": "Choose the incorrect part: The letters / was sent / yesterday / by the secretary.",
+      "choices": [
+        "The letters",
+        "was sent",
+        "yesterday",
+        "by the secretary"
+      ],
+      "answerIndex": 1,
+      "answer": "was sent",
+      "explanationThai": "letters เป็นพหูพจน์ ต้องใช้ were sent",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0014",
+      "type": "error_identification",
+      "topic": "gerund",
+      "cefr": "B2",
+      "difficulty": 4,
+      "question": "Choose the incorrect part: He suggested / to take / a taxi / home.",
+      "choices": [
+        "He suggested",
+        "to take",
+        "a taxi",
+        "home"
+      ],
+      "answerIndex": 1,
+      "answer": "to take",
+      "explanationThai": "suggest ตามด้วย gerund: suggested taking",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0015",
+      "type": "error_identification",
+      "topic": "relative_clause",
+      "cefr": "B1",
+      "difficulty": 5,
+      "question": "Choose the incorrect part: The book / who / I borrowed / is interesting.",
+      "choices": [
+        "The book",
+        "who",
+        "I borrowed",
+        "is interesting"
+      ],
+      "answerIndex": 1,
+      "answer": "who",
+      "explanationThai": "book เป็นสิ่งของ ใช้ which หรือ that",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0016",
+      "type": "error_identification",
+      "topic": "conditional",
+      "cefr": "B2",
+      "difficulty": 6,
+      "question": "Choose the incorrect part: If I knew / the answer, / I will tell / you.",
+      "choices": [
+        "If I knew",
+        "the answer",
+        "I will tell",
+        "you"
+      ],
+      "answerIndex": 2,
+      "answer": "I will tell",
+      "explanationThai": "Conditional type 2 ใช้ would tell",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0017",
+      "type": "error_identification",
+      "topic": "reported_speech",
+      "cefr": "B1",
+      "difficulty": 7,
+      "question": "Choose the incorrect part: He said / that he is / tired / yesterday.",
+      "choices": [
+        "He said",
+        "that he is",
+        "tired",
+        "yesterday"
+      ],
+      "answerIndex": 1,
+      "answer": "that he is",
+      "explanationThai": "Reported speech ควรเปลี่ยน is เป็น was",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0018",
+      "type": "error_identification",
+      "topic": "preposition",
+      "cefr": "B2",
+      "difficulty": 8,
+      "question": "Choose the incorrect part: She is good / in / mathematics / at school.",
+      "choices": [
+        "She is good",
+        "in",
+        "mathematics",
+        "at school"
+      ],
+      "answerIndex": 1,
+      "answer": "in",
+      "explanationThai": "good at ไม่ใช่ good in",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0019",
+      "type": "error_identification",
+      "topic": "comparison",
+      "cefr": "B1",
+      "difficulty": 9,
+      "question": "Choose the incorrect part: This car is / more cheaper / than / that one.",
+      "choices": [
+        "This car is",
+        "more cheaper",
+        "than",
+        "that one"
+      ],
+      "answerIndex": 1,
+      "answer": "more cheaper",
+      "explanationThai": "cheap ขั้นกว่าใช้ cheaper ไม่ใช้ more cheaper",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0020",
+      "type": "error_identification",
+      "topic": "quantifier",
+      "cefr": "B2",
+      "difficulty": 10,
+      "question": "Choose the incorrect part: There are / much students / in the classroom / today.",
+      "choices": [
+        "There are",
+        "much students",
+        "in the classroom",
+        "today"
+      ],
+      "answerIndex": 1,
+      "answer": "much students",
+      "explanationThai": "students นับได้ ใช้ many students",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0021",
+      "type": "error_identification",
+      "topic": "subject_verb_agreement",
+      "cefr": "B1",
+      "difficulty": 1,
+      "question": "Choose the incorrect part: The group of students / are / preparing / for the competition.",
+      "choices": [
+        "The group of students",
+        "are",
+        "preparing",
+        "for the competition"
+      ],
+      "answerIndex": 1,
+      "answer": "are",
+      "explanationThai": "group เป็นคำนามเอกพจน์ ต้องใช้ is ไม่ใช่ are",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0022",
+      "type": "error_identification",
+      "topic": "tense",
+      "cefr": "B2",
+      "difficulty": 2,
+      "question": "Choose the incorrect part: She has finished / her homework / two hours ago / before dinner.",
+      "choices": [
+        "She has finished",
+        "her homework",
+        "two hours ago",
+        "before dinner"
+      ],
+      "answerIndex": 0,
+      "answer": "She has finished",
+      "explanationThai": "two hours ago เป็นเวลาที่จบแล้ว ต้องใช้ past simple",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0023",
+      "type": "error_identification",
+      "topic": "passive_voice",
+      "cefr": "B1",
+      "difficulty": 3,
+      "question": "Choose the incorrect part: The letters / was sent / yesterday / by the secretary.",
+      "choices": [
+        "The letters",
+        "was sent",
+        "yesterday",
+        "by the secretary"
+      ],
+      "answerIndex": 1,
+      "answer": "was sent",
+      "explanationThai": "letters เป็นพหูพจน์ ต้องใช้ were sent",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0024",
+      "type": "error_identification",
+      "topic": "gerund",
+      "cefr": "B2",
+      "difficulty": 4,
+      "question": "Choose the incorrect part: He suggested / to take / a taxi / home.",
+      "choices": [
+        "He suggested",
+        "to take",
+        "a taxi",
+        "home"
+      ],
+      "answerIndex": 1,
+      "answer": "to take",
+      "explanationThai": "suggest ตามด้วย gerund: suggested taking",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0025",
+      "type": "error_identification",
+      "topic": "relative_clause",
+      "cefr": "B1",
+      "difficulty": 5,
+      "question": "Choose the incorrect part: The book / who / I borrowed / is interesting.",
+      "choices": [
+        "The book",
+        "who",
+        "I borrowed",
+        "is interesting"
+      ],
+      "answerIndex": 1,
+      "answer": "who",
+      "explanationThai": "book เป็นสิ่งของ ใช้ which หรือ that",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0026",
+      "type": "error_identification",
+      "topic": "conditional",
+      "cefr": "B2",
+      "difficulty": 6,
+      "question": "Choose the incorrect part: If I knew / the answer, / I will tell / you.",
+      "choices": [
+        "If I knew",
+        "the answer",
+        "I will tell",
+        "you"
+      ],
+      "answerIndex": 2,
+      "answer": "I will tell",
+      "explanationThai": "Conditional type 2 ใช้ would tell",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0027",
+      "type": "error_identification",
+      "topic": "reported_speech",
+      "cefr": "B1",
+      "difficulty": 7,
+      "question": "Choose the incorrect part: He said / that he is / tired / yesterday.",
+      "choices": [
+        "He said",
+        "that he is",
+        "tired",
+        "yesterday"
+      ],
+      "answerIndex": 1,
+      "answer": "that he is",
+      "explanationThai": "Reported speech ควรเปลี่ยน is เป็น was",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0028",
+      "type": "error_identification",
+      "topic": "preposition",
+      "cefr": "B2",
+      "difficulty": 8,
+      "question": "Choose the incorrect part: She is good / in / mathematics / at school.",
+      "choices": [
+        "She is good",
+        "in",
+        "mathematics",
+        "at school"
+      ],
+      "answerIndex": 1,
+      "answer": "in",
+      "explanationThai": "good at ไม่ใช่ good in",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0029",
+      "type": "error_identification",
+      "topic": "comparison",
+      "cefr": "B1",
+      "difficulty": 9,
+      "question": "Choose the incorrect part: This car is / more cheaper / than / that one.",
+      "choices": [
+        "This car is",
+        "more cheaper",
+        "than",
+        "that one"
+      ],
+      "answerIndex": 1,
+      "answer": "more cheaper",
+      "explanationThai": "cheap ขั้นกว่าใช้ cheaper ไม่ใช้ more cheaper",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0030",
+      "type": "error_identification",
+      "topic": "quantifier",
+      "cefr": "B2",
+      "difficulty": 10,
+      "question": "Choose the incorrect part: There are / much students / in the classroom / today.",
+      "choices": [
+        "There are",
+        "much students",
+        "in the classroom",
+        "today"
+      ],
+      "answerIndex": 1,
+      "answer": "much students",
+      "explanationThai": "students นับได้ ใช้ many students",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0031",
+      "type": "error_identification",
+      "topic": "subject_verb_agreement",
+      "cefr": "B1",
+      "difficulty": 1,
+      "question": "Choose the incorrect part: The group of students / are / preparing / for the competition.",
+      "choices": [
+        "The group of students",
+        "are",
+        "preparing",
+        "for the competition"
+      ],
+      "answerIndex": 1,
+      "answer": "are",
+      "explanationThai": "group เป็นคำนามเอกพจน์ ต้องใช้ is ไม่ใช่ are",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0032",
+      "type": "error_identification",
+      "topic": "tense",
+      "cefr": "B2",
+      "difficulty": 2,
+      "question": "Choose the incorrect part: She has finished / her homework / two hours ago / before dinner.",
+      "choices": [
+        "She has finished",
+        "her homework",
+        "two hours ago",
+        "before dinner"
+      ],
+      "answerIndex": 0,
+      "answer": "She has finished",
+      "explanationThai": "two hours ago เป็นเวลาที่จบแล้ว ต้องใช้ past simple",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0033",
+      "type": "error_identification",
+      "topic": "passive_voice",
+      "cefr": "B1",
+      "difficulty": 3,
+      "question": "Choose the incorrect part: The letters / was sent / yesterday / by the secretary.",
+      "choices": [
+        "The letters",
+        "was sent",
+        "yesterday",
+        "by the secretary"
+      ],
+      "answerIndex": 1,
+      "answer": "was sent",
+      "explanationThai": "letters เป็นพหูพจน์ ต้องใช้ were sent",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0034",
+      "type": "error_identification",
+      "topic": "gerund",
+      "cefr": "B2",
+      "difficulty": 4,
+      "question": "Choose the incorrect part: He suggested / to take / a taxi / home.",
+      "choices": [
+        "He suggested",
+        "to take",
+        "a taxi",
+        "home"
+      ],
+      "answerIndex": 1,
+      "answer": "to take",
+      "explanationThai": "suggest ตามด้วย gerund: suggested taking",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0035",
+      "type": "error_identification",
+      "topic": "relative_clause",
+      "cefr": "B1",
+      "difficulty": 5,
+      "question": "Choose the incorrect part: The book / who / I borrowed / is interesting.",
+      "choices": [
+        "The book",
+        "who",
+        "I borrowed",
+        "is interesting"
+      ],
+      "answerIndex": 1,
+      "answer": "who",
+      "explanationThai": "book เป็นสิ่งของ ใช้ which หรือ that",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0036",
+      "type": "error_identification",
+      "topic": "conditional",
+      "cefr": "B2",
+      "difficulty": 6,
+      "question": "Choose the incorrect part: If I knew / the answer, / I will tell / you.",
+      "choices": [
+        "If I knew",
+        "the answer",
+        "I will tell",
+        "you"
+      ],
+      "answerIndex": 2,
+      "answer": "I will tell",
+      "explanationThai": "Conditional type 2 ใช้ would tell",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0037",
+      "type": "error_identification",
+      "topic": "reported_speech",
+      "cefr": "B1",
+      "difficulty": 7,
+      "question": "Choose the incorrect part: He said / that he is / tired / yesterday.",
+      "choices": [
+        "He said",
+        "that he is",
+        "tired",
+        "yesterday"
+      ],
+      "answerIndex": 1,
+      "answer": "that he is",
+      "explanationThai": "Reported speech ควรเปลี่ยน is เป็น was",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0038",
+      "type": "error_identification",
+      "topic": "preposition",
+      "cefr": "B2",
+      "difficulty": 8,
+      "question": "Choose the incorrect part: She is good / in / mathematics / at school.",
+      "choices": [
+        "She is good",
+        "in",
+        "mathematics",
+        "at school"
+      ],
+      "answerIndex": 1,
+      "answer": "in",
+      "explanationThai": "good at ไม่ใช่ good in",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0039",
+      "type": "error_identification",
+      "topic": "comparison",
+      "cefr": "B1",
+      "difficulty": 9,
+      "question": "Choose the incorrect part: This car is / more cheaper / than / that one.",
+      "choices": [
+        "This car is",
+        "more cheaper",
+        "than",
+        "that one"
+      ],
+      "answerIndex": 1,
+      "answer": "more cheaper",
+      "explanationThai": "cheap ขั้นกว่าใช้ cheaper ไม่ใช้ more cheaper",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0040",
+      "type": "error_identification",
+      "topic": "quantifier",
+      "cefr": "B2",
+      "difficulty": 10,
+      "question": "Choose the incorrect part: There are / much students / in the classroom / today.",
+      "choices": [
+        "There are",
+        "much students",
+        "in the classroom",
+        "today"
+      ],
+      "answerIndex": 1,
+      "answer": "much students",
+      "explanationThai": "students นับได้ ใช้ many students",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0041",
+      "type": "error_identification",
+      "topic": "subject_verb_agreement",
+      "cefr": "B1",
+      "difficulty": 1,
+      "question": "Choose the incorrect part: The group of students / are / preparing / for the competition.",
+      "choices": [
+        "The group of students",
+        "are",
+        "preparing",
+        "for the competition"
+      ],
+      "answerIndex": 1,
+      "answer": "are",
+      "explanationThai": "group เป็นคำนามเอกพจน์ ต้องใช้ is ไม่ใช่ are",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0042",
+      "type": "error_identification",
+      "topic": "tense",
+      "cefr": "B2",
+      "difficulty": 2,
+      "question": "Choose the incorrect part: She has finished / her homework / two hours ago / before dinner.",
+      "choices": [
+        "She has finished",
+        "her homework",
+        "two hours ago",
+        "before dinner"
+      ],
+      "answerIndex": 0,
+      "answer": "She has finished",
+      "explanationThai": "two hours ago เป็นเวลาที่จบแล้ว ต้องใช้ past simple",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0043",
+      "type": "error_identification",
+      "topic": "passive_voice",
+      "cefr": "B1",
+      "difficulty": 3,
+      "question": "Choose the incorrect part: The letters / was sent / yesterday / by the secretary.",
+      "choices": [
+        "The letters",
+        "was sent",
+        "yesterday",
+        "by the secretary"
+      ],
+      "answerIndex": 1,
+      "answer": "was sent",
+      "explanationThai": "letters เป็นพหูพจน์ ต้องใช้ were sent",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0044",
+      "type": "error_identification",
+      "topic": "gerund",
+      "cefr": "B2",
+      "difficulty": 4,
+      "question": "Choose the incorrect part: He suggested / to take / a taxi / home.",
+      "choices": [
+        "He suggested",
+        "to take",
+        "a taxi",
+        "home"
+      ],
+      "answerIndex": 1,
+      "answer": "to take",
+      "explanationThai": "suggest ตามด้วย gerund: suggested taking",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0045",
+      "type": "error_identification",
+      "topic": "relative_clause",
+      "cefr": "B1",
+      "difficulty": 5,
+      "question": "Choose the incorrect part: The book / who / I borrowed / is interesting.",
+      "choices": [
+        "The book",
+        "who",
+        "I borrowed",
+        "is interesting"
+      ],
+      "answerIndex": 1,
+      "answer": "who",
+      "explanationThai": "book เป็นสิ่งของ ใช้ which หรือ that",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0046",
+      "type": "error_identification",
+      "topic": "conditional",
+      "cefr": "B2",
+      "difficulty": 6,
+      "question": "Choose the incorrect part: If I knew / the answer, / I will tell / you.",
+      "choices": [
+        "If I knew",
+        "the answer",
+        "I will tell",
+        "you"
+      ],
+      "answerIndex": 2,
+      "answer": "I will tell",
+      "explanationThai": "Conditional type 2 ใช้ would tell",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0047",
+      "type": "error_identification",
+      "topic": "reported_speech",
+      "cefr": "B1",
+      "difficulty": 7,
+      "question": "Choose the incorrect part: He said / that he is / tired / yesterday.",
+      "choices": [
+        "He said",
+        "that he is",
+        "tired",
+        "yesterday"
+      ],
+      "answerIndex": 1,
+      "answer": "that he is",
+      "explanationThai": "Reported speech ควรเปลี่ยน is เป็น was",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0048",
+      "type": "error_identification",
+      "topic": "preposition",
+      "cefr": "B2",
+      "difficulty": 8,
+      "question": "Choose the incorrect part: She is good / in / mathematics / at school.",
+      "choices": [
+        "She is good",
+        "in",
+        "mathematics",
+        "at school"
+      ],
+      "answerIndex": 1,
+      "answer": "in",
+      "explanationThai": "good at ไม่ใช่ good in",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0049",
+      "type": "error_identification",
+      "topic": "comparison",
+      "cefr": "B1",
+      "difficulty": 9,
+      "question": "Choose the incorrect part: This car is / more cheaper / than / that one.",
+      "choices": [
+        "This car is",
+        "more cheaper",
+        "than",
+        "that one"
+      ],
+      "answerIndex": 1,
+      "answer": "more cheaper",
+      "explanationThai": "cheap ขั้นกว่าใช้ cheaper ไม่ใช้ more cheaper",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0050",
+      "type": "error_identification",
+      "topic": "quantifier",
+      "cefr": "B2",
+      "difficulty": 10,
+      "question": "Choose the incorrect part: There are / much students / in the classroom / today.",
+      "choices": [
+        "There are",
+        "much students",
+        "in the classroom",
+        "today"
+      ],
+      "answerIndex": 1,
+      "answer": "much students",
+      "explanationThai": "students นับได้ ใช้ many students",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0051",
+      "type": "error_identification",
+      "topic": "subject_verb_agreement",
+      "cefr": "B1",
+      "difficulty": 1,
+      "question": "Choose the incorrect part: The group of students / are / preparing / for the competition.",
+      "choices": [
+        "The group of students",
+        "are",
+        "preparing",
+        "for the competition"
+      ],
+      "answerIndex": 1,
+      "answer": "are",
+      "explanationThai": "group เป็นคำนามเอกพจน์ ต้องใช้ is ไม่ใช่ are",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0052",
+      "type": "error_identification",
+      "topic": "tense",
+      "cefr": "B2",
+      "difficulty": 2,
+      "question": "Choose the incorrect part: She has finished / her homework / two hours ago / before dinner.",
+      "choices": [
+        "She has finished",
+        "her homework",
+        "two hours ago",
+        "before dinner"
+      ],
+      "answerIndex": 0,
+      "answer": "She has finished",
+      "explanationThai": "two hours ago เป็นเวลาที่จบแล้ว ต้องใช้ past simple",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0053",
+      "type": "error_identification",
+      "topic": "passive_voice",
+      "cefr": "B1",
+      "difficulty": 3,
+      "question": "Choose the incorrect part: The letters / was sent / yesterday / by the secretary.",
+      "choices": [
+        "The letters",
+        "was sent",
+        "yesterday",
+        "by the secretary"
+      ],
+      "answerIndex": 1,
+      "answer": "was sent",
+      "explanationThai": "letters เป็นพหูพจน์ ต้องใช้ were sent",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0054",
+      "type": "error_identification",
+      "topic": "gerund",
+      "cefr": "B2",
+      "difficulty": 4,
+      "question": "Choose the incorrect part: He suggested / to take / a taxi / home.",
+      "choices": [
+        "He suggested",
+        "to take",
+        "a taxi",
+        "home"
+      ],
+      "answerIndex": 1,
+      "answer": "to take",
+      "explanationThai": "suggest ตามด้วย gerund: suggested taking",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0055",
+      "type": "error_identification",
+      "topic": "relative_clause",
+      "cefr": "B1",
+      "difficulty": 5,
+      "question": "Choose the incorrect part: The book / who / I borrowed / is interesting.",
+      "choices": [
+        "The book",
+        "who",
+        "I borrowed",
+        "is interesting"
+      ],
+      "answerIndex": 1,
+      "answer": "who",
+      "explanationThai": "book เป็นสิ่งของ ใช้ which หรือ that",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0056",
+      "type": "error_identification",
+      "topic": "conditional",
+      "cefr": "B2",
+      "difficulty": 6,
+      "question": "Choose the incorrect part: If I knew / the answer, / I will tell / you.",
+      "choices": [
+        "If I knew",
+        "the answer",
+        "I will tell",
+        "you"
+      ],
+      "answerIndex": 2,
+      "answer": "I will tell",
+      "explanationThai": "Conditional type 2 ใช้ would tell",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0057",
+      "type": "error_identification",
+      "topic": "reported_speech",
+      "cefr": "B1",
+      "difficulty": 7,
+      "question": "Choose the incorrect part: He said / that he is / tired / yesterday.",
+      "choices": [
+        "He said",
+        "that he is",
+        "tired",
+        "yesterday"
+      ],
+      "answerIndex": 1,
+      "answer": "that he is",
+      "explanationThai": "Reported speech ควรเปลี่ยน is เป็น was",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0058",
+      "type": "error_identification",
+      "topic": "preposition",
+      "cefr": "B2",
+      "difficulty": 8,
+      "question": "Choose the incorrect part: She is good / in / mathematics / at school.",
+      "choices": [
+        "She is good",
+        "in",
+        "mathematics",
+        "at school"
+      ],
+      "answerIndex": 1,
+      "answer": "in",
+      "explanationThai": "good at ไม่ใช่ good in",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0059",
+      "type": "error_identification",
+      "topic": "comparison",
+      "cefr": "B1",
+      "difficulty": 9,
+      "question": "Choose the incorrect part: This car is / more cheaper / than / that one.",
+      "choices": [
+        "This car is",
+        "more cheaper",
+        "than",
+        "that one"
+      ],
+      "answerIndex": 1,
+      "answer": "more cheaper",
+      "explanationThai": "cheap ขั้นกว่าใช้ cheaper ไม่ใช้ more cheaper",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0060",
+      "type": "error_identification",
+      "topic": "quantifier",
+      "cefr": "B2",
+      "difficulty": 10,
+      "question": "Choose the incorrect part: There are / much students / in the classroom / today.",
+      "choices": [
+        "There are",
+        "much students",
+        "in the classroom",
+        "today"
+      ],
+      "answerIndex": 1,
+      "answer": "much students",
+      "explanationThai": "students นับได้ ใช้ many students",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0061",
+      "type": "error_identification",
+      "topic": "subject_verb_agreement",
+      "cefr": "B1",
+      "difficulty": 1,
+      "question": "Choose the incorrect part: The group of students / are / preparing / for the competition.",
+      "choices": [
+        "The group of students",
+        "are",
+        "preparing",
+        "for the competition"
+      ],
+      "answerIndex": 1,
+      "answer": "are",
+      "explanationThai": "group เป็นคำนามเอกพจน์ ต้องใช้ is ไม่ใช่ are",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0062",
+      "type": "error_identification",
+      "topic": "tense",
+      "cefr": "B2",
+      "difficulty": 2,
+      "question": "Choose the incorrect part: She has finished / her homework / two hours ago / before dinner.",
+      "choices": [
+        "She has finished",
+        "her homework",
+        "two hours ago",
+        "before dinner"
+      ],
+      "answerIndex": 0,
+      "answer": "She has finished",
+      "explanationThai": "two hours ago เป็นเวลาที่จบแล้ว ต้องใช้ past simple",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0063",
+      "type": "error_identification",
+      "topic": "passive_voice",
+      "cefr": "B1",
+      "difficulty": 3,
+      "question": "Choose the incorrect part: The letters / was sent / yesterday / by the secretary.",
+      "choices": [
+        "The letters",
+        "was sent",
+        "yesterday",
+        "by the secretary"
+      ],
+      "answerIndex": 1,
+      "answer": "was sent",
+      "explanationThai": "letters เป็นพหูพจน์ ต้องใช้ were sent",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0064",
+      "type": "error_identification",
+      "topic": "gerund",
+      "cefr": "B2",
+      "difficulty": 4,
+      "question": "Choose the incorrect part: He suggested / to take / a taxi / home.",
+      "choices": [
+        "He suggested",
+        "to take",
+        "a taxi",
+        "home"
+      ],
+      "answerIndex": 1,
+      "answer": "to take",
+      "explanationThai": "suggest ตามด้วย gerund: suggested taking",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0065",
+      "type": "error_identification",
+      "topic": "relative_clause",
+      "cefr": "B1",
+      "difficulty": 5,
+      "question": "Choose the incorrect part: The book / who / I borrowed / is interesting.",
+      "choices": [
+        "The book",
+        "who",
+        "I borrowed",
+        "is interesting"
+      ],
+      "answerIndex": 1,
+      "answer": "who",
+      "explanationThai": "book เป็นสิ่งของ ใช้ which หรือ that",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0066",
+      "type": "error_identification",
+      "topic": "conditional",
+      "cefr": "B2",
+      "difficulty": 6,
+      "question": "Choose the incorrect part: If I knew / the answer, / I will tell / you.",
+      "choices": [
+        "If I knew",
+        "the answer",
+        "I will tell",
+        "you"
+      ],
+      "answerIndex": 2,
+      "answer": "I will tell",
+      "explanationThai": "Conditional type 2 ใช้ would tell",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0067",
+      "type": "error_identification",
+      "topic": "reported_speech",
+      "cefr": "B1",
+      "difficulty": 7,
+      "question": "Choose the incorrect part: He said / that he is / tired / yesterday.",
+      "choices": [
+        "He said",
+        "that he is",
+        "tired",
+        "yesterday"
+      ],
+      "answerIndex": 1,
+      "answer": "that he is",
+      "explanationThai": "Reported speech ควรเปลี่ยน is เป็น was",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0068",
+      "type": "error_identification",
+      "topic": "preposition",
+      "cefr": "B2",
+      "difficulty": 8,
+      "question": "Choose the incorrect part: She is good / in / mathematics / at school.",
+      "choices": [
+        "She is good",
+        "in",
+        "mathematics",
+        "at school"
+      ],
+      "answerIndex": 1,
+      "answer": "in",
+      "explanationThai": "good at ไม่ใช่ good in",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0069",
+      "type": "error_identification",
+      "topic": "comparison",
+      "cefr": "B1",
+      "difficulty": 9,
+      "question": "Choose the incorrect part: This car is / more cheaper / than / that one.",
+      "choices": [
+        "This car is",
+        "more cheaper",
+        "than",
+        "that one"
+      ],
+      "answerIndex": 1,
+      "answer": "more cheaper",
+      "explanationThai": "cheap ขั้นกว่าใช้ cheaper ไม่ใช้ more cheaper",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0070",
+      "type": "error_identification",
+      "topic": "quantifier",
+      "cefr": "B2",
+      "difficulty": 10,
+      "question": "Choose the incorrect part: There are / much students / in the classroom / today.",
+      "choices": [
+        "There are",
+        "much students",
+        "in the classroom",
+        "today"
+      ],
+      "answerIndex": 1,
+      "answer": "much students",
+      "explanationThai": "students นับได้ ใช้ many students",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0071",
+      "type": "error_identification",
+      "topic": "subject_verb_agreement",
+      "cefr": "B1",
+      "difficulty": 1,
+      "question": "Choose the incorrect part: The group of students / are / preparing / for the competition.",
+      "choices": [
+        "The group of students",
+        "are",
+        "preparing",
+        "for the competition"
+      ],
+      "answerIndex": 1,
+      "answer": "are",
+      "explanationThai": "group เป็นคำนามเอกพจน์ ต้องใช้ is ไม่ใช่ are",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0072",
+      "type": "error_identification",
+      "topic": "tense",
+      "cefr": "B2",
+      "difficulty": 2,
+      "question": "Choose the incorrect part: She has finished / her homework / two hours ago / before dinner.",
+      "choices": [
+        "She has finished",
+        "her homework",
+        "two hours ago",
+        "before dinner"
+      ],
+      "answerIndex": 0,
+      "answer": "She has finished",
+      "explanationThai": "two hours ago เป็นเวลาที่จบแล้ว ต้องใช้ past simple",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0073",
+      "type": "error_identification",
+      "topic": "passive_voice",
+      "cefr": "B1",
+      "difficulty": 3,
+      "question": "Choose the incorrect part: The letters / was sent / yesterday / by the secretary.",
+      "choices": [
+        "The letters",
+        "was sent",
+        "yesterday",
+        "by the secretary"
+      ],
+      "answerIndex": 1,
+      "answer": "was sent",
+      "explanationThai": "letters เป็นพหูพจน์ ต้องใช้ were sent",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0074",
+      "type": "error_identification",
+      "topic": "gerund",
+      "cefr": "B2",
+      "difficulty": 4,
+      "question": "Choose the incorrect part: He suggested / to take / a taxi / home.",
+      "choices": [
+        "He suggested",
+        "to take",
+        "a taxi",
+        "home"
+      ],
+      "answerIndex": 1,
+      "answer": "to take",
+      "explanationThai": "suggest ตามด้วย gerund: suggested taking",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0075",
+      "type": "error_identification",
+      "topic": "relative_clause",
+      "cefr": "B1",
+      "difficulty": 5,
+      "question": "Choose the incorrect part: The book / who / I borrowed / is interesting.",
+      "choices": [
+        "The book",
+        "who",
+        "I borrowed",
+        "is interesting"
+      ],
+      "answerIndex": 1,
+      "answer": "who",
+      "explanationThai": "book เป็นสิ่งของ ใช้ which หรือ that",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0076",
+      "type": "error_identification",
+      "topic": "conditional",
+      "cefr": "B2",
+      "difficulty": 6,
+      "question": "Choose the incorrect part: If I knew / the answer, / I will tell / you.",
+      "choices": [
+        "If I knew",
+        "the answer",
+        "I will tell",
+        "you"
+      ],
+      "answerIndex": 2,
+      "answer": "I will tell",
+      "explanationThai": "Conditional type 2 ใช้ would tell",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0077",
+      "type": "error_identification",
+      "topic": "reported_speech",
+      "cefr": "B1",
+      "difficulty": 7,
+      "question": "Choose the incorrect part: He said / that he is / tired / yesterday.",
+      "choices": [
+        "He said",
+        "that he is",
+        "tired",
+        "yesterday"
+      ],
+      "answerIndex": 1,
+      "answer": "that he is",
+      "explanationThai": "Reported speech ควรเปลี่ยน is เป็น was",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0078",
+      "type": "error_identification",
+      "topic": "preposition",
+      "cefr": "B2",
+      "difficulty": 8,
+      "question": "Choose the incorrect part: She is good / in / mathematics / at school.",
+      "choices": [
+        "She is good",
+        "in",
+        "mathematics",
+        "at school"
+      ],
+      "answerIndex": 1,
+      "answer": "in",
+      "explanationThai": "good at ไม่ใช่ good in",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0079",
+      "type": "error_identification",
+      "topic": "comparison",
+      "cefr": "B1",
+      "difficulty": 9,
+      "question": "Choose the incorrect part: This car is / more cheaper / than / that one.",
+      "choices": [
+        "This car is",
+        "more cheaper",
+        "than",
+        "that one"
+      ],
+      "answerIndex": 1,
+      "answer": "more cheaper",
+      "explanationThai": "cheap ขั้นกว่าใช้ cheaper ไม่ใช้ more cheaper",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0080",
+      "type": "error_identification",
+      "topic": "quantifier",
+      "cefr": "B2",
+      "difficulty": 10,
+      "question": "Choose the incorrect part: There are / much students / in the classroom / today.",
+      "choices": [
+        "There are",
+        "much students",
+        "in the classroom",
+        "today"
+      ],
+      "answerIndex": 1,
+      "answer": "much students",
+      "explanationThai": "students นับได้ ใช้ many students",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0081",
+      "type": "error_identification",
+      "topic": "subject_verb_agreement",
+      "cefr": "B1",
+      "difficulty": 1,
+      "question": "Choose the incorrect part: The group of students / are / preparing / for the competition.",
+      "choices": [
+        "The group of students",
+        "are",
+        "preparing",
+        "for the competition"
+      ],
+      "answerIndex": 1,
+      "answer": "are",
+      "explanationThai": "group เป็นคำนามเอกพจน์ ต้องใช้ is ไม่ใช่ are",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0082",
+      "type": "error_identification",
+      "topic": "tense",
+      "cefr": "B2",
+      "difficulty": 2,
+      "question": "Choose the incorrect part: She has finished / her homework / two hours ago / before dinner.",
+      "choices": [
+        "She has finished",
+        "her homework",
+        "two hours ago",
+        "before dinner"
+      ],
+      "answerIndex": 0,
+      "answer": "She has finished",
+      "explanationThai": "two hours ago เป็นเวลาที่จบแล้ว ต้องใช้ past simple",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0083",
+      "type": "error_identification",
+      "topic": "passive_voice",
+      "cefr": "B1",
+      "difficulty": 3,
+      "question": "Choose the incorrect part: The letters / was sent / yesterday / by the secretary.",
+      "choices": [
+        "The letters",
+        "was sent",
+        "yesterday",
+        "by the secretary"
+      ],
+      "answerIndex": 1,
+      "answer": "was sent",
+      "explanationThai": "letters เป็นพหูพจน์ ต้องใช้ were sent",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0084",
+      "type": "error_identification",
+      "topic": "gerund",
+      "cefr": "B2",
+      "difficulty": 4,
+      "question": "Choose the incorrect part: He suggested / to take / a taxi / home.",
+      "choices": [
+        "He suggested",
+        "to take",
+        "a taxi",
+        "home"
+      ],
+      "answerIndex": 1,
+      "answer": "to take",
+      "explanationThai": "suggest ตามด้วย gerund: suggested taking",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0085",
+      "type": "error_identification",
+      "topic": "relative_clause",
+      "cefr": "B1",
+      "difficulty": 5,
+      "question": "Choose the incorrect part: The book / who / I borrowed / is interesting.",
+      "choices": [
+        "The book",
+        "who",
+        "I borrowed",
+        "is interesting"
+      ],
+      "answerIndex": 1,
+      "answer": "who",
+      "explanationThai": "book เป็นสิ่งของ ใช้ which หรือ that",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0086",
+      "type": "error_identification",
+      "topic": "conditional",
+      "cefr": "B2",
+      "difficulty": 6,
+      "question": "Choose the incorrect part: If I knew / the answer, / I will tell / you.",
+      "choices": [
+        "If I knew",
+        "the answer",
+        "I will tell",
+        "you"
+      ],
+      "answerIndex": 2,
+      "answer": "I will tell",
+      "explanationThai": "Conditional type 2 ใช้ would tell",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0087",
+      "type": "error_identification",
+      "topic": "reported_speech",
+      "cefr": "B1",
+      "difficulty": 7,
+      "question": "Choose the incorrect part: He said / that he is / tired / yesterday.",
+      "choices": [
+        "He said",
+        "that he is",
+        "tired",
+        "yesterday"
+      ],
+      "answerIndex": 1,
+      "answer": "that he is",
+      "explanationThai": "Reported speech ควรเปลี่ยน is เป็น was",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0088",
+      "type": "error_identification",
+      "topic": "preposition",
+      "cefr": "B2",
+      "difficulty": 8,
+      "question": "Choose the incorrect part: She is good / in / mathematics / at school.",
+      "choices": [
+        "She is good",
+        "in",
+        "mathematics",
+        "at school"
+      ],
+      "answerIndex": 1,
+      "answer": "in",
+      "explanationThai": "good at ไม่ใช่ good in",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0089",
+      "type": "error_identification",
+      "topic": "comparison",
+      "cefr": "B1",
+      "difficulty": 9,
+      "question": "Choose the incorrect part: This car is / more cheaper / than / that one.",
+      "choices": [
+        "This car is",
+        "more cheaper",
+        "than",
+        "that one"
+      ],
+      "answerIndex": 1,
+      "answer": "more cheaper",
+      "explanationThai": "cheap ขั้นกว่าใช้ cheaper ไม่ใช้ more cheaper",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0090",
+      "type": "error_identification",
+      "topic": "quantifier",
+      "cefr": "B2",
+      "difficulty": 10,
+      "question": "Choose the incorrect part: There are / much students / in the classroom / today.",
+      "choices": [
+        "There are",
+        "much students",
+        "in the classroom",
+        "today"
+      ],
+      "answerIndex": 1,
+      "answer": "much students",
+      "explanationThai": "students นับได้ ใช้ many students",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0091",
+      "type": "error_identification",
+      "topic": "subject_verb_agreement",
+      "cefr": "B1",
+      "difficulty": 1,
+      "question": "Choose the incorrect part: The group of students / are / preparing / for the competition.",
+      "choices": [
+        "The group of students",
+        "are",
+        "preparing",
+        "for the competition"
+      ],
+      "answerIndex": 1,
+      "answer": "are",
+      "explanationThai": "group เป็นคำนามเอกพจน์ ต้องใช้ is ไม่ใช่ are",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0092",
+      "type": "error_identification",
+      "topic": "tense",
+      "cefr": "B2",
+      "difficulty": 2,
+      "question": "Choose the incorrect part: She has finished / her homework / two hours ago / before dinner.",
+      "choices": [
+        "She has finished",
+        "her homework",
+        "two hours ago",
+        "before dinner"
+      ],
+      "answerIndex": 0,
+      "answer": "She has finished",
+      "explanationThai": "two hours ago เป็นเวลาที่จบแล้ว ต้องใช้ past simple",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0093",
+      "type": "error_identification",
+      "topic": "passive_voice",
+      "cefr": "B1",
+      "difficulty": 3,
+      "question": "Choose the incorrect part: The letters / was sent / yesterday / by the secretary.",
+      "choices": [
+        "The letters",
+        "was sent",
+        "yesterday",
+        "by the secretary"
+      ],
+      "answerIndex": 1,
+      "answer": "was sent",
+      "explanationThai": "letters เป็นพหูพจน์ ต้องใช้ were sent",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0094",
+      "type": "error_identification",
+      "topic": "gerund",
+      "cefr": "B2",
+      "difficulty": 4,
+      "question": "Choose the incorrect part: He suggested / to take / a taxi / home.",
+      "choices": [
+        "He suggested",
+        "to take",
+        "a taxi",
+        "home"
+      ],
+      "answerIndex": 1,
+      "answer": "to take",
+      "explanationThai": "suggest ตามด้วย gerund: suggested taking",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0095",
+      "type": "error_identification",
+      "topic": "relative_clause",
+      "cefr": "B1",
+      "difficulty": 5,
+      "question": "Choose the incorrect part: The book / who / I borrowed / is interesting.",
+      "choices": [
+        "The book",
+        "who",
+        "I borrowed",
+        "is interesting"
+      ],
+      "answerIndex": 1,
+      "answer": "who",
+      "explanationThai": "book เป็นสิ่งของ ใช้ which หรือ that",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0096",
+      "type": "error_identification",
+      "topic": "conditional",
+      "cefr": "B2",
+      "difficulty": 6,
+      "question": "Choose the incorrect part: If I knew / the answer, / I will tell / you.",
+      "choices": [
+        "If I knew",
+        "the answer",
+        "I will tell",
+        "you"
+      ],
+      "answerIndex": 2,
+      "answer": "I will tell",
+      "explanationThai": "Conditional type 2 ใช้ would tell",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0097",
+      "type": "error_identification",
+      "topic": "reported_speech",
+      "cefr": "B1",
+      "difficulty": 7,
+      "question": "Choose the incorrect part: He said / that he is / tired / yesterday.",
+      "choices": [
+        "He said",
+        "that he is",
+        "tired",
+        "yesterday"
+      ],
+      "answerIndex": 1,
+      "answer": "that he is",
+      "explanationThai": "Reported speech ควรเปลี่ยน is เป็น was",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0098",
+      "type": "error_identification",
+      "topic": "preposition",
+      "cefr": "B2",
+      "difficulty": 8,
+      "question": "Choose the incorrect part: She is good / in / mathematics / at school.",
+      "choices": [
+        "She is good",
+        "in",
+        "mathematics",
+        "at school"
+      ],
+      "answerIndex": 1,
+      "answer": "in",
+      "explanationThai": "good at ไม่ใช่ good in",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0099",
+      "type": "error_identification",
+      "topic": "comparison",
+      "cefr": "B1",
+      "difficulty": 9,
+      "question": "Choose the incorrect part: This car is / more cheaper / than / that one.",
+      "choices": [
+        "This car is",
+        "more cheaper",
+        "than",
+        "that one"
+      ],
+      "answerIndex": 1,
+      "answer": "more cheaper",
+      "explanationThai": "cheap ขั้นกว่าใช้ cheaper ไม่ใช้ more cheaper",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0100",
+      "type": "error_identification",
+      "topic": "quantifier",
+      "cefr": "B2",
+      "difficulty": 10,
+      "question": "Choose the incorrect part: There are / much students / in the classroom / today.",
+      "choices": [
+        "There are",
+        "much students",
+        "in the classroom",
+        "today"
+      ],
+      "answerIndex": 1,
+      "answer": "much students",
+      "explanationThai": "students นับได้ ใช้ many students",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0101",
+      "type": "error_identification",
+      "topic": "subject_verb_agreement",
+      "cefr": "B1",
+      "difficulty": 1,
+      "question": "Choose the incorrect part: The group of students / are / preparing / for the competition.",
+      "choices": [
+        "The group of students",
+        "are",
+        "preparing",
+        "for the competition"
+      ],
+      "answerIndex": 1,
+      "answer": "are",
+      "explanationThai": "group เป็นคำนามเอกพจน์ ต้องใช้ is ไม่ใช่ are",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0102",
+      "type": "error_identification",
+      "topic": "tense",
+      "cefr": "B2",
+      "difficulty": 2,
+      "question": "Choose the incorrect part: She has finished / her homework / two hours ago / before dinner.",
+      "choices": [
+        "She has finished",
+        "her homework",
+        "two hours ago",
+        "before dinner"
+      ],
+      "answerIndex": 0,
+      "answer": "She has finished",
+      "explanationThai": "two hours ago เป็นเวลาที่จบแล้ว ต้องใช้ past simple",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0103",
+      "type": "error_identification",
+      "topic": "passive_voice",
+      "cefr": "B1",
+      "difficulty": 3,
+      "question": "Choose the incorrect part: The letters / was sent / yesterday / by the secretary.",
+      "choices": [
+        "The letters",
+        "was sent",
+        "yesterday",
+        "by the secretary"
+      ],
+      "answerIndex": 1,
+      "answer": "was sent",
+      "explanationThai": "letters เป็นพหูพจน์ ต้องใช้ were sent",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0104",
+      "type": "error_identification",
+      "topic": "gerund",
+      "cefr": "B2",
+      "difficulty": 4,
+      "question": "Choose the incorrect part: He suggested / to take / a taxi / home.",
+      "choices": [
+        "He suggested",
+        "to take",
+        "a taxi",
+        "home"
+      ],
+      "answerIndex": 1,
+      "answer": "to take",
+      "explanationThai": "suggest ตามด้วย gerund: suggested taking",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0105",
+      "type": "error_identification",
+      "topic": "relative_clause",
+      "cefr": "B1",
+      "difficulty": 5,
+      "question": "Choose the incorrect part: The book / who / I borrowed / is interesting.",
+      "choices": [
+        "The book",
+        "who",
+        "I borrowed",
+        "is interesting"
+      ],
+      "answerIndex": 1,
+      "answer": "who",
+      "explanationThai": "book เป็นสิ่งของ ใช้ which หรือ that",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0106",
+      "type": "error_identification",
+      "topic": "conditional",
+      "cefr": "B2",
+      "difficulty": 6,
+      "question": "Choose the incorrect part: If I knew / the answer, / I will tell / you.",
+      "choices": [
+        "If I knew",
+        "the answer",
+        "I will tell",
+        "you"
+      ],
+      "answerIndex": 2,
+      "answer": "I will tell",
+      "explanationThai": "Conditional type 2 ใช้ would tell",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0107",
+      "type": "error_identification",
+      "topic": "reported_speech",
+      "cefr": "B1",
+      "difficulty": 7,
+      "question": "Choose the incorrect part: He said / that he is / tired / yesterday.",
+      "choices": [
+        "He said",
+        "that he is",
+        "tired",
+        "yesterday"
+      ],
+      "answerIndex": 1,
+      "answer": "that he is",
+      "explanationThai": "Reported speech ควรเปลี่ยน is เป็น was",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0108",
+      "type": "error_identification",
+      "topic": "preposition",
+      "cefr": "B2",
+      "difficulty": 8,
+      "question": "Choose the incorrect part: She is good / in / mathematics / at school.",
+      "choices": [
+        "She is good",
+        "in",
+        "mathematics",
+        "at school"
+      ],
+      "answerIndex": 1,
+      "answer": "in",
+      "explanationThai": "good at ไม่ใช่ good in",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0109",
+      "type": "error_identification",
+      "topic": "comparison",
+      "cefr": "B1",
+      "difficulty": 9,
+      "question": "Choose the incorrect part: This car is / more cheaper / than / that one.",
+      "choices": [
+        "This car is",
+        "more cheaper",
+        "than",
+        "that one"
+      ],
+      "answerIndex": 1,
+      "answer": "more cheaper",
+      "explanationThai": "cheap ขั้นกว่าใช้ cheaper ไม่ใช้ more cheaper",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0110",
+      "type": "error_identification",
+      "topic": "quantifier",
+      "cefr": "B2",
+      "difficulty": 10,
+      "question": "Choose the incorrect part: There are / much students / in the classroom / today.",
+      "choices": [
+        "There are",
+        "much students",
+        "in the classroom",
+        "today"
+      ],
+      "answerIndex": 1,
+      "answer": "much students",
+      "explanationThai": "students นับได้ ใช้ many students",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0111",
+      "type": "error_identification",
+      "topic": "subject_verb_agreement",
+      "cefr": "B1",
+      "difficulty": 1,
+      "question": "Choose the incorrect part: The group of students / are / preparing / for the competition.",
+      "choices": [
+        "The group of students",
+        "are",
+        "preparing",
+        "for the competition"
+      ],
+      "answerIndex": 1,
+      "answer": "are",
+      "explanationThai": "group เป็นคำนามเอกพจน์ ต้องใช้ is ไม่ใช่ are",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0112",
+      "type": "error_identification",
+      "topic": "tense",
+      "cefr": "B2",
+      "difficulty": 2,
+      "question": "Choose the incorrect part: She has finished / her homework / two hours ago / before dinner.",
+      "choices": [
+        "She has finished",
+        "her homework",
+        "two hours ago",
+        "before dinner"
+      ],
+      "answerIndex": 0,
+      "answer": "She has finished",
+      "explanationThai": "two hours ago เป็นเวลาที่จบแล้ว ต้องใช้ past simple",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0113",
+      "type": "error_identification",
+      "topic": "passive_voice",
+      "cefr": "B1",
+      "difficulty": 3,
+      "question": "Choose the incorrect part: The letters / was sent / yesterday / by the secretary.",
+      "choices": [
+        "The letters",
+        "was sent",
+        "yesterday",
+        "by the secretary"
+      ],
+      "answerIndex": 1,
+      "answer": "was sent",
+      "explanationThai": "letters เป็นพหูพจน์ ต้องใช้ were sent",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0114",
+      "type": "error_identification",
+      "topic": "gerund",
+      "cefr": "B2",
+      "difficulty": 4,
+      "question": "Choose the incorrect part: He suggested / to take / a taxi / home.",
+      "choices": [
+        "He suggested",
+        "to take",
+        "a taxi",
+        "home"
+      ],
+      "answerIndex": 1,
+      "answer": "to take",
+      "explanationThai": "suggest ตามด้วย gerund: suggested taking",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0115",
+      "type": "error_identification",
+      "topic": "relative_clause",
+      "cefr": "B1",
+      "difficulty": 5,
+      "question": "Choose the incorrect part: The book / who / I borrowed / is interesting.",
+      "choices": [
+        "The book",
+        "who",
+        "I borrowed",
+        "is interesting"
+      ],
+      "answerIndex": 1,
+      "answer": "who",
+      "explanationThai": "book เป็นสิ่งของ ใช้ which หรือ that",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0116",
+      "type": "error_identification",
+      "topic": "conditional",
+      "cefr": "B2",
+      "difficulty": 6,
+      "question": "Choose the incorrect part: If I knew / the answer, / I will tell / you.",
+      "choices": [
+        "If I knew",
+        "the answer",
+        "I will tell",
+        "you"
+      ],
+      "answerIndex": 2,
+      "answer": "I will tell",
+      "explanationThai": "Conditional type 2 ใช้ would tell",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0117",
+      "type": "error_identification",
+      "topic": "reported_speech",
+      "cefr": "B1",
+      "difficulty": 7,
+      "question": "Choose the incorrect part: He said / that he is / tired / yesterday.",
+      "choices": [
+        "He said",
+        "that he is",
+        "tired",
+        "yesterday"
+      ],
+      "answerIndex": 1,
+      "answer": "that he is",
+      "explanationThai": "Reported speech ควรเปลี่ยน is เป็น was",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0118",
+      "type": "error_identification",
+      "topic": "preposition",
+      "cefr": "B2",
+      "difficulty": 8,
+      "question": "Choose the incorrect part: She is good / in / mathematics / at school.",
+      "choices": [
+        "She is good",
+        "in",
+        "mathematics",
+        "at school"
+      ],
+      "answerIndex": 1,
+      "answer": "in",
+      "explanationThai": "good at ไม่ใช่ good in",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0119",
+      "type": "error_identification",
+      "topic": "comparison",
+      "cefr": "B1",
+      "difficulty": 9,
+      "question": "Choose the incorrect part: This car is / more cheaper / than / that one.",
+      "choices": [
+        "This car is",
+        "more cheaper",
+        "than",
+        "that one"
+      ],
+      "answerIndex": 1,
+      "answer": "more cheaper",
+      "explanationThai": "cheap ขั้นกว่าใช้ cheaper ไม่ใช้ more cheaper",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0120",
+      "type": "error_identification",
+      "topic": "quantifier",
+      "cefr": "B2",
+      "difficulty": 10,
+      "question": "Choose the incorrect part: There are / much students / in the classroom / today.",
+      "choices": [
+        "There are",
+        "much students",
+        "in the classroom",
+        "today"
+      ],
+      "answerIndex": 1,
+      "answer": "much students",
+      "explanationThai": "students นับได้ ใช้ many students",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0121",
+      "type": "error_identification",
+      "topic": "subject_verb_agreement",
+      "cefr": "B1",
+      "difficulty": 1,
+      "question": "Choose the incorrect part: The group of students / are / preparing / for the competition.",
+      "choices": [
+        "The group of students",
+        "are",
+        "preparing",
+        "for the competition"
+      ],
+      "answerIndex": 1,
+      "answer": "are",
+      "explanationThai": "group เป็นคำนามเอกพจน์ ต้องใช้ is ไม่ใช่ are",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0122",
+      "type": "error_identification",
+      "topic": "tense",
+      "cefr": "B2",
+      "difficulty": 2,
+      "question": "Choose the incorrect part: She has finished / her homework / two hours ago / before dinner.",
+      "choices": [
+        "She has finished",
+        "her homework",
+        "two hours ago",
+        "before dinner"
+      ],
+      "answerIndex": 0,
+      "answer": "She has finished",
+      "explanationThai": "two hours ago เป็นเวลาที่จบแล้ว ต้องใช้ past simple",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0123",
+      "type": "error_identification",
+      "topic": "passive_voice",
+      "cefr": "B1",
+      "difficulty": 3,
+      "question": "Choose the incorrect part: The letters / was sent / yesterday / by the secretary.",
+      "choices": [
+        "The letters",
+        "was sent",
+        "yesterday",
+        "by the secretary"
+      ],
+      "answerIndex": 1,
+      "answer": "was sent",
+      "explanationThai": "letters เป็นพหูพจน์ ต้องใช้ were sent",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0124",
+      "type": "error_identification",
+      "topic": "gerund",
+      "cefr": "B2",
+      "difficulty": 4,
+      "question": "Choose the incorrect part: He suggested / to take / a taxi / home.",
+      "choices": [
+        "He suggested",
+        "to take",
+        "a taxi",
+        "home"
+      ],
+      "answerIndex": 1,
+      "answer": "to take",
+      "explanationThai": "suggest ตามด้วย gerund: suggested taking",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0125",
+      "type": "error_identification",
+      "topic": "relative_clause",
+      "cefr": "B1",
+      "difficulty": 5,
+      "question": "Choose the incorrect part: The book / who / I borrowed / is interesting.",
+      "choices": [
+        "The book",
+        "who",
+        "I borrowed",
+        "is interesting"
+      ],
+      "answerIndex": 1,
+      "answer": "who",
+      "explanationThai": "book เป็นสิ่งของ ใช้ which หรือ that",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0126",
+      "type": "error_identification",
+      "topic": "conditional",
+      "cefr": "B2",
+      "difficulty": 6,
+      "question": "Choose the incorrect part: If I knew / the answer, / I will tell / you.",
+      "choices": [
+        "If I knew",
+        "the answer",
+        "I will tell",
+        "you"
+      ],
+      "answerIndex": 2,
+      "answer": "I will tell",
+      "explanationThai": "Conditional type 2 ใช้ would tell",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0127",
+      "type": "error_identification",
+      "topic": "reported_speech",
+      "cefr": "B1",
+      "difficulty": 7,
+      "question": "Choose the incorrect part: He said / that he is / tired / yesterday.",
+      "choices": [
+        "He said",
+        "that he is",
+        "tired",
+        "yesterday"
+      ],
+      "answerIndex": 1,
+      "answer": "that he is",
+      "explanationThai": "Reported speech ควรเปลี่ยน is เป็น was",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0128",
+      "type": "error_identification",
+      "topic": "preposition",
+      "cefr": "B2",
+      "difficulty": 8,
+      "question": "Choose the incorrect part: She is good / in / mathematics / at school.",
+      "choices": [
+        "She is good",
+        "in",
+        "mathematics",
+        "at school"
+      ],
+      "answerIndex": 1,
+      "answer": "in",
+      "explanationThai": "good at ไม่ใช่ good in",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0129",
+      "type": "error_identification",
+      "topic": "comparison",
+      "cefr": "B1",
+      "difficulty": 9,
+      "question": "Choose the incorrect part: This car is / more cheaper / than / that one.",
+      "choices": [
+        "This car is",
+        "more cheaper",
+        "than",
+        "that one"
+      ],
+      "answerIndex": 1,
+      "answer": "more cheaper",
+      "explanationThai": "cheap ขั้นกว่าใช้ cheaper ไม่ใช้ more cheaper",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0130",
+      "type": "error_identification",
+      "topic": "quantifier",
+      "cefr": "B2",
+      "difficulty": 10,
+      "question": "Choose the incorrect part: There are / much students / in the classroom / today.",
+      "choices": [
+        "There are",
+        "much students",
+        "in the classroom",
+        "today"
+      ],
+      "answerIndex": 1,
+      "answer": "much students",
+      "explanationThai": "students นับได้ ใช้ many students",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0131",
+      "type": "error_identification",
+      "topic": "subject_verb_agreement",
+      "cefr": "B1",
+      "difficulty": 1,
+      "question": "Choose the incorrect part: The group of students / are / preparing / for the competition.",
+      "choices": [
+        "The group of students",
+        "are",
+        "preparing",
+        "for the competition"
+      ],
+      "answerIndex": 1,
+      "answer": "are",
+      "explanationThai": "group เป็นคำนามเอกพจน์ ต้องใช้ is ไม่ใช่ are",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0132",
+      "type": "error_identification",
+      "topic": "tense",
+      "cefr": "B2",
+      "difficulty": 2,
+      "question": "Choose the incorrect part: She has finished / her homework / two hours ago / before dinner.",
+      "choices": [
+        "She has finished",
+        "her homework",
+        "two hours ago",
+        "before dinner"
+      ],
+      "answerIndex": 0,
+      "answer": "She has finished",
+      "explanationThai": "two hours ago เป็นเวลาที่จบแล้ว ต้องใช้ past simple",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0133",
+      "type": "error_identification",
+      "topic": "passive_voice",
+      "cefr": "B1",
+      "difficulty": 3,
+      "question": "Choose the incorrect part: The letters / was sent / yesterday / by the secretary.",
+      "choices": [
+        "The letters",
+        "was sent",
+        "yesterday",
+        "by the secretary"
+      ],
+      "answerIndex": 1,
+      "answer": "was sent",
+      "explanationThai": "letters เป็นพหูพจน์ ต้องใช้ were sent",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0134",
+      "type": "error_identification",
+      "topic": "gerund",
+      "cefr": "B2",
+      "difficulty": 4,
+      "question": "Choose the incorrect part: He suggested / to take / a taxi / home.",
+      "choices": [
+        "He suggested",
+        "to take",
+        "a taxi",
+        "home"
+      ],
+      "answerIndex": 1,
+      "answer": "to take",
+      "explanationThai": "suggest ตามด้วย gerund: suggested taking",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0135",
+      "type": "error_identification",
+      "topic": "relative_clause",
+      "cefr": "B1",
+      "difficulty": 5,
+      "question": "Choose the incorrect part: The book / who / I borrowed / is interesting.",
+      "choices": [
+        "The book",
+        "who",
+        "I borrowed",
+        "is interesting"
+      ],
+      "answerIndex": 1,
+      "answer": "who",
+      "explanationThai": "book เป็นสิ่งของ ใช้ which หรือ that",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0136",
+      "type": "error_identification",
+      "topic": "conditional",
+      "cefr": "B2",
+      "difficulty": 6,
+      "question": "Choose the incorrect part: If I knew / the answer, / I will tell / you.",
+      "choices": [
+        "If I knew",
+        "the answer",
+        "I will tell",
+        "you"
+      ],
+      "answerIndex": 2,
+      "answer": "I will tell",
+      "explanationThai": "Conditional type 2 ใช้ would tell",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0137",
+      "type": "error_identification",
+      "topic": "reported_speech",
+      "cefr": "B1",
+      "difficulty": 7,
+      "question": "Choose the incorrect part: He said / that he is / tired / yesterday.",
+      "choices": [
+        "He said",
+        "that he is",
+        "tired",
+        "yesterday"
+      ],
+      "answerIndex": 1,
+      "answer": "that he is",
+      "explanationThai": "Reported speech ควรเปลี่ยน is เป็น was",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0138",
+      "type": "error_identification",
+      "topic": "preposition",
+      "cefr": "B2",
+      "difficulty": 8,
+      "question": "Choose the incorrect part: She is good / in / mathematics / at school.",
+      "choices": [
+        "She is good",
+        "in",
+        "mathematics",
+        "at school"
+      ],
+      "answerIndex": 1,
+      "answer": "in",
+      "explanationThai": "good at ไม่ใช่ good in",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0139",
+      "type": "error_identification",
+      "topic": "comparison",
+      "cefr": "B1",
+      "difficulty": 9,
+      "question": "Choose the incorrect part: This car is / more cheaper / than / that one.",
+      "choices": [
+        "This car is",
+        "more cheaper",
+        "than",
+        "that one"
+      ],
+      "answerIndex": 1,
+      "answer": "more cheaper",
+      "explanationThai": "cheap ขั้นกว่าใช้ cheaper ไม่ใช้ more cheaper",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0140",
+      "type": "error_identification",
+      "topic": "quantifier",
+      "cefr": "B2",
+      "difficulty": 10,
+      "question": "Choose the incorrect part: There are / much students / in the classroom / today.",
+      "choices": [
+        "There are",
+        "much students",
+        "in the classroom",
+        "today"
+      ],
+      "answerIndex": 1,
+      "answer": "much students",
+      "explanationThai": "students นับได้ ใช้ many students",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0141",
+      "type": "error_identification",
+      "topic": "subject_verb_agreement",
+      "cefr": "B1",
+      "difficulty": 1,
+      "question": "Choose the incorrect part: The group of students / are / preparing / for the competition.",
+      "choices": [
+        "The group of students",
+        "are",
+        "preparing",
+        "for the competition"
+      ],
+      "answerIndex": 1,
+      "answer": "are",
+      "explanationThai": "group เป็นคำนามเอกพจน์ ต้องใช้ is ไม่ใช่ are",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0142",
+      "type": "error_identification",
+      "topic": "tense",
+      "cefr": "B2",
+      "difficulty": 2,
+      "question": "Choose the incorrect part: She has finished / her homework / two hours ago / before dinner.",
+      "choices": [
+        "She has finished",
+        "her homework",
+        "two hours ago",
+        "before dinner"
+      ],
+      "answerIndex": 0,
+      "answer": "She has finished",
+      "explanationThai": "two hours ago เป็นเวลาที่จบแล้ว ต้องใช้ past simple",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0143",
+      "type": "error_identification",
+      "topic": "passive_voice",
+      "cefr": "B1",
+      "difficulty": 3,
+      "question": "Choose the incorrect part: The letters / was sent / yesterday / by the secretary.",
+      "choices": [
+        "The letters",
+        "was sent",
+        "yesterday",
+        "by the secretary"
+      ],
+      "answerIndex": 1,
+      "answer": "was sent",
+      "explanationThai": "letters เป็นพหูพจน์ ต้องใช้ were sent",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0144",
+      "type": "error_identification",
+      "topic": "gerund",
+      "cefr": "B2",
+      "difficulty": 4,
+      "question": "Choose the incorrect part: He suggested / to take / a taxi / home.",
+      "choices": [
+        "He suggested",
+        "to take",
+        "a taxi",
+        "home"
+      ],
+      "answerIndex": 1,
+      "answer": "to take",
+      "explanationThai": "suggest ตามด้วย gerund: suggested taking",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0145",
+      "type": "error_identification",
+      "topic": "relative_clause",
+      "cefr": "B1",
+      "difficulty": 5,
+      "question": "Choose the incorrect part: The book / who / I borrowed / is interesting.",
+      "choices": [
+        "The book",
+        "who",
+        "I borrowed",
+        "is interesting"
+      ],
+      "answerIndex": 1,
+      "answer": "who",
+      "explanationThai": "book เป็นสิ่งของ ใช้ which หรือ that",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0146",
+      "type": "error_identification",
+      "topic": "conditional",
+      "cefr": "B2",
+      "difficulty": 6,
+      "question": "Choose the incorrect part: If I knew / the answer, / I will tell / you.",
+      "choices": [
+        "If I knew",
+        "the answer",
+        "I will tell",
+        "you"
+      ],
+      "answerIndex": 2,
+      "answer": "I will tell",
+      "explanationThai": "Conditional type 2 ใช้ would tell",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0147",
+      "type": "error_identification",
+      "topic": "reported_speech",
+      "cefr": "B1",
+      "difficulty": 7,
+      "question": "Choose the incorrect part: He said / that he is / tired / yesterday.",
+      "choices": [
+        "He said",
+        "that he is",
+        "tired",
+        "yesterday"
+      ],
+      "answerIndex": 1,
+      "answer": "that he is",
+      "explanationThai": "Reported speech ควรเปลี่ยน is เป็น was",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0148",
+      "type": "error_identification",
+      "topic": "preposition",
+      "cefr": "B2",
+      "difficulty": 8,
+      "question": "Choose the incorrect part: She is good / in / mathematics / at school.",
+      "choices": [
+        "She is good",
+        "in",
+        "mathematics",
+        "at school"
+      ],
+      "answerIndex": 1,
+      "answer": "in",
+      "explanationThai": "good at ไม่ใช่ good in",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0149",
+      "type": "error_identification",
+      "topic": "comparison",
+      "cefr": "B1",
+      "difficulty": 9,
+      "question": "Choose the incorrect part: This car is / more cheaper / than / that one.",
+      "choices": [
+        "This car is",
+        "more cheaper",
+        "than",
+        "that one"
+      ],
+      "answerIndex": 1,
+      "answer": "more cheaper",
+      "explanationThai": "cheap ขั้นกว่าใช้ cheaper ไม่ใช้ more cheaper",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    },
+    {
+      "id": "TU-ERR-0150",
+      "type": "error_identification",
+      "topic": "quantifier",
+      "cefr": "B2",
+      "difficulty": 10,
+      "question": "Choose the incorrect part: There are / much students / in the classroom / today.",
+      "choices": [
+        "There are",
+        "much students",
+        "in the classroom",
+        "today"
+      ],
+      "answerIndex": 1,
+      "answer": "much students",
+      "explanationThai": "students นับได้ ใช้ many students",
+      "skill": "grammar_error_detection",
+      "source": "original_generated"
+    }
+  ]
+}

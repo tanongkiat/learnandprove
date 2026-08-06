@@ -21,7 +21,7 @@ const autoSubmit = typeof locals.autoSubmit !== 'undefined' && locals.autoSubmit
     <div class="options">
       <% options.forEach(function(o) { %>
         <label class="option">
-          <input type="radio" name="answer_<%= q.id %>" value="<%= o.id %>" required <%= autoSubmit ? 'onchange="this.form.requestSubmit()"' : '' %>>
+          <input type="radio" name="answer_<%= q.id %>" value="<%= o.id %>" required <%- autoSubmit ? 'onchange="this.form.requestSubmit()"' : '' %>>
           <span><%= o.label %></span>
         </label>
       <% }) %>
