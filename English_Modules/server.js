@@ -1,6 +1,9 @@
 const express = require('express');
 const session = require('express-session');
 const path = require('node:path');
+const fs = require('node:fs');
+
+const FileStore = require('session-file-store')(session);
 
 require('./db/connection'); // opens/creates the SQLite DB and applies schema
 require('./db/seed'); // no-op if already seeded
@@ -15,6 +18,11 @@ const adminRoutes = require('./routes/admin');
 
 const app = express();
 const PORT = process.env.PORT || 4100;
+const sessionPath = path.join(__dirname, '.sessions');
+
+if (!fs.existsSync(sessionPath)) {
+  fs.mkdirSync(sessionPath, { recursive: true });
+}
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -25,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(
   session({
     secret: process.env.SESSION_SECRET || 'triamquest90-internal-dev-secret',
+    store: new FileStore({ path: sessionPath, retries: 0 }),
     resave: false,
     saveUninitialized: false,
     cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }, // 30 days — "easy login" for a small internal team
