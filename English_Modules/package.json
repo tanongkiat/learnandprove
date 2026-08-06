@@ -8,7 +8,7 @@
     "start": "node server.js",
     "dev": "node --watch server.js",
     "seed": "node db/seed.js",
-    "seed:expand": "node db/seedExpansion.js && node db/seedExpansion2.js && node db/seedExpansion3.js && node db/seedExpansion4.js"
+    "seed:expand": "node db/seedExpansion.js && node db/seedExpansion2.js && node db/seedExpansion3.js && node db/seedExpansion4.js && node db/seedExpansion5.js"
   },
   "engines": {
     "node": ">=22.5.0"
